@@ -1,0 +1,38 @@
+ &nmefin cfm='/home/q16655/ln_solver/matrix/mat/MAT.t21l11m6.ape8.dat',
+   cfe='/home/q16655/ln_solver/data/svec/eval.l11m6.ape8.grd',
+   cfs='/home/q16655/ln_solver/data/svec/evec.dat',
+   cfg='/home/q16655/ln_solver/data/svec/evec.l11m6.ape8.grd'
+ &end
+
+ &nmsfin cfm='/home/q16655/ln_solver/matrix/mat/MAT.t21l11m6.csst.dat',
+         cfe='/home/q16655/ln_solver/data/svec/sval.l11m6.csst.grd'
+         cfl='/home/q16655/ln_solver/data/svec/svec.u.dat'
+         cfr='/home/q16655/ln_solver/data/svec/svec.v.dat'
+         cflg='/home/q16655/ln_solver/data/svec/svec-u.l11m6.csst.grd'
+         cfrg='/home/q16655/ln_solver/data/svec/svec-v.l11m6.csst.grd'
+ &end
+
+ &nmbs  cbs='/home/q16655/ln_solver/bs/grads/csst.t21l11.grd'
+ &end
+
+ &nmuv  o2uv=f, opl=f
+ &end
+
+ &nmwave nwave=0
+ &end
+#
+# for SVD
+# top 30 modes
+ &nmmod modmin=8233, modmax=8262
+ &end
+#
+# for EOF
+# &nmmod modmin=1, modmax=8262
+# &end
+
+ &nmall owall=t
+ &end
+
+ &nmcls oclassic=t
+ &end
+

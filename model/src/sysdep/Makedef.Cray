@@ -1,0 +1,54 @@
+#
+#   Cray Y-MP system dependent include for Makefile for CCSR libraries
+# 
+
+SYSFFLAGS	= 
+SYSCFLAGS	= 
+SYSLDFLAGS	=
+SYSCPPFLAGS 	= -DSYS_Cray -DSYS_UNIX -DCODE_ASCII -DCODE_Cray -DOPT_NOCOMMON
+SYSAUTODBL	= 
+SYSDEBUG	= -g
+SYSCHECK	= -C
+LINKOPT		= 
+CPPOPT		= 
+
+# MAKE		= make
+SHELL		= /bin/sh
+CC		= cc
+FC		= cf77
+LD		= cf77
+AR		= ar vru
+RM		= rm -f
+CP		= cp
+MV		= mv -f
+LN		= ln -s
+RANLIB		= touch
+CAT		= cat
+INSTALL		= cp
+MD		= mkdir -p
+JLATEX		= bigjlatex
+DVI2JPS		= dvi2ps
+PRINT		= ltype
+PRINTSTAMP	= .print
+INDEX		= etags -wx
+TAGS		= etags
+TOUCH		= touch
+ECHO		= echo
+AWK		= awk
+CPP	 	= /usr/lib/gpp -P
+FPP      	= sed -e 's/D0/E0/g' -e 's/\.D-/.E-/g' -e 's/\.D\+/.E+/g'
+
+SYSXLIBDIR	= 
+SYSXLIBNAME	= X11
+SYSXLIBS	= -l$(SYSXLIBNAME)
+
+.SUFFIXES:
+.SUFFIXES: .o .ftr .F
+
+.F.o:
+	$(CPP) $(CPPFLAGS) $< | $(FPP) > $*.f
+	$(FC) -c $(FFLAGS) $*.f
+
+.F.ftr:
+	echo "*/ADD NAME="$*.F >> $(FTRFILE)
+	$(CPP) $(CPPFLAGS) $< | $(FPP) >> $(FTRFILE)

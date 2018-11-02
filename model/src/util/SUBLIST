@@ -1,0 +1,86 @@
+CALNDR   util/ucaln.F       ENTRY      CALNDR   !! initialize calendar
+CATNUM   util/usubs.F       SUBROUTINE CATNUM   !! concatenate number to character
+CCC2YH   util/ucaln.F       SUBROUTINE CCC2YH   !! calendar, character -> date
+CDAYMO   util/ucaln.F       ENTRY      CDAYMO   !! calendar, No.of day in a month
+CDAYYR   util/ucaln.F       ENTRY      CDAYYR   !! calendar, No.of day in an year
+CDD2YD   util/ucaln.F       SUBROUTINE CDD2YD   !! calendar, day -> yydd
+CDD2YM   util/ucaln.F       ENTRY      CDD2YM   !! calendar, day -> yymmdd
+CDS2SS   util/ucaln.F       ENTRY      CDS2SS   !! calendar, ddss -> sec.
+CHKVAL   util/usubs.F       SUBROUTINE CHKVAL   !! output max & min values in matrix
+CHM2RS   util/ucaln.F       ENTRY      CHM2RS   !! calendar, hhmmss -> sec.
+CLADJ    util/usubs.F       SUBROUTINE CLADJ    !! put characters to the left
+CLCEND   util/ucloc.F       ENTRY      CLCEND   !! finish measurement of cpu time
+CLCOUT   util/ucloc.F       SUBROUTINE CLCOUT   !! output of CPU time
+CLCSTR   util/ucloc.F       ENTRY      CLCSTR   !! start measurement of cpu time
+CMONYR   util/ucaln.F       ENTRY      CMONYR   !! calendar, No.of month in an year
+COPY     util/usubs.F       SUBROUTINE COPY     !! copy matrix
+COPY2    util/usubs.F       SUBROUTINE COPY2    !! copy matrix
+CPERPO   util/ucaln.F       ENTRY      CPERPO   !! calendar, fixed date(on/off)
+CPERPT   util/ucaln.F       ENTRY      CPERPT   !! calendar, fixed date
+CRS2HM   util/ucaln.F       ENTRY      CRS2HM   !! calendar, sec. -> hhmmss
+CSECDY   util/ucaln.F       ENTRY      CSECDY   !! calendar, No.of sec. in a day
+CSECHR   util/ucaln.F       ENTRY      CSECHR   !! calendar, No.of sec. in an hour
+CSECMI   util/ucaln.F       ENTRY      CSECMI   !! calendar, No of sec. in a minute
+CSS2CC   util/ucaln.F       SUBROUTINE CSS2CC   !! calendar, sec. -> character (NO PERPET.)
+CSS2DS   util/ucaln.F       ENTRY      CSS2DS   !! calendar, sec. -> ddss
+CSS2YD   util/ucaln.F       SUBROUTINE CSS2YD   !! calendar, sec. -> yydd
+CSS2YH   util/ucaln.F       SUBROUTINE CSS2YH   !! calendar, sec. -> date
+CSS2YM   util/ucaln.F       SUBROUTINE CSS2YM   !! calendar, sec. -> yymmdd
+CSSAFT   util/ucaln.F       SUBROUTINE CSSAFT   !! calendar, time advancing
+CXX2SS   util/ucaln.F       SUBROUTINE CXX2SS   !! calendar, hour ->sec.
+CYH2CC   util/ucaln.F       SUBROUTINE CYH2CC   !! calendar, date -> character
+CYH2SS   util/ucaln.F       ENTRY      CYH2SS   !! calendar, date -> sec.
+CYM2DD   util/ucaln.F       ENTRY      CYM2DD   !! calendar, yymmdd -> day
+CYM2YD   util/ucaln.F       ENTRY      CYM2YD   !! calendar, yymmdd -> yydd
+FFT99X   util/ufftp.F       SUBROUTINE FFT99X   !! call FFT
+FILLV    util/usubs.F       SUBROUTINE FILLV    !! fill part of matrix with value
+GAUSS    util/uspst.F       SUBROUTINE GAUSS    !! calculate Gaussian latitude & weight
+GRADX    util/usphe.F       SUBROUTINE GRADX    !! spectral component of x-differential
+ICOPY    util/usubs.F       SUBROUTINE ICOPY    !! copy matrix
+IRESET   util/usubs.F       SUBROUTINE IRESET   !! reset matrix to 0
+LGNDRE   util/uspst.F       SUBROUTINE LGNDRE   !! calculation of Legendre function
+LUBWD3   util/umtlu.F       SUBROUTINE LUBWD3   !! LU decomp. backward insert[3-diagonal]
+LUFWD3   util/umtlu.F       SUBROUTINE LUFWD3   !! LU decomp. forward insert[3-diagonal]
+LUMAK3   util/umtlu.F       SUBROUTINE LUMAK3   !! LU decomposition [3-diagonal]
+LUMAKE   util/umtlu.F       SUBROUTINE LUMAKE   !! LU decomposition (partial pivot select)
+LUSOL3   util/umtlu.F       SUBROUTINE LUSOL3   !! solution by LU decomp.[triple diagonal]
+LUSOLV   util/umtlu.F       SUBROUTINE LUSOLV   !! solution by LU decomposition
+MAXMIN   util/usubs.F       SUBROUTINE MAXMIN   !! output max & min values in matrix
+MCUT     util/usubs.F       SUBROUTINE MCUT     !! cut part of matrix
+MPASTE   util/usubs.F       SUBROUTINE MPASTE   !! paste part of matrix
+RADB2M   util/ufftp.F       SUBROUTINE RADB2M   !! FFT
+RADB3M   util/ufftp.F       SUBROUTINE RADB3M   !! FFT
+RADB4M   util/ufftp.F       SUBROUTINE RADB4M   !! FFT
+RADB5M   util/ufftp.F       SUBROUTINE RADB5M   !! FFT
+RADBGM   util/ufftp.F       SUBROUTINE RADBGM   !! FFT
+RADF2M   util/ufftp.F       SUBROUTINE RADF2M   !! FFT
+RADF3M   util/ufftp.F       SUBROUTINE RADF3M   !! FFT
+RADF4M   util/ufftp.F       SUBROUTINE RADF4M   !! FFT
+RADF5M   util/ufftp.F       SUBROUTINE RADF5M   !! FFT
+RADFGM   util/ufftp.F       SUBROUTINE RADFGM   !! FFT
+RDTKNH   util/usubs.F       SUBROUTINE RDTKNH   !! read character token
+RDTKNI   util/usubs.F       SUBROUTINE RDTKNI   !! read integer token
+RDTKNR   util/usubs.F       SUBROUTINE RDTKNR   !! read floating token
+RESET    util/usubs.F       SUBROUTINE RESET    !! reset matrix to 0
+RFFTBM   util/ufftp.F       SUBROUTINE RFFTBM   !! FFT
+RFFTFM   util/ufftp.F       SUBROUTINE RFFTFM   !! FFT
+RFFTIM   util/ufftp.F       SUBROUTINE RFFTIM   !! make function table for FFT
+RFTB1M   util/ufftp.F       SUBROUTINE RFTB1M   !! FFT
+RFTB2M   util/ufftp.F       SUBROUTINE RFTB2M   !! FFT
+RFTB9M   util/ufftp.F       SUBROUTINE RFTB9M   !! FFT
+RFTF1M   util/ufftp.F       SUBROUTINE RFTF1M   !! FFT
+RFTF2M   util/ufftp.F       SUBROUTINE RFTF2M   !! FFT
+RFTF3M   util/ufftp.F       SUBROUTINE RFTF3M   !! FFT
+RFTF9M   util/ufftp.F       SUBROUTINE RFTF9M   !! FFT
+RFTI1M   util/ufftp.F       SUBROUTINE RFTI1M   !! FFT
+RMXMN    util/usubs.F       SUBROUTINE RMXMN    !! max & min values in matrix
+SABORT   util/usubs.F       ENTRY      SABORT   !! set level of abnormal end
+SETNMO   util/uspst.F       SUBROUTINE SETNMO   !! order of matrix
+SETPNM   util/uspst.F       SUBROUTINE SETPNM   !! calculation of Legendre function
+SETV     util/usubs.F       SUBROUTINE SETV     !! put scalar value to matrix
+SPG2W    util/usphe.F       SUBROUTINE SPG2W    !! grid -> spectral
+SPW2G    util/usphe.F       SUBROUTINE SPW2G    !! spectral -> grid transform
+SPW2Z    util/usphe.F       SUBROUTINE SPW2Z    !! Legendre trans. (spect.->grid)
+SPZ2W    util/usphe.F       SUBROUTINE SPZ2W    !! Legendre trans. (grid->spect.)
+UCALN    util/ucaln.F       SUBROUTINE UCALN    !! calendar
+XABORT   util/usubs.F       SUBROUTINE XABORT   !! abnormal end

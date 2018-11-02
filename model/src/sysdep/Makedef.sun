@@ -1,0 +1,57 @@
+#
+#   Sun system dependent include for Makefile for CCSR libraries
+# 
+
+SYSFFLAGS	= -O -u -f77=input
+SYSCFLAGS	= -DX_WCHAR
+SYSLDFLAGS	=  
+SYSCPPFLAGS 	= -DSYS_Sun -DSYS_UNIX -DCODE_ASCII -DCODE_IEEE
+SYSAUTODBL	= -r8
+SYSDEBUG	= -g
+SYSCHECK	= -C 
+LINKOPT		=
+CPPOPT		= 
+
+# MAKE		= make
+SHELL		= /bin/sh
+CC		= cc
+#FC		= f77
+#LD		= f77
+#
+# changed as of v2.1
+FC		= f90
+LD		= f90
+AR		= ar vru
+RM		= rm -f
+CP		= cp
+MV		= mv -f
+LN		= ln -s
+RANLIB		= ranlib
+CAT		= cat
+INSTALL		= cp
+MD		= mkdir -p
+JLATEX		= bigjlatex
+DVI2JPS		= dvi2ps
+PRINT		= ltype
+PRINTSTAMP	= .print
+INDEX		= etags -wx
+TAGS		= etags
+TOUCH		= touch
+ECHO		= echo
+AWK		= gawk
+CPP		= cpp -P
+FPP     	= 
+
+SYSXLIBDIR	= /usr/X11R5/lib
+SYSXLIBNAME	= X11
+SYSXLIBS	= -L$(SYSXLIBDIR) -l$(SYSXLIBNAME)
+###SYSXLIBS	= -l$(SYSXLIBNAME)
+
+.SUFFIXES : .html .ftr .F
+
+.F.ftr:
+	echo "*/ADD NAME="$*.F >> $(FTRFILE)
+	cat $< >> $(FTRFILE)
+
+.F.html:
+	$(LNHOME)/model/sh/util/makehtml srcdir=$(SRCDIR) $< > $@

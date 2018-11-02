@@ -1,0 +1,156 @@
+***************************************************
+	NAMELIST parameter list for expert/
+***************************************************
+
+<command_name> # explanation of routine
+
+ &nmxxx yyy='zzz' !! description of the parameter  (input/output/dummy)
+ &end
+
+ note: all the filenames is temporary
+-----------------------------------
+
+<svd> apply SVD for a matrix
+
+ &nmsfin cfm='/home/hiro/MATPWM.t21l20.ncepwin.dat', !! matrix file         (in)
+         cfe='/home/hiro/svalpwm.t21l20.grd',       !! singular values     (out)
+         cfl='/home/hiro/svec-u.t21l20.dat',        !! u-vector            (out)
+         cfr='/home/hiro/svec-v.t21l20.dat',        !! v-vector            (out)
+         cflg='/home/hiro/svecpwm.t21l20.u1.grd',   !! u-vector GrADS file (dum)
+         cfrg='/home/hiro/svecpwm.t21l20.v1.grd'    !! v-vector GrADS file (dum)  
+ &end
+
+ &nmwave nwave=0                                    !! zonal wave number (in, PWM only)
+
+ &nmall owall=f                                     !! full matrix or PWM       
+ &end
+
+ &nmcls oclassic=t                                  !! moist model or dry (classic) model
+ &end
+
+<strn> transform singular vectors to physical space
+
+ &nmsfin cfm='/home/hiro/MATPWM.t21l20.ncepwin.dat', !! matrix file         (dum)
+         cfe='/home/hiro/svalpwm.t21l20.grd',	    !! singular values     (dum)
+         cfl='/home/hiro/svec-u.t21l20.dat',	    !! u-vector            (in)
+         cfr='/home/hiro/svec-v.t21l20.dat',	    !! v-vector            (in)
+         cflg='/home/hiro/svecpwm.t21l20.u1.grd',   !! u-vector GrADS file (out)
+         cfrg='/home/hiro/svecpwm.t21l20.v1.grd'    !! v-vector GrADS file (out) 
+ &end
+
+ &nmbs  cbs='/home/hiro/ncepwin.t21l20.grd'         !! GrADS BS filename (in)
+ &end
+
+ &nmuv  o2uv=t,                            	    !! compute U,V but not Psi,Chi 
+        opl=t                            	    !! convert to pressure level
+ &end
+
+ &nmmod modmin=1281,			 !! minimum number of mode stored to file (in)
+        modmax=1281 			 !! maximum number of mode stored to file (in)
+ &end
+
+ &nmwave nwave=0                                    !! zonal wave number (in, PWM only)
+
+ &nmall owall=f                                     !! full matrix or PWM       
+ &end
+
+ &nmcls oclassic=t                                  !! moist model or dry (classic) model
+ &end
+
+<eof> apply eigenanalysis for a matrix
+
+ &nmefin cfm='/home/hiro/MATPWM.t21l20.ncepwin.dat', !! matrix file             (in)
+         cfe='/home/hiro/evalpwm.t21l20.grd',       !! eigen values             (out)
+         cfs='/home/hiro/evec.t21l20.dat',          !! eigen vectors            (out)
+         cfg='/home/hiro/evecpwm.t21l20.grd'        !! eigen vectors GrADS file (dum)
+ &end
+
+ &nmwave nwave=0                                    !! zonal wave number (in, PWM only)
+
+ &nmall owall=f                                     !! full matrix or PWM       
+ &end
+
+ &nmcls oclassic=t                                  !! moist model or dry (classic) model
+ &end
+
+<etrn>  transform eigen vectors to physical space
+
+ &nmefin cfm='/home/hiro/MATPWM.t21l20.ncepwin.dat', !! matrix file             (dum)
+         cfe='/home/hiro/evalpwm.t21l20.grd',       !! eigen values             (dum)
+         cfs='/home/hiro/evec.t21l20.dat',          !! eigen vectors            (in)
+         cfg='/home/hiro/evecpwm.t21l20.grd'        !! eigen vectors GrADS file (out)
+ &end
+
+ &nmbs  cbs='/home/hiro/ncepwin.t21l20.grd'         !! GrADS BS filename (in)
+ &end
+
+ &nmuv  o2uv=t,                            	    !! compute U,V but not Psi,Chi 
+        opl=t                            	    !! convert to pressure level
+ &end
+
+ &nmmod modmin=1,			 !! minimum number of mode stored to file (in)
+        modmax=1281 			 !! maximum number of mode stored to file (in)
+ &end
+
+ &nmwave nwave=0                                    !! zonal wave number (in, PWM only)
+
+ &nmall owall=f                                     !! full matrix or PWM       
+ &end
+
+ &nmcls oclassic=t                                  !! moist model or dry (classic) model
+ &end
+
+<svdbr> apply SVD for a matrix (barotropic model)
+
+ &nmsfin cfm='/home/hiro/MATBR.ncepwin.dat',        !! matrix file         (in)
+         cfe='/home/hiro/svalbaro.grd',             !! singular values     (out)
+         cfl='/home/hiro/svec-u.dat',               !! u-vector            (out)
+         cfr='/home/hiro/svec-v.dat',               !! v-vector            (out)
+         cflg='/home/hiro/svecbaro.u.grd',          !! u-vector GrADS file (dum)
+         cfrg='/home/hiro/svecbaro.v.grd'           !! v-vector GrADS file (dum)  
+ &end
+
+ &nmwave nwave=0                                    !! zonal wave number (in, PWM only)
+
+ &nmall owall=f                                     !! full matrix or PWM       
+ &end
+
+<strnbr> transform singular vectors to physical space (barotropic model)
+
+ &nmsfin cfm='/home/hiro/MATBR.ncepwin.dat',        !! matrix file         (dum)
+         cfe='/home/hiro/svalbaro.grd',             !! singular values     (dum)
+         cfl='/home/hiro/svec-u.dat',               !! u-vector            (in)
+         cfr='/home/hiro/svec-v.dat',               !! v-vector            (in)
+         cflg='/home/hiro/svecbaro.u.grd',          !! u-vector GrADS file (out)
+         cfrg='/home/hiro/svecbaro.v.grd'           !! v-vector GrADS file (out)  
+
+ &nmwave nwave=0                                    !! zonal wave number (in, PWM only)
+
+ &nmall owall=f                                     !! full matrix or PWM       
+ &end
+
+<eofbr> apply eigenanalysis for a matrix (barotropic model)
+
+ &nmefin cfm='/home/hiro/MATBR.ncepwin.dat',        !! matrix file         (in)
+         cfe='/home/hiro/evalbaro.grd',             !! singular values     (out)
+         cfs='/home/hiro/evec.dat',                 !! eigen vector        (out)
+         cfg='/home/hiro/evecbaro.grd'              !! eigen vector GrADS file (dum)  
+ &end
+
+ &nmwave nwave=0                                    !! zonal wave number (in, PWM only)
+
+ &nmall owall=f                                     !! full matrix or PWM       
+ &end
+
+<etrnbr> transform eigen vectors to physical space (barotropic model)
+
+ &nmefin cfm='/home/hiro/MATBR.ncepwin.dat',        !! matrix file         (dum)
+         cfe='/home/hiro/evalbaro.grd',             !! singular values     (dum)
+         cfs='/home/hiro/evec.dat',                 !! eigen vector        (in)
+         cfg='/home/hiro/evecbaro.grd'              !! eigen vector GrADS file (out)  
+ &end
+
+ &nmwave nwave=0                                    !! zonal wave number (in, PWM only)
+
+ &nmall owall=f                                     !! full matrix or PWM       
+ &end

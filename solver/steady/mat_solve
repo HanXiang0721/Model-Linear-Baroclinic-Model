@@ -1,0 +1,65 @@
+#!/bin/csh -f
+#
+#     batch shell for linear matrix solver
+#
+# NQS command for mail
+#@$-q   q
+#@$-N   1
+#@$-me
+#
+setenv DIR    /home/q16655/ln_solver/solver/steady # ROOT of executable
+setenv EXE    lin                              # Execulatble name
+setenv TRAN   trn                              # Execulatble name
+#
+#      setup
+#
+#        cfg='/home/q16655/ln_solver/data/couple/rsp/rsp.ninojan.t21l11.s.grd'
+cd $DIR
+rm -f $DIR/SETPAR $DIR/LOG
+echo linear solver started at `date`  > LOG
+cat << END_OF_PAR1 >>! $DIR/SETPAR
+ &nmfin cfm='/home/q16655/ln_solver/matrix.moi/mat/MAT.t21l11m15.ncpjan.dat',
+        cfr='/home/q16655/ln_solver/data/couple/frc/frc.t21l11.mat',
+        cfs='/home/q16655/ln_solver/data/couple/rsp/x.dat',
+        cfg='/home/q16655/ln_solver/data/couple/rsp/rsp.ninojan.t21l11.s.grd'
+ &end
+ &nmbs  cbs='/home/q16655/ln_solver/data/couple/bs/grads/ncepjan.t21l11.grd'
+ &end
+ &nmuv  o2uv=f, opl=f
+ &end
+ &nmall owall=f
+ &end
+ &nmcls oclassic=f
+ &end
+END_OF_PAR1
+#
+$EXE >> LOG
+#
+# wave to grid
+#
+echo transform PSICHI started at `date` >> LOG
+$TRAN >> LOG
+#
+echo transform UV started at `date` >> LOG
+rm -f $DIR/SETPAR
+cat << END_OF_PAR2 >>! $DIR/SETPAR
+ &nmfin cfm='/home/q16655/ln_solver/matrix.moi/mat/MAT.t21l11m15.ncpjan.dat',
+        cfr='/home/q16655/ln_solver/data/couple/frc/frc.t21l11.mat',
+        cfs='/home/q16655/ln_solver/data/couple/rsp/x.dat',
+        cfg='/home/q16655/ln_solver/data/couple/rsp/rsp.ninojan.t21l11.grd'
+ &end
+ &nmbs  cbs='/home/q16655/ln_solver/data/couple/bs/grads/ncepjan.t21l11.grd'
+ &end
+ &nmuv  o2uv=t, opl=f
+ &end
+ &nmall owall=f
+ &end
+ &nmcls oclassic=f
+ &end
+END_OF_PAR2
+#
+$TRAN >> LOG
+cp -f $DIR/SETPAR.org $DIR/SETPAR
+echo linear solver ended at `date`  >> LOG
+
+

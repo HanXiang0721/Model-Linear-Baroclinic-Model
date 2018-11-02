@@ -1,0 +1,71 @@
+***************************************************
+	NAMELIST parameter list for steady/
+***************************************************
+
+<command_name> # explanation of routine
+
+ &nmxxx yyy='zzz' !! description of the parameter
+ &end
+
+ note: all the filenames is temporary
+-----------------------------------
+
+<lin> solve LX = F for a given forcing
+
+ &nmfin cfm='/home/hiro/ln_solver/data/MAT.dat',    !! matrix file       (in)
+        cfr='/home/hiro/ln_solver/data/frc.mat',    !! forcing file      (in)
+        cfs='/home/hiro/ln_solver/data/x.dat',      !! output in wave    (out)
+        cfg='/home/hiro/ln_solver/data/rsp.grd'     !! GrADS output file (dum)
+ &end
+
+ &nmall owall=t   	                            !! full matrix or PWM       
+ &end
+
+ &nmcls oclassic=t        	                    !! moist model or dry (classic) model
+ &end
+
+<trn> transform response data in wave space to grid space
+
+ &nmfin cfm='/home/hiro/ln_solver/data/MAT.dat',    !! matrix file       (dum)
+        cfr='/home/hiro/ln_solver/data/frc.mat',    !! forcing file      (dum)
+        cfs='/home/hiro/ln_solver/data/x.dat',      !! output in wave    (in)
+        cfg='/home/hiro/ln_solver/data/rsp.grd'     !! GrADS output file (out)
+ &end
+
+ &nmbs  cbs='/home/hiro/ln_solver/bs/grads/ncepwin.t21l20.grd' !! GrADS BS filename (in)
+ &end
+
+ &nmuv  o2uv=t,					    !! compute U,V but not Psi.Chi
+        opl=t					    !! convert to pressure level data
+ &end
+
+ &nmall owall=t   	                            !! full matrix or PWM       
+ &end
+
+ &nmcls oclassic=t        	                    !! moist model or dry (classic) model
+ &end
+
+<linbr> solve LX = F for a given forcing (barotropic model)
+
+ &nmfin cfm='/home/hiro/ln_solver/data/MATBR.dat',  !! matrix file       (in)
+        cfr='/home/hiro/ln_solver/data/frc.br.mat', !! forcing file      (in)
+        cfs='/home/hiro/ln_solver/data/x.dat',      !! output in wave    (out)
+        cfg='/home/hiro/ln_solver/data/rsp.br.grd'  !! GrADS output file (dum)
+ &end
+
+ &nmall owall=t   	                            !! full matrix or PWM       
+ &end
+
+<trnbr> transform response data in wave space to grid space (barotropic model)
+
+ &nmfin cfm='/home/hiro/ln_solver/data/MATBR.dat',  !! matrix file       (dum)
+        cfr='/home/hiro/ln_solver/data/frc.br.mat', !! forcing file      (dum)
+        cfs='/home/hiro/ln_solver/data/x.dat',      !! output in wave    (in)
+        cfg='/home/hiro/ln_solver/data/rsp.br.grd'  !! GrADS output file (out)
+ &end
+
+ &nmbs  cbs='/home/hiro/ln_solver/bs/grads/ncepwin.t21l1.grd' !! GrADS BS filename (in)
+ &end
+
+ &nmall owall=t   	                            !! full matrix or PWM       
+ &end

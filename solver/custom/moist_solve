@@ -1,0 +1,237 @@
+#!/bin/csh -f
+#
+#     batch shell for linear matrix solver
+#
+# NQS command for mail
+#@$-q   ccsr
+#@$-N   1
+#@$-lM  4GB
+#@$-lT  12:00:00
+#
+setenv LNHOME    /home/a01011/ln_solver                     # ROOT of LBM
+setenv LBMDIR    $LNHOME/model                              # ROOT of LBM 
+setenv SYSTEM    sr8000                                     # execute system
+setenv DIR       $LNHOME/solver/custom                      # ROOT of executable
+setenv DDIR      $LNHOME/data/out                           # dir for model output
+#
+# basic states, winter 3D
+setenv DATZ      $LNHOME/bs/gt3/grz.t21                     # Topography
+setenv DATS      $LNHOME/bs/gt3/sstwin                      # mean SST
+setenv DATW      $LNHOME/bs/gt3/wgwin                       # soil wetness
+setenv DATI      $LNHOME/bs/gt3/gridx.t21                   # sfc. index
+setenv BSFILE    $LNHOME/bs/gt3/ncepwin.t21l11              # Atm. BS File
+setenv BSFILEG   $LNHOME/bs/grads/ncepwin.t21l11.grd        # Atm. BS File
+setenv RSTFILE   $DDIR/Restart.amat                         # Restart-Data File
+#
+# forcing/response files
+setenv MATINV    MATINV.t21l11m6.dat                        # inverse matrix
+setenv GRDFRC0   $LNHOME/data/frc/frc.sst.tmp.grd
+setenv GRDFRC    $LNHOME/data/frc/frc.sst.one.grd           # SST forcing 
+setenv MATFRC0   $LNHOME/data/frc/frc.tmp.mat
+setenv MATFRC    $LNHOME/data/frc/frc.one.l11.mat           # forcing 
+setenv GRDRSP    $LNHOME/data/rsp/rsp.one.t21l11m6.grd      # response (pres)
+setenv GRDRSPS   $LNHOME/data/rsp/rsp.one.t21l11m6.s.grd    # response (sig)
+setenv QFRC0     $LNHOME/data/frc/frc.heat.tmp.grd
+setenv QFRC      $LNHOME/data/frc/frc.heat.one.grd          # heating rsp.
+#
+# executable
+setenv RUN       $LBMDIR/bin/$SYSTEM/lbm2.t21ml11cmkamat.frc # Excutable file
+setenv FRC       $DIR/ofrcsst                               # Execulatble name
+setenv TRN       $DIR/cov                                   # Execulatble name
+#
+# model parameters
+##setenv NTRN     10                                        # truncate wave no.
+setenv NTRN      6                                          # truncate wave no.
+setenv STM       1
+setenv STD       1
+#
+# executable option
+#
+setenv OSST     TRUE
+setenv OFRC     TRUE
+setenv OCOV     TRUE
+setenv OHEAT    TRUE
+#
+#      setup
+#
+@ NOFFRC = 389 # tropical belt (20S-20N)
+#
+# to know $NOFFRC run ofrcsst once independently 
+#
+if (! -e $DDIR) mkdir -p $DDIR
+cd $DIR
+###mv -f SETPAR SETPAR.org
+rm -f LOG0 LOG
+if( $OSST == TRUE ) then 
+rm -f $GRDFRC
+endif
+if( $OFRC == TRUE ) then 
+rm -f $MATFRC
+endif
+if( $OHEAT == TRUE ) then 
+rm -f $QFRC
+endif
+echo steady moist one-point forcing at `date` > $DIR/LOG
+#
+# loop
+#
+@ IFRC = 1
+while ( $IFRC <= $NOFFRC )
+#
+# one-point SST forcing
+#
+if( $OSST == TRUE ) then 
+rm -f $GRDFRC0
+cd $DIR
+echo  number of forcing:  $IFRC >> $DIR/LOG
+rm -f SETPAR LOG0
+cat << END_OF_PAR >>! $DIR/SETPAR
+ &nmfin cfm='$LNHOME/matrix/mat/MAT.t21l11m6.dat',
+        cfr='$GRDFRC0',
+        cfs='$DATI',
+        cfg='$GRDRSP'
+ &end
+ &nmfrc fact=1.0,1.0,1.0,1.0,1.0,
+        xlonw=0.,
+        xlone=360.,
+        ylats=-20.,
+        ylatn=20.
+ &end
+ &nmfno nftype=$IFRC
+ &end
+ &nmall owall=t
+ &end
+END_OF_PAR
+#
+# forcing (if necessary)
+#
+$FRC  >> LOG0
+cat  < $GRDFRC0 >> $GRDFRC
+endif
+#
+# SST forcing -> heating and moistening
+#
+if( $OFRC == TRUE ) then 
+rm -f $MATFRC0
+rm -f $DDIR/SYSOUT $DDIR/ERROUT
+echo --- exec error messages --- > $DDIR/ERROUT
+echo compute forcing due to SST anomaly >> $DIR/LOG
+cd $DDIR
+echo job started at `date` > $DDIR/SYSOUT
+rm -f $DDIR/SYSIN
+cat << END_OF_DATA >>! $DDIR/SYSIN
+ &nmrun  run='make forcing'                                    &end
+ &nmtime start=0,$STM,$STD,0,0,0, end=0,$STM,$STD,0,30,0       &end
+ &nmdelt delt=40, tunit='MIN', inistp=0                        &end
+ &nminit file='$BSFILE' , DTBFR=1., DTAFTR=1., TUNIT='YEAR'    &end
+ &nmrstr file='$RSTFILE', tintv=1, tunit='MON'                 &end
+ &nmmca ttau0=3, qtau0=3, ttauc=6, tunit='HOUR', sigkb=0.95D0  &end
+ &nmsfrc fsfrc='$GRDFRC0'                                      &end
+ &nmamat amatf='$MATFRC0', 
+  omatv=t, omatd=t, omatt=t, omatp=t, omatq=t, kmatw=$NTRN     &end
+ &nmdata item='GRZ',    file='$DATZ'                           &end
+ &nmdata item='GRSST',  file='$DATS'                           &end
+ &nmdata item='GRIDX',  file='$DATI'                           &end
+ &nmdata item='GRWG',   file='$DATW'                           &end
+END_OF_DATA
+#
+#  run
+#
+( $RUN < $DDIR/SYSIN >> $DDIR/SYSOUT ) >& $DDIR/ERROUT
+#
+# merge
+#
+cat  < $MATFRC0 >> $MATFRC
+endif
+#
+@ IFRC = $IFRC + 1
+end
+#
+# calculate response and wave to grid
+#
+if( $OCOV == TRUE ) then 
+cd $DIR
+rm -f SETPAR LOG0
+cat << END_OF_PAR >>! $DIR/SETPAR
+ &nmfin cfm='$LNHOME/matrix/mat/MAT.t21l11m6.dat',
+        cfr='$MATFRC',
+        cfs='$LNHOME/matrix/mat/$MATINV',
+        cfg='$GRDRSP'
+ &end
+ &nmbs  cbs='$BSFILEG'                                         &end
+ &nmuv  o2uv=f, opl=t                                          &end
+ &nmfno nftype=$NOFFRC                                         &end
+ &nmall owall=t                                                &end
+ &nmcls oclassic=f                                             &end
+END_OF_PAR
+#
+$TRN >> $DIR/LOG
+#
+# sigma level
+#
+cd $DIR
+rm -f SETPAR LOG0
+cat << END_OF_PAR >>! $DIR/SETPAR
+ &nmfin cfm='$LNHOME/matrix/mat/MAT.t21l11m6.dat',
+        cfr='$MATFRC',
+        cfs='$LNHOME/matrix/mat/$MATINV',
+        cfg='$GRDRSPS'
+ &end
+ &nmbs  cbs='$BSFILEG'                                         &end
+ &nmuv  o2uv=t, opl=f                                          &end
+ &nmfno nftype=$NOFFRC                                         &end
+ &nmall owall=t                                                &end
+ &nmcls oclassic=f                                             &end
+END_OF_PAR
+#
+$TRN >> $DIR/LOG
+endif
+#
+# loop
+#
+@ IFRC = 1
+while ( $IFRC <= $NOFFRC )
+#
+# calculate heating
+#
+if( $OHEAT == TRUE ) then 
+rm -f $QFRC0
+rm -f $DDIR/SYSOUT $DDIR/ERROUT
+echo --- exec error messages --- > $DDIR/ERROUT
+echo compute forcing due to SST anomaly:  number of forcing: $IFRC >> $DIR/LOG
+cd $DDIR
+echo job started at `date` > $DDIR/SYSOUT
+rm -f $DDIR/SYSIN
+cat << END_OF_DATA >>! $DDIR/SYSIN
+ &nmrun  run='make forcing'                                    &end
+ &nmtime start=0,$STM,$STD,0,0,0, end=0,$STM,$STD,0,30,0       &end
+ &nmdelt delt=40, tunit='MIN', inistp=0                        &end
+ &nminit file='$BSFILE' , DTBFR=1., DTAFTR=1., TUNIT='YEAR'    &end
+ &nmrstr file='$RSTFILE', tintv=1, tunit='MON'                 &end
+ &nmmca ttau0=3, qtau0=3, ttauc=6, tunit='HOUR', sigkb=0.95D0, ocef=f &end
+ &nmsfcm owes=t, expw=0.5                                      &end
+ &nmwfrc wvfrc='$GRDRSPS' , nfrc=$IFRC                         &end
+ &nmsfrc fsfrc='$GRDFRC', gsfrc='$QFRC0' , nsfrc=$IFRC         &end
+ &nmamat amatf='$MATFRC0', 
+  omatv=t, omatd=t, omatt=t, omatp=t, omatq=t, kmatw=$NTRN     &end
+ &nmdata item='GRZ',    file='$DATZ'                           &end
+ &nmdata item='GRSST',  file='$DATS'                           &end
+ &nmdata item='GRIDX',  file='$DATI'                           &end
+ &nmdata item='GRWG',   file='$DATW'                           &end
+END_OF_DATA
+#
+#  run
+#
+( $RUN < $DDIR/SYSIN >> $DDIR/SYSOUT ) >& $DDIR/ERROUT
+#
+# merge
+#
+cat  < $QFRC0 >> $QFRC
+endif
+#
+@ IFRC = $IFRC + 1
+end
+#
+echo steady moist one-point forcing at `date` >> $DIR/LOG
+
+

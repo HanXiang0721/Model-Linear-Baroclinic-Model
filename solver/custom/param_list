@@ -1,0 +1,101 @@
+***************************************************
+	NAMELIST parameter list for custom/
+***************************************************
+
+<command_name> # explanation of routine
+
+ &nmxxx yyy='zzz' !! description of the parameter  (input/output/dummy)
+ &end
+
+ note: all the filenames is temporary
+-----------------------------------
+
+<inv> compute inverse matrix of L
+
+ &nmfin cfm='/home/hiro/MAT.dat', 	    !! matrix file       (in)
+        cfr='/home/hiro/frc.mat',   	    !! forcing file      (dum)
+        cfs='/home/hiro/MATINV.dat', 	    !! inverse matrix    (out)
+        cfg='/home/hiro/rsp.grd'      	    !! GrADS output file (dum)
+ &end
+
+ &nmall owall=t			    	    !! full matrix or PWM	
+ &end
+
+ &nmcls oclassic=t                   	    !! moist model or dry (classic) model
+ &end
+
+<cov> calculate response by products L^-1 * F
+
+ &nmfin cfm='/home/hiro/MAT.dat',	    !! matrix file       (dum)
+        cfr='/home/hiro/frc.mat',  	    !! forcing file      (in)
+        cfs='/home/hiro/MATINV.dat', 	    !! inverse matrix    (in)
+        cfg='/home/hiro/rsp.grd'            !! GrADS output file (out)
+ &end
+
+ &nmbs  cbs='/home/hiro/ncepwin.t21l5.grd'  !! GrADS BS filename (in)
+ &end
+
+ &nmuv  o2uv=t,				    !! compute U,V but not Psi,Chi  
+        opl=t  				    !! convert to pressure level
+ &end
+
+ &nmfno nftype=1 			    !! number of forcing data
+ &end
+
+ &nmall owall=t			    	    !! full matrix or PWM	
+ &end
+
+ &nmcls oclassic=t                   	    !! moist model or dry (classic) model
+ &end
+
+<ofrc> compute set of one-point forcing
+
+ &nmfin cfm='/home/hiro/MATPW.dat', 	    !! matrix file       (dum)
+        cfr='/home/hiro/frc.mat',    	    !! forcing file      (out)
+        cfs='/home/hiro/MATINV.dat',	    !! inverse matrix    (dum)
+        cfg='/home/hiro/rsp.grd'     	    !! GrADS output file (dum)
+ &end
+
+ &nmvar ovor=t, odiv=f, otmp=f, ops=f, osph=f !! choise of forcing variable
+ &end
+
+ &nmfrc fact=1.0D-8,1.0D-9,1.0D-1,1.0D-9,1.0D-9, !! amplitude of forcing
+        xlonw=120.,			    !! lon (west) for forcing region	
+        xlone=150.,			    !! lon (east) for forcing region	
+        ylats=20.,			    !! lat (south) for forcing region	
+        ylatn=60.			    !! lat (north) for forcing region	
+ &end
+
+ &nmall owall=t			    	    !! full matrix or PWM	
+ &end
+
+ &nmcls oclassic=t                   	    !! moist model or dry (classic) model
+ &end
+
+<rfrc> compute set of spatially random forcing
+
+ &nmfin cfm='/home/hiro/MATPW.dat', 	    !! matrix file       (dum)
+        cfr='/home/hiro/frc.mat',    	    !! forcing file      (out)
+        cfs='/home/hiro/MATINV.dat',	    !! inverse matrix    (dum)
+        cfg='/home/hiro/random1000.l5.grd'  !! random sequence file (in)
+ &end
+
+ &nmvar ovor=t, odiv=f, otmp=f, ops=f, osph=f !! choise of forcing variable
+ &end
+
+ &nmfrc fact=1.0D-8,1.0D-9,1.0D-1,1.0D-9,1.0D-9, !! amplitude of forcing
+        xlonw=120.,			    !! (dum)
+        xlone=150.,			    !! (dum)
+        ylats=20.,			    !! (dum)
+        ylatn=60.			    !! (dum)
+ &end
+
+ &nmfno nftype=1 			    !! number of forcing data
+ &end
+
+ &nmall owall=t			    	    !! full matrix or PWM	
+ &end
+
+ &nmcls oclassic=t                   	    !! moist model or dry (classic) model
+ &end
+

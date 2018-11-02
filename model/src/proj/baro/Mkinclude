@@ -1,0 +1,112 @@
+#  project dependent include file for Mkinclude
+#
+# PROJECT = baro
+#
+###### Horizontal Resolution ################
+HRESOLUTION 	= $(HRES)
+
+###### Vertical Resolution (Atmosphere) #####
+VRESOLUTION	= $(VRES)c
+
+###### Vertical Resolution (Ground) #########
+###GRESOLUTION	= g21c
+GRESOLUTION	= g31c
+###GRESOLUTION	= g33c
+
+############## Memory Size (none or m) ######
+
+###MEMORYSIZE	=
+MEMORYSIZE	= m
+
+############## Compilig Options #############
+
+DEBUG		= 
+###DEBUG		= $(SYSDEBUG)   # -g
+CHECK		= 
+###CHECK		= $(SYSCHECK)   # -C 
+
+#
+# MKMAT      : make linear operator with a basic state (PWM)
+# MKMAT OWALL: make linear operator with a basic state (full matrix)
+# WVFRC      : make forcing due to A(X_c^*)X_a^bar or A(X_c^*)X_a^*
+#
+OPTIONS		= -DOPT_NOPHYSICS $(MODELOPT)
+#OPTIONS		= -DOPT_NOPHYSICS -DOPT_MKMAT
+#OPTIONS		= -DOPT_NOPHYSICS -DOPT_MKMAT -DOPT_OWALL
+#OPTIONS		= -DOPT_NOPHYSICS -DOPT_WVFRC 
+
+############## Library Filename Extension ################
+
+###LIBNAME         = std
+LIBNAME         = $(PROJECT)
+
+############# Excutable Filename Extension ###############
+
+MODELNAME       = $(PROJECT)
+#MODELNAME       = $(PROJECT).tmp
+#MODELNAME       = $(PROJECT).wvfrc
+#MODELNAME       = $(PROJECT).wvfrc2
+#MODELNAME       = $(PROJECT).wvfrc3
+
+############## Special Routine ###########################
+####### Directory
+
+SPECIALDIR	= proj/$(PROJECT)
+
+####### Routines (*.o)
+
+SPECIAL		= aadmn-2.o \
+		  dadmn-2.o dterm-2.o dstep-2.o 
+
+############## Main Routine ##############################
+
+###MAIN	 	= cplmain.o		# coupled
+MAIN	 	= atmmain.o		# atmos only
+
+############## nonstd/ Non-Standard Routine ##############
+
+###### Atmos #####
+ATMOS 	=				# [STD]	3-dim or 2-dim
+###ATMOS 	= aadmn1d.o		# 1-dim
+###ATMOS 	= aadmn2c.o		# 1-dim 2-column
+###ATMOS 	= aadmnsfc.o		# 0-dim surface
+###ATMOS 	= aadmnocn.o		# 0-dim ocean only
+###ATMOS 	= aadmntrn.o		# 3-dim transport only
+
+###### User #####
+USER 	=				# [STD]	Nothing
+###USER 	= auser4da.o		# nudging 4dda 
+
+###### Spherical Transform #####
+SPHERT	=         			# 3-dim
+###SPHERT	= usphxz.o		# 2-dim(xz)
+###SPHERT	= usphyz.o		# 2-dim(yz)
+
+###### Cumulus Parameterization #####
+CUMULUS	= 				# [STD]	Arakawa Schubert
+###CUMULUS	= pcumm.o 		# 	Manabe Adjustment
+###CUMULUS	= pcumk.o		# 	Kuo 
+###CUMULUS	= pcumk.o pshlt.o	# 	Kuo + shallow convection
+###CUMULUS	= pcum0.o 		# 	without Cumulus
+
+###### Large Scale Condensation ######
+LSCCLD 	=	  			# [STD]	Liquid Water Prediction
+###LSCCLD	=  pmlsd.o		# 	Diagnostic type
+###LSCCLD	=  pmls0.o		# 	without LSC
+
+###### Radiative Transfer #####
+RADIATE	= 				# [STD]	Nakajima
+###RADIATE	= pradn.o 		#	Simple and Fast n-color
+
+###### Dry Convection #########
+DRYADJ	=  				# [STD]	Dry Convective Adjustment
+###DRYADJ	=  pdad0.o 		#	without Adjustment
+
+##### Gravity Wave Drag #######
+IGWD		= 	      		# [STD]	McFarlane
+###IGWD		= pigw0.o		# 	without IGWD
+
+##### FFT #######
+FFT		= 	      		# [STD]	NCAR/Nakamura
+###FFT		= ufftr.o		# 	Numerical Receipes, IMAX=2^n
+

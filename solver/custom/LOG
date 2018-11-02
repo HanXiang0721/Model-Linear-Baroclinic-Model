@@ -1,0 +1,206 @@
+inverse A started at Mon Aug 2 21:12:49 JST 2004
+
+ ### COMPUTE INVERSE MATRIX ###
+
+ ***********************************************
+
+ Read data for the matrix L
+
+ Read matrix L for zonal WN =            0
+
+   Matrix Size (left)=        1890  x        1890
+
+ ***********************************************
+       LAPACK routine call: (DGESV)
+ ***********************************************
+
+ call DGESV
+
+ INFO code returned by DGESV =            0
+
+ Read matrix L for zonal WN =            1
+
+   Matrix Size (left)=        3780  x        3780
+
+ ***********************************************
+       LAPACK routine call: (DGESV)
+ ***********************************************
+
+ call DGESV
+
+ INFO code returned by DGESV =            0
+
+ Read matrix L for zonal WN =            2
+
+   Matrix Size (left)=        3690  x        3690
+
+ ***********************************************
+       LAPACK routine call: (DGESV)
+ ***********************************************
+
+ call DGESV
+
+ INFO code returned by DGESV =            0
+
+ Read matrix L for zonal WN =            3
+
+   Matrix Size (left)=        3600  x        3600
+
+ ***********************************************
+       LAPACK routine call: (DGESV)
+ ***********************************************
+
+ call DGESV
+
+ INFO code returned by DGESV =            0
+
+ Read matrix L for zonal WN =            4
+
+   Matrix Size (left)=        3510  x        3510
+
+ ***********************************************
+       LAPACK routine call: (DGESV)
+ ***********************************************
+
+ call DGESV
+
+ INFO code returned by DGESV =            0
+
+ Read matrix L for zonal WN =            5
+
+   Matrix Size (left)=        3420  x        3420
+
+ ***********************************************
+       LAPACK routine call: (DGESV)
+ ***********************************************
+
+ call DGESV
+
+ INFO code returned by DGESV =            0
+
+ Read matrix L for zonal WN =            6
+
+   Matrix Size (left)=        3330  x        3330
+
+ ***********************************************
+       LAPACK routine call: (DGESV)
+ ***********************************************
+
+ call DGESV
+
+ INFO code returned by DGESV =            0
+
+ Read matrix L for zonal WN =            7
+
+   Matrix Size (left)=        3240  x        3240
+
+ ***********************************************
+       LAPACK routine call: (DGESV)
+ ***********************************************
+
+ call DGESV
+
+ INFO code returned by DGESV =            0
+
+ Read matrix L for zonal WN =            8
+
+   Matrix Size (left)=        3150  x        3150
+
+ ***********************************************
+       LAPACK routine call: (DGESV)
+ ***********************************************
+
+ call DGESV
+
+ INFO code returned by DGESV =            0
+
+ Read matrix L for zonal WN =            9
+
+   Matrix Size (left)=        3060  x        3060
+
+ ***********************************************
+       LAPACK routine call: (DGESV)
+ ***********************************************
+
+ call DGESV
+
+ INFO code returned by DGESV =            0
+
+ Read matrix L for zonal WN =           10
+
+   Matrix Size (left)=        2970  x        2970
+
+ ***********************************************
+       LAPACK routine call: (DGESV)
+ ***********************************************
+
+ call DGESV
+
+ INFO code returned by DGESV =            0
+
+ Read matrix L for zonal WN =           11
+
+   Matrix Size (left)=        2880  x        2880
+
+ ***********************************************
+       LAPACK routine call: (DGESV)
+ ***********************************************
+
+ call DGESV
+
+ INFO code returned by DGESV =            0
+
+ Read matrix L for zonal WN =           12
+
+   Matrix Size (left)=        2790  x        2790
+
+ ***********************************************
+       LAPACK routine call: (DGESV)
+ ***********************************************
+
+ call DGESV
+
+ INFO code returned by DGESV =            0
+
+ Read matrix L for zonal WN =           13
+
+   Matrix Size (left)=        2700  x        2700
+
+ ***********************************************
+       LAPACK routine call: (DGESV)
+ ***********************************************
+
+ call DGESV
+
+ INFO code returned by DGESV =            0
+
+ Read matrix L for zonal WN =           14
+
+   Matrix Size (left)=        2610  x        2610
+
+ ***********************************************
+       LAPACK routine call: (DGESV)
+ ***********************************************
+
+ call DGESV
+
+ INFO code returned by DGESV =            0
+
+ Read matrix L for zonal WN =           15
+
+   Matrix Size (left)=        2520  x        2520
+
+ ***********************************************
+       LAPACK routine call: (DGESV)
+ ***********************************************
+
+ call DGESV
+
+ INFO code returned by DGESV =            0
+
+ ***********************************************
+
+ ### END OF EXECUTION ###
+
+inverse A end at Mon Aug 2 21:36:57 JST 2004
+job end at Mon Aug 2 21:36:57 JST 2004

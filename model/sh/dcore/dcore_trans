@@ -1,0 +1,98 @@
+#! /usr/bin/tcsh -f
+#
+# shell for data translation from Gtool to GrADS
+# 2003/10/01
+#
+setenv AGCMDIR /home/hiro/agcm5.6                  # AGCM home
+setenv LNHOME  /home/hiro/ln_solver                # LBM home
+setenv DEX     $AGCMDIR/util/trans                 #  
+setenv EXE     gt2gr.t42l20                        # executable	
+setenv OUTNAM  data/dcore
+setenv DIR     $LNHOME/$OUTNAM                     # output directory
+setenv DIRG    $DIR/3hrly                          # output directory
+#setenv NAMGRD  dcore_test.dry                      # output filename
+setenv NAMGRD  dcore_test.moi                      # output filename
+#setenv ODRY    TRUE
+setenv ODRY    FALSE
+#
+cp $DEX/$EXE $DIR/
+cd $DIR
+rm -f PARA
+rm -f $DIRG/$NAMGRD.grd
+if( $ODRY == TRUE ) then
+#
+# dry model
+#
+############################################################
+cat << END_LIST1A >>! $DIR/PARA
+ &nms2p  os2p=f, np=17, plv=1000,925,850,700,600,500,400,300,
+                            250,200,150,100,70,50,30,20,10   &end
+ &nmmlt  omulti=f, tunit='HOUR'                              &end
+ &nmgrd  fileo='$DIRG/$NAMGRD', octl=t                       &end
+ &nmdata file='p'                                            &end
+ &nmdata file='u'                                            &end
+ &nmdata file='v'                                            &end
+ &nmdata file='t'                                            &end
+ &nmdata file='th'                                           &end
+ &nmdata file='z'                                            &end
+ &nmdata file='w'                                            &end
+ &nmdata file='psi'                                          &end
+ &nmdata file='chi'                                          &end
+ &nmdata file='vor'                                          &end
+ &nmdata file='div'                                          &end
+ &nmdata file='tflx'                                         &end
+ &nmdata file='bi'                                           &end
+ &nmdata file='taux'                                         &end
+ &nmdata file='tauy'                                         &end
+ &nmdata file='duvdf'                                        &end
+ &nmdata file='dvvdf'                                        &end
+END_LIST1A
+############################################################
+#
+$EXE < $DIR/PARA
+#
+else
+#
+# moist model
+#
+############################################################
+cat << END_LIST1B >>! $DIR/PARA
+ &nms2p  os2p=f, np=17, plv=1000,925,850,700,600,500,400,300,
+                            250,200,150,100,70,50,30,20,10   &end
+ &nmmlt  omulti=t, tunit='DAY'                               &end
+ &nmgrd  fileo='$DIRG/$NAMGRD', octl=t                       &end
+ &nmdata file='p'                                            &end
+ &nmdata file='u'                                            &end
+ &nmdata file='v'                                            &end
+ &nmdata file='t'                                            &end
+ &nmdata file='th'                                           &end
+ &nmdata file='z'                                            &end
+ &nmdata file='w'                                            &end
+ &nmdata file='q'                                            &end
+ &nmdata file='ql'                                           &end
+ &nmdata file='psi'                                          &end
+ &nmdata file='chi'                                          &end
+ &nmdata file='vor'                                          &end
+ &nmdata file='div'                                          &end
+ &nmdata file='tflx'                                         &end
+ &nmdata file='qflx'                                         &end
+ &nmdata file='bi'                                           &end
+ &nmdata file='prcp'                                         &end
+ &nmdata file='prcpc'                                        &end
+ &nmdata file='prcpl'                                        &end
+ &nmdata file='taux'                                         &end
+ &nmdata file='tauy'                                         &end
+ &nmdata file='duvdf'                                        &end
+ &nmdata file='dvvdf'                                        &end
+ &nmdata file='dtcum'                                        &end
+ &nmdata file='dtlsc'                                        &end
+ &nmdata file='dqcum'                                        &end
+ &nmdata file='dqlsc'                                        &end
+END_LIST1B
+############################################################
+#
+$EXE < $DIR/PARA
+#
+endif
+#
+exit 0

@@ -1,0 +1,83 @@
+
+agcm5.4g (97/03/13) numaguti@nies.go.jp
+
+** agcm5.4.02 からの主な変更点
+
+* 物理過程ルーチンの高速化等
+    * 積雲対流：   一部アルゴリズム変更、高速化
+    * 大規模凝結： 一部アルゴリズム変更(氷の落下など)、高速化
+    * 放射： 高速化、積雲を別に取り扱わないものをデフォルトに、
+             エアロゾルの forcing の計算(オプション)
+
+* 大気海洋結合部分の整理
+    * 大気部分(ATMOS)、海洋部分(OCEAN)の切り離し、親ルーチンの新設
+    * フラックス交換部分の整理
+
+* 地表面過程の整理
+    * サブルーチンの数が少なくなるよう整理
+    * モザイク地表面フラックス計算ドライバの採用
+    * 流路モデルのサポート
+    * 地表面 intercepted water の導入(オプション)
+
+* トレーサー輸送の整備(オプション)
+    * トレーサー輸送力学部分の独立化、省メモリ化
+    * 積雲、降水によるトレーサー輸送の取り込み
+    * user defined routine (DOUSER) の新設
+
+* モニター関係
+    * 収支のモニターの改良
+    * HISTORY OUTPUT の機能追加(Psをかけたものの出力など)
+
+* Makefile, shell script 等の構成変更
+
+** agcm5.4.0? との実用上の違い
+
+* Mkinclude と proj/ ディレクトリ
+
+  以前、 $AGCMDIR/src/Mkinclude でコンパイル時のオプション等を
+  指定していたが、この指定が以下のように変更になった。
+  * $AGCMDIR/Mkinclude で使用システム SYSTEM と、プロジェクト名を指定。
+    ここで、プロジェクト名とは、オプションが異なるようなモデルの使い方を
+    指定する固有名で、 $AGCMDIR/src/proj 以下のサブディレクトリ名に
+    対応する。
+    たとえば、PROJECT = std (標準の意味）だと、
+    $AGCMDIR/src/proj/std/Mkinclude がさらに読み込まれ、
+    その中の SPECIAL の指定は（もしあるならば）、
+    $AGCMDIR/src/proj/std/special/ のものが使われる。
+
+    さらに、PROJECT_EXT がブランクでない場合は、
+    $AGCMDIR/src/proj/$PROJECT/Mkinclude$PROJEXT_EXT が読み込まれる。
+
+    これによって、いろいろな用い方の gcm コードが
+    PROJECT を区別することによって管理できる。
+
+* 実行ファイル、ライブラリのディレクトリ
+  
+  実行ファイル、ライブラリのディレクトリは、
+  以前の $AGCMDIR/bin, $AGCMDIR/lib でなく、
+  $AGCMDIR/bin/$SYSTEM, $AGCMDIR/lib/$SYSTEM となった。
+  このディレクトリを作成するには、
+  $AGCMDIR/src で
+  % make dirs
+  とする。
+
+* 実行シェル
+
+  サンプルの実行シェルが変更になった。
+  これを利用するには、$AGCMDIR/util/info で、
+  % make; make install 
+  として、$AGCMDIR/bin/$SYSTEM/gtlsd 
+  を作成しておく必要がある。
+
+** make するには
+
+* 環境変数 AGCMDIR をセットする
+* まず、$AGCMDIR/Mkinclude をエディトする
+        ~~~~~~~~~~~~~~~~~~
+* 最初は、$AGCMDIR/src で
+  % make dirs
+  ~~~~~~~~~~~
+* その後、
+  % make clean  
+  % make lib
+  % make gcm

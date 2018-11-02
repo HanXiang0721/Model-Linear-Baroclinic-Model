@@ -1,0 +1,15 @@
+* NCEP climatology interporated into T10 Gaussian grid
+*
+DSET ^ncep.clim.y58-97.ps.t10.grd
+OPTIONS SEQUENTIAL
+TITLE NCEP cdas climateology (T10)
+UNDEF -999.
+XDEF 32  LINEAR 0. 11.250
+YDEF 16  LEVELS  -81.651  -70.835  -59.955  -49.061  -38.161  -27.259
+-16.356  -5.4520  5.4520  16.356 27.259  38.161  49.061 
+59.955  70.835   81.651
+ZDEF 1 LEVELS 1000
+TDEF 12 LINEAR 00Z01jan58 1mo
+VARS 1
+ps   0 10 surface pressure
+ENDVARS

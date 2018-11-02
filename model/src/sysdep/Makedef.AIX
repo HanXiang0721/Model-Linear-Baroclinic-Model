@@ -1,0 +1,60 @@
+#
+#   IBM-AIX system dependent include for Makefile for CCSR libraries
+# 
+
+SYSFFLAGS	= -u -O3 -qarch=pwr2 -qtune=pwr2 -qextname -Pk
+#SYSFFLAGS	= -u -O -qarch=pwr2 -qtune=pwr2 -qextname
+#SYSFFLAGS	= -u -qextname -d
+#SYSFFLAGS	= -u -O3 -qarch=pwr2 -qtune=pwr2 -qhot -qcache=type=d:level=1:size=128:assoc=4:line=128 -qcache=type=i:level=1:size=32:assoc=2:line=128 -qcache=type=d:level=2:size=2048:assoc=2:line=4096 -qcache=type=i:level=2:size=512:assoc=2:line=4096
+#SYSFFLAGS	= -u -O3 -qstrict -qarch=pwr2 -qtune=pwr2 -qfloat=rsqrt:fltint 
+SYSCFLAGS	= 
+SYSLDFLAGS	=
+SYSCPPFLAGS 	= -WF,-DSYS_AIX -WF,-DSYS_UNIX -WF,-DCODE_ASCII -WF,-DCODE_IEEE
+SYSAUTODBL	= -qautodbl=DBLPAD
+SYSDEBUG	= -g 
+SYSCHECK	= -C -qflttrap=ov:zero:inv:en -qsigtrap -d
+LINKOPT		=
+CPPOPT		= -WF,
+
+# MAKE		= make
+SHELL		= /bin/sh
+CC		= cc
+FC		= xlf
+LD		= xlf
+AR		= ar vru
+RM		= rm -f
+CP		= cp
+MV		= mv -f
+LN		= ln -s
+RANLIB		= ranlib
+CAT		= cat
+INSTALL		= cp
+MD		= mkdir -p
+JLATEX		= bigjlatex
+DVI2JPS		= dvi2ps
+PRINT		= ltype
+PRINTSTAMP	= .print
+INDEX		= etags -wx
+TAGS		= etags
+TOUCH		= touch
+ECHO		= echo
+AWK		= awk
+CPP		= /usr/lib/cpp -P
+FPP     	= 
+
+SYSXLIBDIR	= /usr/lib
+SYSXLIBNAME	= X11
+SYSXLIBS	= -L$(SYSXLIBDIR) -l$(SYSXLIBNAME)
+###SYSXLIBS	= -l$(SYSXLIBNAME)
+
+.SUFFIXES: .o .html .ftr .F
+
+.F.o:
+	$(FC) $(CPPFLAGS) $(FFLAGS) -c $<
+
+.F.ftr:
+	echo "*/ADD NAME="$*.F >> $(FTRFILE)
+	cat $< >> $(FTRFILE)
+
+.F.html:
+	$(LNHOME)/model/sh/util/makehtml srcdir=$(SRCDIR) $< > $@

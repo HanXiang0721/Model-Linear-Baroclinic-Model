@@ -1,0 +1,182 @@
+***************************************************
+	NAMELIST parameter list for util/
+***************************************************
+
+<command_name> # explanation of routine
+
+ &nmxxx yyy='zzz' !! description of the parameter
+ &end
+
+ note: all the filenames is temporary
+-----------------------------------
+
+<ncepsbs> make basic state (Gtool&GrADS) from NCEP climatology
+
+ &nmncp cncep='/home/hiro/ln_solver/bs/ncep/ncep.clim.y58-97.t21.grd',     !! NCEP data (in)
+        cncep2='/home/hiro/ln_solver/bs/ncep/ncep.clim.y58-97.ps.t21.grd', !! NCEP data (in)
+        calt='/home/hiro/ln_solver/bs/gt3/grz',                  !! topography (in) 
+        kmo=12, 						 !! first month
+        navg=3, 						 !! no. of month for avg
+        ozm=t, 							 !! zonal mean?
+        osw=f, 							 !! zonal asymmetry?
+        ousez=t							 !! use Z for p->sigma	
+ &end
+
+ &nmbs  cbs0='/home/hiro/ln_solver/bs/gt3/ncepwin.t21l11zm',     !! basic state (out)
+        cbs='/home/hiro/ln_solver/bs/grads/ncepwin.t21l11zm.grd' !! basic state (out)
+ &end
+
+<ecmsbs> make basic state (Gtool&GrADS) from ERA40 climatology
+
+ &nmecm cecm='/home/hiro/ln_solver/bs/ecmwf/ERA40.clim.t21.grd', !! ECMWF data (in)
+        calt='/home/hiro/ln_solver/bs/gt3/grz.t21',              !! topography (in) 	
+        kmo=12, 						 !! first month
+        navg=3, 						 !! no. of month for avg
+        ozm=f, 							 !! zonal mean?
+        osw=f, 							 !! zonal asymmetry?
+ &end
+
+ &nmbs  cbs0='/home/hiro/ln_solver/bs/gt3/erawin.t21l11',        !! basic state (out)
+        cbs='/home/hiro/ln_solver/bs/grads/erawin.t21l11.grd'    !! basic state (out)
+ &end
+
+<ncep1vbs> make basic state (Gtool&GrADS) for barotropic/moist models
+
+ &nmncp cncep='/home/hiro/ln_solver/bs/ncep/ncep.clim.y49-99.psi3.t21.grd', !! NCEP data (in)
+        kmo=12, 						 !! first month
+        navg=3, 						 !! no. of month for avg
+        ozm=t, 							 !! zonal mean?
+        osw=f  							 !! zonal asymmetry?
+        cvar='PSI'  						 !! variable name (PSI/SST/WG)
+ &end
+
+ &nmbs  cbs0='/home/hiro/ln_solver/bs/gt3/ncepwin.t21l1zm',      !! basic state (out)
+        cbs='/home/hiro/ln_solver/bs/grads/ncepwin.t21l1zm.grd'  !! basic state (out)
+ &end
+
+<bsgrd> transform from Gtool format basic state to GrADS file
+
+ &nmbs  cbs0='/home/hiro/ln_solver/bs/gt3/ncepwin.t21l11zm',     !! basic state (in)
+        cbs='/home/hiro/ln_solver/bs/grads/ncepwin.t21l11zm.grd' !! basic state (out)
+ &end
+
+<redist> gather culumn matrices to one matrix file
+
+ &nmred cdr='/home/hiro/ln_solver',                              !! directory for MAT_x (in)
+        cfo='/home/hiro/ln_solver/data/MAT.dat' 		 !! matrix file (out) 
+ &end
+
+ &nmall owall=t   	               		                 !! full matrix or PWM       
+ &end
+
+ &nmcls oclassic=t        	                                 !! moist model?
+ &end
+
+<mkfrcng> make an idealized forcing with GrADS format
+
+ &nmfin cfm='/home/hiro/ln_solver/data/frc.mat', 		 !! rhs matrix file    (out)
+        cfg='/home/hiro/ln_solver/data/frc.grd', 		 !! GrADS forcing file (out)
+        fact=1.0,1.0,1.0,1.0,1.0			         !! factor
+ &end
+
+ &nmvar ovor=f,							 !! vorticity forcing? (in)
+        odiv=f, 						 !! divergent forcing? (in)
+        otmp=t, 						 !! thermal forcing?   (in)
+        ops=f, 							 !! Ps forcing?        (in)
+        osph=t  						 !! humidity forcing?  (in)
+ &end
+
+ &nmhpr khpr=1,   			!! horizonal shape of forcing: 
+			                      1: elliptic, 2: zonal uniform
+	hamp=1.,   			!! amplitude in 1/day
+	xdil=30.,			!! zonal extent from center longitude
+	ydil=15., 			!! meridional extent from center latitude
+	xcnt=200., 			!! center longitude       
+	ycnt=10.  			!! center latitude       
+ &end
+
+ &nmvpr kvpr=2,   			!! vertical profile of forcing: 
+			                      1: sinusoidal, 2: gamma, 3: uniform
+        vamp=8,    			!! amplitude in 1/day
+    	vdil=17.,  			!! dilation parameter
+	vcnt=0.5			!! center level in sigma
+ &end
+
+ &nmall owall=t   	               		                 !! full matrix or PWM       
+ &end
+
+ &nmcls oclassic=t        	                                 !! moist model?
+ &end
+
+<mkfrcsst> make an idealized SST forcing with GrADS format
+
+ &nmfin cfm='/home/hiro/ln_solver/bs/gt3/gridx.t21', 		 !! grid index file    (in)
+        cfg='/home/hiro/ln_solver/data/frcsst.t21.grd'           !! GrADS forcing file (out)
+ &end
+
+ &nmhpr khpr=1,   			!! horizonal shape of forcing: 
+			                      1: elliptic, 2: zonal uniform
+	hamp=2.,   			!! amplitude in K
+	xdil=30.,			!! zonal extent from center longitude
+	ydil=15., 			!! meridional extent from center latitude
+	xcnt=220., 			!! center longitude       
+	ycnt=0.  			!! center latitude       
+ &end
+
+<mkfrcbr> make an idealized forcing with GrADS format (barotropic model)
+
+ &nmfin cfm='/home/hiro/ln_solver/data/frc.br.mat', 		 !! rhs matrix file    (out)
+        cfg='/home/hiro/ln_solver/data/frc.br.grd',  		 !! GrADS forcing file (out)
+        fact=1.0,1.0,1.0,1.0,1.0			         !! (dum)
+ &end
+
+ &nmhpr khpr=1,   			!! horizonal shape of forcing: 
+			                      1: elliptic, 2: zonal uniform
+	hamp=1.,   			!! amplitude in 1/day
+	xdil=30.,			!! zonal extent from center longitude
+	ydil=15., 			!! meridional extent from center latitude
+	xcnt=200., 			!! center longitude       
+	ycnt=10.  			!! center latitude       
+ &end
+
+ &nmall owall=t   	               		                 !! full matrix or PWM       
+ &end
+
+<fvec>  convert from GrADS forcing file to rhs forcing matrix
+
+ &nmfin cfm='/home/hiro/ln_solver/data/frc.mat', 		 !! rhs matrix file    (out)
+        cfg='/home/hiro/ln_solver/data/frc.grd', 		 !! GrADS forcing file (out)
+        fact=1.0,1.0,1.0,1.0,1.0			         !! factor
+ &end
+
+ &nmall owall=t   	               		                 !! full matrix or PWM       
+ &end
+
+ &nmcls oclassic=t        	                                 !! moist model?
+ &end
+
+<gt2gr>  convert from Gtool data to GrADS file (linear integration)
+
+ &nmfgt cfs='/home/hiro/ln_solver/data/psi', 			 !! Gtool data  (in)
+        cfc='/home/hiro/ln_solver/data/chi', 			 !! Gtool data  (in)
+        cfu='/home/hiro/ln_solver/data/u', 			 !! Gtool data  (in)
+        cfv='/home/hiro/ln_solver/data/v', 			 !! Gtool data  (in)
+        cfw='/home/hiro/ln_solver/data/w', 			 !! Gtool data  (in)
+        cft='/home/hiro/ln_solver/data/t', 			 !! Gtool data  (in)
+        cfz='/home/hiro/ln_solver/data/z', 			 !! Gtool data  (in)
+        cfp='/home/hiro/ln_solver/data/p', 			 !! Gtool data  (in)
+        cfq='/home/hiro/ln_solver/data/q', 			 !! Gtool data  (in)
+        cfx='/home/hiro/ln_solver/data/dt', 			 !! Gtool data  (in)
+        cfy='/home/hiro/ln_solver/data/dq', 			 !! Gtool data  (in)
+        cfo='/home/hiro/ln_solver/data/linear.t21l20.grd'        !! GrADS data (out)
+        fact=1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,        !! factor
+	opl=t 				!! convert to pressure level data
+ &end
+
+ &nmbs  cbs0='/home/hiro/ln_solver/bs/gt3/ncepwin.t21l20',       !! basic state (dum)
+        cbs='/home/hiro/ln_solver/bs/grads/ncepwin.t21l20.grd'   !! basic state (out)
+ &end
+
+ &nmcls oclassic=t        	                                 !! moist model?
+ &end
+

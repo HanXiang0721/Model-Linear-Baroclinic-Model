@@ -1,0 +1,137 @@
+linear solver started at Wed Sep 29 12:10:55 JST 2004
+
+ ### SOLVE SINGULAR VALUE PROBLEM ###
+
+ ***********************************************
+
+   Matrix Size =        8262  x        8262
+
+ ***********************************************
+       LAPACK routine call: (DGESVD)
+ ***********************************************
+
+ call DGESVD
+
+ INFO code returned by DGESVD =            0
+
+ ***********************************************
+
+
+ ### END OF EXECUTION ###
+
+linear solver end at Wed Sep 29 13:10:13 JST 2004
+
+ ### transform wave --> grid ###
+
+  *** precision check ..    1.10000000000000009     
+  *** precision check ..    1.01000000000000001     
+  *** precision check ..    1.00099999999999989     
+  *** precision check ..    1.00009999999999999     
+  *** precision check ..    1.00001000000000007     
+  *** precision check ..    1.00000099999999992     
+  *** precision check ..    1.00000010000000006     
+  *** precision check ..    1.00000000999999994     
+  *** precision check ..    1.00000000100000008     
+  *** precision check ..    1.00000000010000001     
+  *** precision check ..    1.00000000001000000     
+  *** precision check ..    1.00000000000100009     
+  *** precision check ..    1.00000000000009992     
+  *** precision check ..    1.00000000000000999     
+  *** precision check ..    1.00000000000000111     
+  *** precision check ..    1.00000000000000000     
+  @@@ DSPHE: SPHERICAL TRANSFORM INTFC. 93/12/07
+  @@@ DVTMP: VIRTUAL TEMP. 93/11/08
+ # mode left :          30  check count:        8262
+ # mode left :          29  check count:        8262
+ # mode left :          28  check count:        8262
+ # mode left :          27  check count:        8262
+ # mode left :          26  check count:        8262
+ # mode left :          25  check count:        8262
+ # mode left :          24  check count:        8262
+ # mode left :          23  check count:        8262
+ # mode left :          22  check count:        8262
+ # mode left :          21  check count:        8262
+ # mode left :          20  check count:        8262
+ # mode left :          19  check count:        8262
+ # mode left :          18  check count:        8262
+ # mode left :          17  check count:        8262
+ # mode left :          16  check count:        8262
+ # mode left :          15  check count:        8262
+ # mode left :          14  check count:        8262
+ # mode left :          13  check count:        8262
+ # mode left :          12  check count:        8262
+ # mode left :          11  check count:        8262
+ # mode left :          10  check count:        8262
+ # mode left :           9  check count:        8262
+ # mode left :           8  check count:        8262
+ # mode left :           7  check count:        8262
+ # mode left :           6  check count:        8262
+ # mode left :           5  check count:        8262
+ # mode left :           4  check count:        8262
+ # mode left :           3  check count:        8262
+ # mode left :           2  check count:        8262
+ # mode left :           1  check count:        8262
+ # mode right:          30  check count:        8262
+ # mode right:          29  check count:        8262
+ # mode right:          28  check count:        8262
+ # mode right:          27  check count:        8262
+ # mode right:          26  check count:        8262
+ # mode right:          25  check count:        8262
+ # mode right:          24  check count:        8262
+ # mode right:          23  check count:        8262
+ # mode right:          22  check count:        8262
+ # mode right:          21  check count:        8262
+ # mode right:          20  check count:        8262
+ # mode right:          19  check count:        8262
+ # mode right:          18  check count:        8262
+ # mode right:          17  check count:        8262
+ # mode right:          16  check count:        8262
+ # mode right:          15  check count:        8262
+ # mode right:          14  check count:        8262
+ # mode right:          13  check count:        8262
+ # mode right:          12  check count:        8262
+ # mode right:          11  check count:        8262
+ # mode right:          10  check count:        8262
+ # mode right:           9  check count:        8262
+ # mode right:           8  check count:        8262
+ # mode right:           7  check count:        8262
+ # mode right:           6  check count:        8262
+ # mode right:           5  check count:        8262
+ # mode right:           4  check count:        8262
+ # mode right:           3  check count:        8262
+ # mode right:           2  check count:        8262
+ # mode right:           1  check count:        8262
+
+ ### END OF EXECUTION ###
+
+
+ ### transform wave --> grid ###
+
+  *** precision check ..    1.10000000000000009     
+  *** precision check ..    1.01000000000000001     
+  *** precision check ..    1.00099999999999989     
+  *** precision check ..    1.00009999999999999     
+  *** precision check ..    1.00001000000000007     
+  *** precision check ..    1.00000099999999992     
+  *** precision check ..    1.00000010000000006     
+  *** precision check ..    1.00000000999999994     
+  *** precision check ..    1.00000000100000008     
+  *** precision check ..    1.00000000010000001     
+  *** precision check ..    1.00000000001000000     
+  *** precision check ..    1.00000000000100009     
+  *** precision check ..    1.00000000000009992     
+  *** precision check ..    1.00000000000000999     
+  *** precision check ..    1.00000000000000111     
+  *** precision check ..    1.00000000000000000     
+  @@@ DSPHE: SPHERICAL TRANSFORM INTFC. 93/12/07
+  @@@ DVTMP: VIRTUAL TEMP. 93/11/08
+ # mode left :           3  check count:        8262
+ # mode left :           2  check count:        8262
+ # mode left :           1  check count:        8262
+ # mode right:           3  check count:        8262
+ # mode right:           2  check count:        8262
+ # mode right:           1  check count:        8262
+
+ ### END OF EXECUTION ###
+
+job end at Wed Sep 29 13:21:35 JST 2004

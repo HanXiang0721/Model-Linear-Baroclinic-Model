@@ -1,0 +1,333 @@
+ACHKV    admin/ahist.F      SUBROUTINE ACHKV    !! valid range monitor
+ADDING   physics/pradt.F    SUBROUTINE ADDING   !! 2 stream adding
+AHSTIN   admin/ahist.F      SUBROUTINE AHSTIN   !! output standard history
+ASETCO   admin/asetc.F      SUBROUTINE ASETCO   !! coordinates of model
+ASETUP   admin/astup.F      SUBROUTINE ASETUP   !! initial set up of atmos
+ATMFIN   admin/aadmn.F      ENTRY      ATMFIN   !! AGCM finalize
+ATMINI   admin/aadmn.F      ENTRY      ATMINI   !! AGCM initialize
+ATMOS    admin/aadmn.F      SUBROUTINE ATMOS    !! AGCM step
+BLKCOF   physics/psfcl.F    SUBROUTINE BLKCOF   !! bulk coefficient
+CALCDT   admin/astep.F      SUBROUTINE CALCDT   !! calculate time step (CFL)
+CALNDR   util/ucaln.F       ENTRY      CALNDR   !! initialize calendar
+CATNUM   util/usubs.F       SUBROUTINE CATNUM   !! concatenate number to character
+CCC2YH   util/ucaln.F       SUBROUTINE CCC2YH   !! calendar, character -> date
+CCOVER   physics/pstep.F    SUBROUTINE CCOVER   !! cloud cover diagnosis
+CDAYMO   util/ucaln.F       ENTRY      CDAYMO   !! calendar, No.of day in a month
+CDAYYR   util/ucaln.F       ENTRY      CDAYYR   !! calendar, No.of day in an year
+CDD2YD   util/ucaln.F       SUBROUTINE CDD2YD   !! calendar, day -> yydd
+CDD2YM   util/ucaln.F       ENTRY      CDD2YM   !! calendar, day -> yymmdd
+CDS2SS   util/ucaln.F       ENTRY      CDS2SS   !! calendar, ddss -> sec.
+CHKVAL   util/usubs.F       SUBROUTINE CHKVAL   !! output max & min values in matrix
+CHM2RS   util/ucaln.F       ENTRY      CHM2RS   !! calendar, hhmmss -> sec.
+CLADJ    util/usubs.F       SUBROUTINE CLADJ    !! put characters to the left
+CLCEND   util/ucloc.F       ENTRY      CLCEND   !! finish measurement of cpu time
+CLCOUT   util/ucloc.F       SUBROUTINE CLCOUT   !! output of CPU time
+CLCSTR   util/ucloc.F       ENTRY      CLCSTR   !! start measurement of cpu time
+CMONYR   util/ucaln.F       ENTRY      CMONYR   !! calendar, No.of month in an year
+CMQSET   physics/pcuma.F    ENTRY      CMQSET   !! water vapor conv. (dummy)
+CNTCFC   physics/pradt.F    SUBROUTINE CNTCFC   !! continuum absorption, CFC
+COPY     util/usubs.F       SUBROUTINE COPY     !! copy matrix
+COPY2    util/usubs.F       SUBROUTINE COPY2    !! copy matrix
+CORDIF   dynamics/ddifc.F   SUBROUTINE CORDIF   !! p-level diff. correc.
+CORFRC   dynamics/ddifc.F   SUBROUTINE CORFRC   !! friction heat of horiz. diff.
+CPERPO   util/ucaln.F       ENTRY      CPERPO   !! calendar, fixed date(on/off)
+CPERPT   util/ucaln.F       ENTRY      CPERPT   !! calendar, fixed date
+CRS2HM   util/ucaln.F       ENTRY      CRS2HM   !! calendar, sec. -> hhmmss
+CSECDY   util/ucaln.F       ENTRY      CSECDY   !! calendar, No.of sec. in a day
+CSECHR   util/ucaln.F       ENTRY      CSECHR   !! calendar, No.of sec. in an hour
+CSECMI   util/ucaln.F       ENTRY      CSECMI   !! calendar, No of sec. in a minute
+CSS2CC   util/ucaln.F       SUBROUTINE CSS2CC   !! calendar, sec. -> character (NO PERPET.)
+CSS2DS   util/ucaln.F       ENTRY      CSS2DS   !! calendar, sec. -> ddss
+CSS2YD   util/ucaln.F       SUBROUTINE CSS2YD   !! calendar, sec. -> yydd
+CSS2YH   util/ucaln.F       SUBROUTINE CSS2YH   !! calendar, sec. -> date
+CSS2YM   util/ucaln.F       SUBROUTINE CSS2YM   !! calendar, sec. -> yymmdd
+CSSAFT   util/ucaln.F       SUBROUTINE CSSAFT   !! calendar, time advancing
+CUMBAS   physics/pcuma.F    SUBROUTINE CUMBAS   !! cloud base
+CUMBMX   physics/pcuma.F    SUBROUTINE CUMBMX   !! A-S cumulus, bottom mass flux
+CUMCLD   physics/pcuma.F    SUBROUTINE CUMCLD   !! A-S cumulus, cloudiness
+CUMCWF   physics/pcuma.F    ENTRY      CUMCWF   !! Cloud work function
+CUMDET   physics/pcuma.F    SUBROUTINE CUMDET   !! A-S cumulus, heating by detrain.
+CUMDNR   physics/pcuma.F    SUBROUTINE CUMDNR   !! Tracer Downdraft
+CUMDWN   physics/pcuma.F    SUBROUTINE CUMDWN   !! A-S cumulus, down draft & evap.
+CUMFLX   physics/pcuma.F    SUBROUTINE CUMFLX   !! A-S cumulus, cloud mass flux
+CUMLUS   physics/pcuma.F    SUBROUTINE CUMLUS   !! simplified A-S cumulus parameterization
+CUMMLT   physics/pcuma.F    SUBROUTINE CUMMLT   !! A-S cumulus, freeze & melt of prec.
+CUMMLV   physics/pcuma.F    ENTRY      CUMMLV   !! A-S cumulus, middle level conv.
+CUMSBH   physics/pcuma.F    SUBROUTINE CUMSBH   !! A-S cumulus, heating by adiabat. descent
+CUMSBR   physics/pcuma.F    SUBROUTINE CUMSBR   !! Tracer Subsidence
+CUMTFX   physics/pcuma.F    SUBROUTINE CUMTFX   !! A-S cumulus, test flux
+CUMUP    physics/pcuma.F    SUBROUTINE CUMUP    !! A-S cumulus, structure of clouds
+CUMUPR   physics/pcuma.F    SUBROUTINE CUMUPR   !! Tracer Updraft
+CXX2SS   util/ucaln.F       SUBROUTINE CXX2SS   !! calendar, hour ->sec.
+CYH2CC   util/ucaln.F       SUBROUTINE CYH2CC   !! calendar, date -> character
+CYH2SS   util/ucaln.F       ENTRY      CYH2SS   !! calendar, date -> sec.
+CYM2DD   util/ucaln.F       ENTRY      CYM2DD   !! calendar, yymmdd -> day
+CYM2YD   util/ucaln.F       ENTRY      CYM2YD   !! calendar, yymmdd -> yydd
+DADJST   physics/pdadj.F    SUBROUTINE DADJST   !! dry convective adjustment
+DADVNC   dynamics/dadvn.F   SUBROUTINE DADVNC   !! GA->GB time advancing + time filter
+DDIAG    dynamics/ddiag.F   SUBROUTINE DDIAG    !! diagnostic output
+DIAGP    io/idiag.F         SUBROUTINE DIAGP    !! monitor of grid value
+DIURAV   io/iavrg.F         SUBROUTINE DIURAV   !! averaged diurnal cycle output
+DIURSL   io/iavrg.F         ENTRY      DIURSL   !! diurnal variation
+DMTRIX   dynamics/dmtrx.F   SUBROUTINE DMTRIX   !! LU matrix for time integration
+DOUSER   admin/auser.F      SUBROUTINE DOUSER   !! user defined function
+DSETCO   dynamics/dsetc.F   SUBROUTINE DSETCO   !! set latitudinal parameters (Coriolis..)
+DSETDF   dynamics/dsetd.F   SUBROUTINE DSETDF   !! horizontal diffusion coefficient
+DSETED   dynamics/dsetc.F   ENTRY      DSETED   !! factors for spectral calculation
+DSETLP   dynamics/dsetc.F   SUBROUTINE DSETLP   !! Laplacian factor
+DSETNM   dynamics/dsphe.F   SUBROUTINE DSETNM   !! order of matrix
+DSETUV   dynamics/dsetc.F   ENTRY      DSETUV   !! conversion factor of U <-> u
+DSETVD   dynamics/dsetv.F   SUBROUTINE DSETVD   !! vertical difference/semi implicit factor
+DSETVH   dynamics/dsetv.F   SUBROUTINE DSETVH   !! factor of hydrostatic relation
+DTRN24   physics/pradt.F    SUBROUTINE DTRN24   !! main routine of radiation (Nakajima)
+DYNMCS   dynamics/dadmn.F   SUBROUTINE DYNMCS   !! dynamics
+DYNSTP   dynamics/dstep.F   SUBROUTINE DYNSTP   !! time step of dynamics
+DYNTRM   dynamics/dterm.F   SUBROUTINE DYNTRM   !! dynamics terms
+ERRTRA   sysdep/ySun.F      SUBROUTINE ERRTRA   !! error traceback
+FFT99X   util/ufftp.F       SUBROUTINE FFT99X   !! call FFT
+FILLV    util/usubs.F       SUBROUTINE FILLV    !! fill part of matrix with value
+FIXMAS   dynamics/dmfix.F   ENTRY      FIXMAS   !! mass fixer
+FL2OCN   physics/pgocn.F    ENTRY      FL2OCN   !! ocean flux info from data
+FLXCOR   physics/pimtx.F    SUBROUTINE FLXCOR   !! implicit correction of flux
+FOPEN    sysdep/ySun.F      SUBROUTINE FOPEN    !! open file
+FREWND   sysdep/ySun.F      SUBROUTINE FREWND   !! rewind file
+G2W      dynamics/dsphe.F   ENTRY      G2W      !! spherical trans.(grid->spect.)
+GAUSS    util/uspst.F       SUBROUTINE GAUSS    !! calculate Gaussian latitude & weight
+GCM      cplmain.F          PROGRAM    GCM      !! GCM main routine
+GDINTG   physics/pstep.F    SUBROUTINE GDINTG   !! time integration in grid
+GDRDTS   io/irwgd.F         SUBROUTINE GDRDTS   !! read data & time select
+GDREAD   io/irwgd.F         SUBROUTINE GDREAD   !! read data
+GDREDX   io/irwgd.F         SUBROUTINE GDREDX   !! read data
+GDWRIT   io/irwgd.F         SUBROUTINE GDWRIT   !! write data
+GETRUN   admin/astup.F      ENTRY      GETRUN   !! get name of experiment
+GETTIM   admin/atime.F      ENTRY      GETTIM   !! get time
+GHYDRO   dynamics/dhydr.F   ENTRY      GHYDRO   !! hydrostatic relation (grid)
+GLEVM2   physics/pglvl.F    SUBROUTINE GLEVM2   !! vertical coordinate : MLEV->LEV
+GNDHT1   physics/pggnd.F    SUBROUTINE GNDHT1   !! preparation of soil temperature change
+GNDHT2   physics/pggnd.F    SUBROUTINE GNDHT2   !! change in soil T
+GNDWTR   physics/pggnd.F    SUBROUTINE GNDWTR   !! change in soil w
+GRADX    util/usphe.F       SUBROUTINE GRADX    !! spectral component of x-differential
+GRAVTY   physics/pigwd.F    SUBROUTINE GRAVTY   !! gravity wave drag
+GRQADV   dynamics/dgdyn.F   SUBROUTINE GRQADV   !! adv. of humidity etc.
+GRTADV   dynamics/dgdyn.F   SUBROUTINE GRTADV   !! temperature advection
+GRUADV   dynamics/dgdyn.F   SUBROUTINE GRUADV   !! momentum advection
+GRWNML   physics/pgbnd.F    SUBROUTINE GRWNML   !! file of surface parameter
+GSETCO   physics/pglvl.F    SUBROUTINE GSETCO   !! coordinates of model
+GTZRED   io/igtio.F         SUBROUTINE GTZRED   !! read in GTOOL3 format
+GTZWRT   io/igtio.F         SUBROUTINE GTZWRT   !! write in GTOOL3 format
+GTZZWT   io/igtio.F         ENTRY      GTZZWT   !! write in GTOOL3 format
+GZREAD   io/igzio.F         ENTRY      GZREAD   !! read with FORMAT
+GZWRIT   io/igzio.F         SUBROUTINE GZWRIT   !! write with FORMAT
+HCONVW   dynamics/dvect.F   ENTRY      HCONVW   !! horizontal convergence
+HGRAD    dynamics/dvect.F   ENTRY      HGRAD    !! horizontal gradient
+HISIZE   io/ihsub.F         SUBROUTINE HISIZE   !! size of history data area
+HISTAD   io/ihist.F         ENTRY      HISTAD   !! add into history output with factor
+HISTAX   io/ihist.F         ENTRY      HISTAX   !! add into history output
+HISTGR   io/ihist.F         ENTRY      HISTGR   !! set history output group
+HISTIF   io/ihist.F         ENTRY      HISTIF   !! add/register history output with factor
+HISTIN   io/ihist.F         SUBROUTINE HISTIN   !! add/register history output
+HISTMR   io/ihist.F         ENTRY      HISTMR   !! reset history missing value to default
+HISTMS   io/ihist.F         ENTRY      HISTMS   !! set history missing value
+HISTOU   io/ihist.F         ENTRY      HISTOU   !! output history data
+HISTRG   io/ihist.F         ENTRY      HISTRG   !! register history output
+HISTRP   io/ihist.F         ENTRY      HISTRP   !! show entries of history output
+HISTRT   io/ihist.F         SUBROUTINE HISTRT   !! initialize history output
+HISTRY   io/ihist.F         SUBROUTINE HISTRY   !! output history data
+HISTRZ   io/ihist.F         ENTRY      HISTRZ   !! initialize history output
+HORNRM   dynamics/dmfix.F   SUBROUTINE HORNRM   !! horizontal (local) negative tracer removal
+HQCAXZ   io/icord.F         ENTRY      HQCAXZ   !! get coordinate points
+HQCDMZ   io/icord.F         ENTRY      HQCDMZ   !! get size of coordinates
+HQCDXZ   io/icord.F         ENTRY      HQCDXZ   !! get coordinate thickness
+HQCOAP   io/icord.F         ENTRY      HQCOAP   !! get coordinate point
+HQCOAX   io/icord.F         ENTRY      HQCOAX   !! get coordinate array
+HQCODM   io/icord.F         ENTRY      HQCODM   !! get size of coordinates
+HQCODX   io/icord.F         ENTRY      HQCODX   !! get coordinate weight array
+HQCORD   io/icord.F         SUBROUTINE HQCORD   !! get coordinate name
+HQCORG   io/icord.F         ENTRY      HQCORG   !! get active region
+HQCRDZ   io/icord.F         SUBROUTINE HQCRDZ   !! get atmos coordinate name
+HQDEFP   io/ihdef.F         SUBROUTINE HQDEFP   !! default parameter for history output
+HSASEL   io/icord.F         ENTRY      HSASEL   !! set history data area
+HSTADD   io/ihsub.F         SUBROUTINE HSTADD   !! add into history output
+HSTADX   io/ihsub.F         SUBROUTINE HSTADX   !! add into matrix
+HSTMOZ   io/ihsub.F         ENTRY      HSTMOZ   !! set history mosaic spec
+ICOPY    util/usubs.F       SUBROUTINE ICOPY    !! copy matrix
+IFLOPN   io/ifopn.F         SUBROUTINE IFLOPN   !! open file
+IRESET   util/usubs.F       SUBROUTINE IRESET   !! reset matrix to 0
+LGNDRE   util/uspst.F       SUBROUTINE LGNDRE   !! calculation of Legendre function
+LNDSFC   physics/pglnd.F    SUBROUTINE LNDSFC   !! land surface
+LSCOND   physics/pmlsc.F    SUBROUTINE LSCOND   !! large scale condensation
+LUBWD3   util/umtlu.F       SUBROUTINE LUBWD3   !! LU decomp. backward insert[3-diagonal]
+LUFWD3   util/umtlu.F       SUBROUTINE LUFWD3   !! LU decomp. forward insert[3-diagonal]
+LUMAK3   util/umtlu.F       SUBROUTINE LUMAK3   !! LU decomposition [3-diagonal]
+LUMAKE   util/umtlu.F       SUBROUTINE LUMAKE   !! LU decomposition (partial pivot select)
+LUSOL3   util/umtlu.F       SUBROUTINE LUSOL3   !! solution by LU decomp.[triple diagonal]
+LUSOLV   util/umtlu.F       SUBROUTINE LUSOLV   !! solution by LU decomposition
+MASFIX   dynamics/dmfix.F   SUBROUTINE MASFIX   !! mass fixer & negative tracer removal
+MAXMIN   util/usubs.F       SUBROUTINE MAXMIN   !! output max & min values in matrix
+MCUT     util/usubs.F       SUBROUTINE MCUT     !! cut part of matrix
+MKFILN   io/ifopn.F         SUBROUTINE MKFILN   !! subst. fname w/ env.var.
+MPASTE   util/usubs.F       SUBROUTINE MPASTE   !! paste part of matrix
+OCEAN    physics/pgocn.F    SUBROUTINE OCEAN    !! mixed layer/fixed SST ocean
+OCN2SF   physics/pgocn.F    ENTRY      OCN2SF   !! ocean info to atmospheric surface
+OCNFIN   physics/pgocn.F    ENTRY      OCNFIN   !! finalize ocean
+OCNINI   physics/pgocn.F    ENTRY      OCNINI   !! initialize ocean
+OPNINI   io/istrt.F         SUBROUTINE OPNINI   !! open initial data
+OPNRST   io/istrt.F         SUBROUTINE OPNRST   !! open restart data
+OPPARM   physics/pradt.F    SUBROUTINE OPPARM   !! read radiation parameter
+ORSTRT   physics/pgocn.F    SUBROUTINE ORSTRT   !! read physical initial value
+OWRSTR   physics/pgocn.F    SUBROUTINE OWRSTR   !! write physical restart file
+P2SINT   io/is2po.F         ENTRY      P2SINT   !! coordinate transformation p -> sigma
+PCHKV    physics/padmnm.F   SUBROUTINE PCHKV    !! valid range monitor
+PCONST   admin/apcon.F      SUBROUTINE PCONST   !! stand. physical const.
+PDIAG    physics/pdiag.F    SUBROUTINE PDIAG    !! diagnosis of physics
+PDIGS    physics/pdiag.F    SUBROUTINE PDIGS    !! diagosis of surface budget
+PGLOAD   physics/psave.F    ENTRY      PGLOAD   !! load internal data
+PGPGET   physics/pgbnd.F    SUBROUTINE PGPGET   !! set surface parameters
+PGSAVE   physics/psave.F    SUBROUTINE PGSAVE   !! save internal data
+PGSET    physics/psave.F    ENTRY      PGSET    !! set i/o param for internal data
+PGWRIT   physics/psave.F    ENTRY      PGWRIT   !! write internal data for restart
+PHSTEP   physics/pstep.F    SUBROUTINE PHSTEP   !! step in physics
+PHYSCS   physics/padmnm.F   SUBROUTINE PHYSCS   !! main routine of physics
+PLANKF   physics/pradt.F    SUBROUTINE PLANKF   !! PLANK FUNCTION
+PLANKS   physics/pradt.F    SUBROUTINE PLANKS   !! PLANK FUNCTIONS
+PLEVS    physics/pmisc.F    SUBROUTINE PLEVS    !! calculate pressure
+PLKEXP   physics/pradt.F    SUBROUTINE PLKEXP   !! PLANK FUNCTION EXPANSION (KPLK=2)
+PMSRC    physics/pstep.F    SUBROUTINE PMSRC    !! mass source
+POUTS    physics/pstep.F    SUBROUTINE POUTS    !! output physics fluxes
+PRINTD   io/idiag.F         SUBROUTINE PRINTD   !! print out
+PRSTRT   physics/pstrt.F    SUBROUTINE PRSTRT   !! read physical initial value
+PSDOT    dynamics/dgdyn.F   SUBROUTINE PSDOT    !! surface pres. change & sigma velocity
+PSETUP   physics/pmisc.F    SUBROUTINE PSETUP   !! setup for physics
+PSINTP   io/is2po.F         ENTRY      PSINTP   !! coordinate transformation p -> sigma
+PTFIT    physics/pradt.F    SUBROUTINE PTFIT    !! k-distribution fitted in T,P
+PWRSTR   physics/pstrt.F    SUBROUTINE PWRSTR   !! write physical restart file
+QADVNC   dynamics/dadvn.F   ENTRY      QADVNC   !! GA->GB time advancing + time filter
+QDIAGP   io/idiag.F         SUBROUTINE QDIAGP   !! refer prognostic point
+QFILT    dynamics/dadvn.F   ENTRY      QFILT    !! time filter
+QUITCK   admin/aquit.F      SUBROUTINE QUITCK   !! check for compulsive exit
+RADB2M   util/ufftp.F       SUBROUTINE RADB2M   !! FFT
+RADB3M   util/ufftp.F       SUBROUTINE RADB3M   !! FFT
+RADB4M   util/ufftp.F       SUBROUTINE RADB4M   !! FFT
+RADB5M   util/ufftp.F       SUBROUTINE RADB5M   !! FFT
+RADBGM   util/ufftp.F       SUBROUTINE RADBGM   !! FFT
+RADCON   physics/prcon.F    SUBROUTINE RADCON   !! radiative components
+RADF2M   util/ufftp.F       SUBROUTINE RADF2M   !! FFT
+RADF3M   util/ufftp.F       SUBROUTINE RADF3M   !! FFT
+RADF4M   util/ufftp.F       SUBROUTINE RADF4M   !! FFT
+RADF5M   util/ufftp.F       SUBROUTINE RADF5M   !! FFT
+RADFGM   util/ufftp.F       SUBROUTINE RADFGM   !! FFT
+RADFLX   physics/pradt.F    SUBROUTINE RADFLX   !! radiative flux (Nakajima)
+RADIAT   physics/pradm.F    SUBROUTINE RADIAT   !! radiation driver
+RADSFC   physics/pradm.F    SUBROUTINE RADSFC   !! surface albedo & temp.
+RADTND   physics/pimtx.F    SUBROUTINE RADTND   !! radiative & diffusive heating
+RDATF0   io/ihsub.F         SUBROUTINE RDATF0   !! time interpolation of input data
+RDATIN   io/irdat.F         SUBROUTINE RDATIN   !! data reading and time interpolation
+RDCON2   io/irdat.F         SUBROUTINE RDCON2   !! read external data and interpolation
+RDDAT    io/irdat.F         SUBROUTINE RDDAT    !! read external file
+RDGDST   admin/astrt.F      SUBROUTINE RDGDST   !! read initial data
+RDSTRT   admin/astrt.F      SUBROUTINE RDSTRT   !! read initial data
+RDTKNH   util/usubs.F       SUBROUTINE RDTKNH   !! read character token
+RDTKNI   util/usubs.F       SUBROUTINE RDTKNI   !! read integer token
+RDTKNR   util/usubs.F       SUBROUTINE RDTKNR   !! read floating token
+RESET    util/usubs.F       SUBROUTINE RESET    !! reset matrix to 0
+REWNML   sysdep/ySun.F      SUBROUTINE REWNML   !! rewind NAMELIST-input file
+RFFTBM   util/ufftp.F       SUBROUTINE RFFTBM   !! FFT
+RFFTFM   util/ufftp.F       SUBROUTINE RFFTFM   !! FFT
+RFFTIM   util/ufftp.F       SUBROUTINE RFFTIM   !! make function table for FFT
+RFTB1M   util/ufftp.F       SUBROUTINE RFTB1M   !! FFT
+RFTB2M   util/ufftp.F       SUBROUTINE RFTB2M   !! FFT
+RFTB9M   util/ufftp.F       SUBROUTINE RFTB9M   !! FFT
+RFTF1M   util/ufftp.F       SUBROUTINE RFTF1M   !! FFT
+RFTF2M   util/ufftp.F       SUBROUTINE RFTF2M   !! FFT
+RFTF3M   util/ufftp.F       SUBROUTINE RFTF3M   !! FFT
+RFTF9M   util/ufftp.F       SUBROUTINE RFTF9M   !! FFT
+RFTI1M   util/ufftp.F       SUBROUTINE RFTI1M   !! FFT
+RIVDST   physics/pgriv.F    SUBROUTINE RIVDST   !! river destination
+RIVER    physics/pgriv.F    SUBROUTINE RIVER    !! river routing submodel
+RIVFIN   physics/pgriv.F    ENTRY      RIVFIN   !! finalize river routing submodel
+RIVINI   physics/pgriv.F    ENTRY      RIVINI   !! initialize river routing submodel
+RIVNER   physics/pgriv.F    ENTRY      RIVNER   !! river nearest route
+RIVRST   physics/pgriv.F    ENTRY      RIVRST   !! output river restart
+RMXMN    util/usubs.F       SUBROUTINE RMXMN    !! max & min values in matrix
+RRSTRT   physics/pgriv.F    SUBROUTINE RRSTRT   !! read river initial value
+RWRSTR   physics/pgriv.F    SUBROUTINE RWRSTR   !! write river restart file
+S2PINT   io/is2po.F         SUBROUTINE S2PINT   !! coordinate transformation sigma -> p
+SABORT   util/usubs.F       ENTRY      SABORT   !! set level of abnormal end
+SCATMM   physics/pradt.F    SUBROUTINE SCATMM   !! moments of scattering (2 STREAM)
+SEAZ0F   physics/psfcm.F    SUBROUTINE SEAZ0F   !! roughness of ocean (flux dependent)
+SETGLV   physics/pglvl.F    SUBROUTINE SETGLV   !! set land vertical coordinate (heat)
+SETLAT   admin/asetc.F      SUBROUTINE SETLAT   !! latitude coordinate
+SETLON   admin/asetc.F      SUBROUTINE SETLON   !! longitude coordinate
+SETNML   sysdep/ySun.F      ENTRY      SETNML   !! set NAMELIST-input filename
+SETNMO   util/uspst.F       SUBROUTINE SETNMO   !! order of matrix
+SETPAR   admin/astup.F      SUBROUTINE SETPAR   !! set up atmos parameters
+SETPNM   util/uspst.F       SUBROUTINE SETPNM   !! calculation of Legendre function
+SETPSF   io/is2po.F         ENTRY      SETPSF   !! set surface pres. for transform to p-level
+SETRUN   admin/astup.F      ENTRY      SETRUN   !! set name of experiment
+SETSIG   admin/asets.F      SUBROUTINE SETSIG   !! set sigma level
+SETTIM   admin/atime.F      SUBROUTINE SETTIM   !! set time
+SETV     util/usubs.F       SUBROUTINE SETV     !! put scalar value to matrix
+SETWLV   physics/pglvl.F    SUBROUTINE SETWLV   !! set land vertical coordinate (water)
+SF2OCN   physics/pgocn.F    ENTRY      SF2OCN   !! ocean flux info from atmospheric surface
+SFCALB   physics/pgbnd.F    SUBROUTINE SFCALB   !! surface albedo
+SFCBND   physics/pgsfc.F    SUBROUTINE SFCBND   !! surface boundary conditions
+SFCFLX   physics/psfcm.F    SUBROUTINE SFCFLX   !! surface flux
+SFCIDX   physics/pgbnd.F    SUBROUTINE SFCIDX   !! surface condition
+SFCTRA   physics/psfct.F    SUBROUTINE SFCTRA   !! surface exchange of tracer
+SFCWND   physics/psfcm.F    SUBROUTINE SFCWND   !! wind vel. with conv. effect
+SFCZ0    physics/pgbnd.F    SUBROUTINE SFCZ0    !! surface roughness
+SFCZSD   physics/pgbnd.F    SUBROUTINE SFCZSD   !! S.D. of surface topography
+SHLCOF   physics/pshl0.F    SUBROUTINE SHLCOF   !! shallow cumulus: diffusion type, dummy
+SHTINS   physics/pradi.F    SUBROUTINE SHTINS   !! solar incidence
+SLVSFC   physics/pgslv.F    SUBROUTINE SLVSFC   !! surface temperature
+SLVWND   physics/pgslv.F    SUBROUTINE SLVWND   !! changes in wind velocity
+SPCTLD   dynamics/dstep.F   SUBROUTINE SPCTLD   !! diagnosis in spectral
+SPG2W    util/usphe.F       SUBROUTINE SPG2W    !! grid -> spectral
+SPINTP   io/is2po.F         SUBROUTINE SPINTP   !! coordinate transformation sigma -> p
+SPSTUP   dynamics/dsphe.F   ENTRY      SPSTUP   !! setup spherical harmonic functions
+SPW2G    util/usphe.F       SUBROUTINE SPW2G    !! spectral -> grid transform
+SPW2Z    util/usphe.F       SUBROUTINE SPW2Z    !! Legendre trans. (spect.->grid)
+SPZ2W    util/usphe.F       SUBROUTINE SPZ2W    !! Legendre trans. (grid->spect.)
+SSIGM2   admin/asets.F      SUBROUTINE SSIGM2   !! sigma-level SIGM -> SIG
+SSRFC    physics/pradt.F    SUBROUTINE SSRFC    !! surface albedo
+SURFCE   physics/pgsfc.F    SUBROUTINE SURFCE   !! surface model
+TFILT    dynamics/dadvn.F   ENTRY      TFILT    !! time filter
+TIMADJ   admin/astup.F      ENTRY      TIMADJ   !! adjust time for experiment
+TIMSTP   admin/astep.F      SUBROUTINE TIMSTP   !! control time step
+TINTGR   dynamics/dintg.F   SUBROUTINE TINTGR   !! time integration (spectral)
+TINTP    physics/pmisc.F    SUBROUTINE TINTP    !! vertical interpolation of temperature
+TOTMAS   dynamics/dmfix.F   SUBROUTINE TOTMAS   !! summation of total mass
+TRACER   dynamics/dtrcr.F   SUBROUTINE TRACER   !! tracer transport
+TRINTG   dynamics/dintg.F   ENTRY      TRINTG   !! time integration (spectral)
+TWST     physics/pradt.F    SUBROUTINE TWST     !! 2 stream rad.trans in layer
+UCALN    util/ucaln.F       SUBROUTINE UCALN    !! calendar
+UV2VDG   dynamics/dvect.F   SUBROUTINE UV2VDG   !! (U,V) -> (vor.,D) grid
+UV2VDW   dynamics/dvect.F   SUBROUTINE UV2VDW   !! (U,V) -> (vor.,D) spectral
+VD2UVG   dynamics/dvect.F   ENTRY      VD2UVG   !! (vor.,D) -> (U,V) grid
+VDFCOF   physics/pvdfy.F    SUBROUTINE VDFCOF   !! vertical diffusion coefficient
+VDFFLX   physics/pvdfm.F    SUBROUTINE VDFFLX   !! vertical diffusion
+VDW2UV   dynamics/dvect.F   ENTRY      VDW2UV   !! (vor.,D)spectral -> (U,V)
+VFTND1   physics/pimtx.F    SUBROUTINE VFTND1   !! vertical diffusion
+VFTND2   physics/pimtx.F    SUBROUTINE VFTND2   !! tendency by vertical diffusion
+VIRTMD   dynamics/dvtmp.F   SUBROUTINE VIRTMD   !! virtual temperature
+VIRTMP   physics/pmisc.F    SUBROUTINE VIRTMP   !! virtual temperature (physics)
+W2G      dynamics/dsphe.F   SUBROUTINE W2G      !! spherical trans.(spect.->grid)
+WHYDRO   dynamics/dhydr.F   SUBROUTINE WHYDRO   !! hydrostatic relation (spectral)
+WRGDST   admin/astrt.F      SUBROUTINE WRGDST   !! write restart data (GD)
+WRRSTP   physics/padmnm.F   ENTRY      WRRSTP   !! write physical restart file
+WRRSTR   admin/astrt.F      SUBROUTINE WRRSTR   !! write restart data
+XABORT   util/usubs.F       SUBROUTINE XABORT   !! abnormal end
+XAVR     io/iavrg.F         SUBROUTINE XAVR     !! longitudinal mean
+XSEL     io/iavrg.F         SUBROUTINE XSEL     !! select longitude
+YAVR     io/iavrg.F         ENTRY      YAVR     !! latitudinal mean
+YCLOCK   sysdep/ySun.F      SUBROUTINE YCLOCK   !! get CPU time
+YCLOCL   sysdep/ySun.F      ENTRY      YCLOCL   !! clear CPU time
+YCLOCP   sysdep/ySun.F      SUBROUTINE YCLOCP   !! output of CPU time
+YDATE    sysdep/ySun.F      SUBROUTINE YDATE    !! get present time & date
+YFINE    sysdep/ySun.F      SUBROUTINE YFINE    !! sys.dep. final treatment
+YPREP    sysdep/ySun.F      SUBROUTINE YPREP    !! sys.dep. initialization
+YSEL     io/iavrg.F         ENTRY      YSEL     !! select latitude
+ZAVR     io/iavrg.F         ENTRY      ZAVR     !! vertical average
+ZEXT     io/iavrg.F         ENTRY      ZEXT     !! vertical extension
+ZLEVS    physics/pmisc.F    SUBROUTINE ZLEVS    !! calculate altitude
+ZSEL     io/iavrg.F         ENTRY      ZSEL     !! select vertical level

@@ -1,0 +1,36 @@
+#!/bin/csh -f
+#
+#     batch shell for linear matrix solver
+#
+# NQS command for mail
+#@$-q   b
+#@$-N   1
+#
+setenv DIR    /home/q16655/ln_solver/solver/custom # ROOT of executable
+setenv FRC    rfrc                             # Execulatble name
+setenv EXE    inv                              # Execulatble name
+setenv TRN    cov                              # Execulatble name
+#
+#      setup
+#
+cd $DIR
+\rm LOG
+echo inverse A started at `date` > LOG
+#
+# forcing (if necessary)
+#
+#$FRC  >> LOG
+#
+#  run (if necessary)
+#
+$EXE  >> LOG
+#
+echo inverse A end at `date` >> LOG
+#
+# calculate response and wave to grid
+#
+#$TRN >> LOG
+#
+echo job end at `date` >> LOG
+
+

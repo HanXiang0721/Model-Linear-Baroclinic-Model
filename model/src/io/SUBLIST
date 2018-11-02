@@ -1,0 +1,63 @@
+DIAGP    io/idiag.F         SUBROUTINE DIAGP    !! monitor of grid value
+DIURAV   io/iavrg.F         SUBROUTINE DIURAV   !! averaged diurnal cycle output
+DIURSL   io/iavrg.F         ENTRY      DIURSL   !! diurnal variation
+GDRDTS   io/irwgd.F         SUBROUTINE GDRDTS   !! read data & time select
+GDREAD   io/irwgd.F         SUBROUTINE GDREAD   !! read data
+GDREDX   io/irwgd.F         SUBROUTINE GDREDX   !! read data
+GDWRIT   io/irwgd.F         SUBROUTINE GDWRIT   !! write data
+GTZRED   io/igtio.F         SUBROUTINE GTZRED   !! read in GTOOL3 format
+GTZWRT   io/igtio.F         SUBROUTINE GTZWRT   !! write in GTOOL3 format
+GTZZWT   io/igtio.F         ENTRY      GTZZWT   !! write in GTOOL3 format
+GZREAD   io/igzio.F         ENTRY      GZREAD   !! read with FORMAT
+GZWRIT   io/igzio.F         SUBROUTINE GZWRIT   !! write with FORMAT
+HISIZE   io/ihsub.F         SUBROUTINE HISIZE   !! size of history data area
+HISTAD   io/ihist.F         ENTRY      HISTAD   !! add into history output with factor
+HISTAX   io/ihist.F         ENTRY      HISTAX   !! add into history output
+HISTGR   io/ihist.F         ENTRY      HISTGR   !! set history output group
+HISTIF   io/ihist.F         ENTRY      HISTIF   !! add/register history output with factor
+HISTIN   io/ihist.F         SUBROUTINE HISTIN   !! add/register history output
+HISTMR   io/ihist.F         ENTRY      HISTMR   !! reset history missing value to default
+HISTMS   io/ihist.F         ENTRY      HISTMS   !! set history missing value
+HISTOU   io/ihist.F         ENTRY      HISTOU   !! output history data
+HISTRG   io/ihist.F         ENTRY      HISTRG   !! register history output
+HISTRP   io/ihist.F         ENTRY      HISTRP   !! show entries of history output
+HISTRT   io/ihist.F         SUBROUTINE HISTRT   !! initialize history output
+HISTRY   io/ihist.F         SUBROUTINE HISTRY   !! output history data
+HISTRZ   io/ihist.F         ENTRY      HISTRZ   !! initialize history output
+HQCAXZ   io/icord.F         ENTRY      HQCAXZ   !! get coordinate points
+HQCDMZ   io/icord.F         ENTRY      HQCDMZ   !! get size of coordinates
+HQCDXZ   io/icord.F         ENTRY      HQCDXZ   !! get coordinate thickness
+HQCOAP   io/icord.F         ENTRY      HQCOAP   !! get coordinate point
+HQCOAX   io/icord.F         ENTRY      HQCOAX   !! get coordinate array
+HQCODM   io/icord.F         ENTRY      HQCODM   !! get size of coordinates
+HQCODX   io/icord.F         ENTRY      HQCODX   !! get coordinate weight array
+HQCORD   io/icord.F         SUBROUTINE HQCORD   !! get coordinate name
+HQCORG   io/icord.F         ENTRY      HQCORG   !! get active region
+HQCRDZ   io/icord.F         SUBROUTINE HQCRDZ   !! get atmos coordinate name
+HQDEFP   io/ihdef.F         SUBROUTINE HQDEFP   !! default parameter for history output
+HSASEL   io/icord.F         ENTRY      HSASEL   !! set history data area
+HSTADD   io/ihsub.F         SUBROUTINE HSTADD   !! add into history output
+HSTADX   io/ihsub.F         SUBROUTINE HSTADX   !! add into matrix
+HSTMOZ   io/ihsub.F         ENTRY      HSTMOZ   !! set history mosaic spec
+IFLOPN   io/ifopn.F         SUBROUTINE IFLOPN   !! open file
+MKFILN   io/ifopn.F         SUBROUTINE MKFILN   !! subst. fname w/ env.var.
+OPNINI   io/istrt.F         SUBROUTINE OPNINI   !! open initial data
+OPNRST   io/istrt.F         SUBROUTINE OPNRST   !! open restart data
+P2SINT   io/is2po.F         ENTRY      P2SINT   !! coordinate transformation p -> sigma
+PRINTD   io/idiag.F         SUBROUTINE PRINTD   !! print out
+PSINTP   io/is2po.F         ENTRY      PSINTP   !! coordinate transformation p -> sigma
+QDIAGP   io/idiag.F         SUBROUTINE QDIAGP   !! refer prognostic point
+RDATF0   io/ihsub.F         SUBROUTINE RDATF0   !! time interpolation of input data
+RDATIN   io/irdat.F         SUBROUTINE RDATIN   !! data reading and time interpolation
+RDCON2   io/irdat.F         SUBROUTINE RDCON2   !! read external data and interpolation
+RDDAT    io/irdat.F         SUBROUTINE RDDAT    !! read external file
+S2PINT   io/is2po.F         SUBROUTINE S2PINT   !! coordinate transformation sigma -> p
+SETPSF   io/is2po.F         ENTRY      SETPSF   !! set surface pres. for transform to p-level
+SPINTP   io/is2po.F         SUBROUTINE SPINTP   !! coordinate transformation sigma -> p
+XAVR     io/iavrg.F         SUBROUTINE XAVR     !! longitudinal mean
+XSEL     io/iavrg.F         SUBROUTINE XSEL     !! select longitude
+YAVR     io/iavrg.F         ENTRY      YAVR     !! latitudinal mean
+YSEL     io/iavrg.F         ENTRY      YSEL     !! select latitude
+ZAVR     io/iavrg.F         ENTRY      ZAVR     !! vertical average
+ZEXT     io/iavrg.F         ENTRY      ZEXT     !! vertical extension
+ZSEL     io/iavrg.F         ENTRY      ZSEL     !! select vertical level

@@ -1,0 +1,56 @@
+#
+#   HITAC S-unix system dependent include for Makefile for CCSR libraries
+# 
+
+SYSFFLAGS	= -64 -W0,"'opt(o(ss)),langlvl(hf(77)),mp(p(4),procnum(8),diag(2)),pvec(diag(1))'"
+SYSCFLAGS	= 
+SYSLDFLAGS	= -parallel -64
+SYSCPPFLAGS 	= -C -DSYS_HITAC -DSYS_UNIX -DCODE_ASCII -DCODE_IBM
+SYSAUTODBL	=
+SYSDEBUG	=
+SYSCHECK	=
+LINKOPT		=
+CPPOPT		= 
+
+# MAKE		= make
+SHELL		= /bin/sh
+CC		= cc
+FC		= f90
+LD		= f90
+AR		= ar vru
+RM		= rm -f
+CP		= cp
+MV		= mv -f
+LN		= ln -s
+RANLIB		= echo
+CAT		= cat
+INSTALL		= cp
+MD		= mkdir -p
+JLATEX		= bigjlatex
+DVI2JPS		= dvi2ps
+PRINT		= ltype
+PRINTSTAMP	= .print
+INDEX		= etags -wx
+TAGS		= etags
+TOUCH		= touch
+ECHO		= echo
+AWK		= awk
+CPP	 	= /usr/ucb/cpp
+FPP      	= sed -e 's/^["-$$]/*/' -e 's/\!\!/\"\!/' 
+
+SYSXLIBDIR	= 
+SYSXLIBNAME	= X11
+###SYSXLIBS	= -l-L$(SYSXLIBDIR) -l-l$(SYSXLIBNAME)
+SYSXLIBS	= -l-l$(SYSXLIBNAME)
+
+.SUFFIXES:
+.SUFFIXES: .o .ftr .F
+
+.F.o:
+	$(CPP) $(CPPFLAGS) $< | $(FPP) > $*.f
+	$(FC) -c $(FFLAGS) $*.f
+
+.F.ftr:
+	echo "*/ADD NAME="$*.F >> $(FTRFILE)
+	$(CPP) $(CPPFLAGS) $< | $(FPP) >> $(FTRFILE)
+

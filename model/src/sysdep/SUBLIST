@@ -1,0 +1,11 @@
+ERRTRA   sysdep/ySun.F      SUBROUTINE ERRTRA   !! error traceback
+FOPEN    sysdep/ySun.F      SUBROUTINE FOPEN    !! open file
+FREWND   sysdep/ySun.F      SUBROUTINE FREWND   !! rewind file
+REWNML   sysdep/ySun.F      SUBROUTINE REWNML   !! rewind NAMELIST-input file
+SETNML   sysdep/ySun.F      ENTRY      SETNML   !! set NAMELIST-input filename
+YCLOCK   sysdep/ySun.F      SUBROUTINE YCLOCK   !! get CPU time
+YCLOCL   sysdep/ySun.F      ENTRY      YCLOCL   !! clear CPU time
+YCLOCP   sysdep/ySun.F      SUBROUTINE YCLOCP   !! output of CPU time
+YDATE    sysdep/ySun.F      SUBROUTINE YDATE    !! get present time & date
+YFINE    sysdep/ySun.F      SUBROUTINE YFINE    !! sys.dep. final treatment
+YPREP    sysdep/ySun.F      SUBROUTINE YPREP    !! sys.dep. initialization

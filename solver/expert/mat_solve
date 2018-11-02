@@ -1,0 +1,43 @@
+#!/bin/csh -f
+#
+#     batch shell for linear matrix solver
+#
+# NQS command for mail
+#@$-q   r
+#@$-N   1
+#
+setenv LNHOME /home/q16655/ln_solver           # ROOT of model
+setenv DIR    /home/q16655/ln_solver/solver/expert # ROOT of executable
+setenv EXE    svd                              # Execulatble name
+setenv TRAN   strn                             # Execulatble name
+#setenv EXE    eof                              # Execulatble name
+#setenv TRAN   etrn                             # Execulatble name
+#
+#      setup
+#
+cd $DIR
+\rm LOG
+echo linear solver started at `date` > LOG
+#
+#make
+#
+#  run
+#
+$EXE  >> LOG
+#
+echo linear solver end at `date` >> LOG
+#
+# wave to grid
+#
+$TRAN >> LOG
+#
+# wave to grid (sigma, v1, UV)
+#
+mv -f SETPAR SETPAR.org
+cp -f SETPAR.s SETPAR
+$TRAN >> LOG
+mv -f SETPAR.org SETPAR
+#
+echo job end at `date` >> LOG
+
+

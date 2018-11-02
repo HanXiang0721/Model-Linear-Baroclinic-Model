@@ -1,0 +1,9 @@
+ &nmfin cfm='/home/q16655/ln_solver/matrix/mat/MATPWM.t42l20.zm-r.dat',
+        cfr='/home/q16655/ln_solver/data/aim/rspbc/frc.q1.anm.t42l20.grd',
+        cfs='/home/q16655/ln_solver/matrix/mat/MATINV.t42l20.zm-r.dat',
+        cfg='/home/q16655/ln_solver/data/aim/rspbc/aim.t42l20.1998.q.grd'
+ &end
+ &nmall owall=f
+ &end
+ &nmcls oclassic=t
+ &end

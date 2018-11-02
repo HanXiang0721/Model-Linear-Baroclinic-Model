@@ -1,0 +1,53 @@
+####################################################################
+#  LAPACK make include file.                                       #
+#  LAPACK, Version 2.0                                             #
+#  September 30, 1994                                                 #
+####################################################################
+#
+#  The machine (platform) identifier to append to the library names
+#
+PLAT = SR8000
+#  
+#  Modify the FORTRAN and OPTS definitions to refer to the
+#  compiler and desired compiler options for your machine.  NOOPT
+#  refers to the compiler options desired when NO OPTIMIZATION is
+#  selected.  Define LOADER and LOADOPTS to refer to the loader and 
+#  desired load options for your machine.
+#
+FORTRAN  = f90
+OPTS     = -64 -W0,"'opt(o(ss)),langlvl(hf(77)),mp(p(4),procnum(8),diag(2)),pvec(diag(1))'"
+#OPTS	= -O3 -procnum=8 -parallel -pvec -limit -pvfunc=2
+NOOPT    = 
+LOADER   = f90
+LOADOPTS = -parallel -64
+#LOADOPTS =
+#
+#  The archiver and the flag(s) to use when building archive (library)
+#  If you system has no ranlib, set RANLIB = echo.
+#
+ARCH     = ar
+ARCHFLAGS= cr
+RANLIB   = echo
+#
+RM       = rm -f
+CP	 = cp -f
+MV	 = mv -f
+#
+#  The location of the libraries to which you will link.  (The 
+#  machine-specific, optimized BLAS library should be used whenever
+#  possible.)
+#
+BLASLIB      = $(LNHOME)/solver/lib/$(ARC)/blas_$(PLAT).a
+LAPACKLIB    = $(LNHOME)/solver/lib/$(ARC)/lapack_$(PLAT).a
+TMGLIB       = $(LNHOME)/solver/lib/$(ARC)/tmglib_$(PLAT).a
+EIGSRCLIB    = 
+#
+#  LBM library
+#
+LDLIBS       = $(LNHOME)/model/lib/$(ARC)/liblbm2$(HRES)m$(VRES)c.a
+#
+# byte unit
+#
+MBYT	= 4
+
+

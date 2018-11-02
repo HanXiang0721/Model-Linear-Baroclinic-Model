@@ -1,0 +1,61 @@
+#
+#   Sun system dependent include for Makefile for CCSR libraries
+# 
+
+SYSFFLAGS	= -O -u -convert big_endian -fpe3 -no-vec
+SYSCFLAGS	= 
+#SYSCFLAGS	= -DX_WCHAR
+SYSLDFLAGS	= 
+SYSCPPFLAGS 	= -DSYS_avatar -DSYS_UNIX -DCODE_ASCII -DCODE_IEEE -DCODE_ENDIAN
+SYSAUTODBL	= -r8
+SYSDEBUG	= -g
+SYSCHECK	= -C
+LINKOPT		=
+#SYSLIBINC       = y$(SYSTEM).o
+#SYSLIB          = -lc
+
+# MAKE		= make
+CC		= icc
+#FC		= g77
+#LD		= g77
+FC		= ifort
+LD		= ifort
+AR		= ar vru
+RM		= rm -f
+CP		= cp
+MV		= mv -f
+LN		= ln -s
+RANLIB		= ranlib
+CAT		= cat
+INSTALL		= cp
+MD		= mkdir -p
+JLATEX		= bigjlatex
+DVI2JPS		= dvi2ps
+PRINT		= ltype
+PRINTSTAMP	= .print
+INDEX		= etags -wx
+TAGS		= etags
+TOUCH		= touch
+ECHO		= echo
+CPP		= cpp
+FPP     	= 
+
+SYSXLIBDIR	= /usr/X11R6/lib
+SYSXLIBNAME	= X11
+SYSXLIBS	= -L$(SYSXLIBDIR) -l$(SYSXLIBNAME)
+###SYSXLIBS	= -l$(SYSXLIBNAME)
+
+PACKFILE        = avatar.ftr
+PACKDIR		= $(SRCDIR)/avatar
+
+world:	all
+
+.SUFFIXES : .pac .F
+
+$(PACKFILE):
+
+.F.pac:
+	echo "*/ADD NAME="$*.F >> $(PACKFILE)
+	cat $< >> $(PACKFILE)
+
+

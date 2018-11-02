@@ -1,0 +1,662 @@
+*
+*  Package for Linear Dynamical Analysis
+*  
+*                               Hiro Watanabe 2000/08/28
+*                               CCSR, Univ. Tokyo
+*                               hiro@ccsr.u-tokyo.ac.jp
+*
+######
+NOTE: This document is for an older version LBM1.0, see README2.0.ps
+      or README2.0.pdf for the current version.
+######
+ 
+0.    What's this package ?
+
+This numerical package has been built up in order to examine
+a linear dynamics in the atmosphere, such as the steady linear 
+response to a prescribed heating, eigenanalysis, etc.. Programs
+contained are all written with Fortran, and have been based upon
+CCSR/NIES AGCM version 5.4g. The spectral primitive equations on
+a vertical sigma coordinate are explicitly linearized about a basic 
+state in the model (see Watanabe and Kimoto 2000, QJRMS for the 
+expression). Linear solutions are computed with a mathematical 
+library LAPACK, which is freely available from [http://www.netlib.org/]. 
+Two graphical tools, GrADS and Gtool (the latter is a graphic software 
+locally developed at CCSR) are required for visually looking at the 
+data. Now the package can only be run on SunOS or DEC-OSF.
+
+Note that this package is still under construction in some parts,
+so the users themselves should be responsible for the use of the
+package in terms of modification of sources and fixing bugs.
+ 
+1.    Introduction
+ 
+1.1   tree structure
+ 
+  ln_solver/bs               basic state files with GrADS format
+	   /sample           sample files for forcing/response
+	   /solver           steady response
+	   /custom           some customized routines
+	   /expert           eigen and singular vector analyses
+	   /etc              post-processes for STM (cf. 5.1)
+	   /include          dimension files
+	   /util             utilities
+	   /model            linear model
+  	      /bin           executable files
+  	      /lib           model library
+  	      /sh            shell script to run the model
+  	      /doc           AGCM documents (japanese)
+	      /src           model source codes
+     	      /init          basic state files with Gtool format
+ 
+1.2   Pre-processes
+ 
+  1.2.1 Installing LAPACK
+ 
+As noted above, you need LAPACK to solve a linear matrix, so
+should first install it together with associated libraries
+such as BLAS and BLACS. See LAPACK documentation for details.
+
+After they have been installed into your system (system you are 
+using is indicated as $ARC), edit make.inc.$ARC just below the
+home directory of the linear analysis package (like /home/hiro/
+ln_solver, denoted as $LNHOME):
+
+   BLASLIB      = /usr/local/lib/blas/lib/blas_$(PLAT).a
+   LAPACKLIB    = /usr/local/lib/LAPACK/lapack_$(PLAT).a
+   TMGLIB       = /proj/b/data08/hiro/lapack/LAPACK/tmglib_$(PLAT).a
+   EIGSRCLIB    = eigsrc_$(PLAT).a
+
+If necessary, location for F77 compiler specified in that file 
+can also be re-written.
+
+  1.2.2 Making AGCM library and executable
+
+First of all, environmental variable LNHOME must be set as
+
+%> setenv LNHOME /home/hiro/ln_solver
+%> setenv AGCMDIR $LNHOME/model
+
+or if you use bash,
+
+%> export LNHOME='/home/hiro/ln_solver'
+%> export AGCMDIR='$LNHOME/model'
+
+These lines could be written in your .cshrc or .bashrc.
+
+You then modify an include file $LNHOME/Lmake.inc, according to
+the model resolution and model type that you want to try. Also your
+system $ARC must be specified there.
+
+To run the linear model, 
+
+%> cd $AGCMDIR/src
+%> make lib
+
+You can confirm that the AGCM library like 'libagcm5t21ml20c.a'
+is built in $LNHOME/model/lib/$ARC/. Using this library, model
+executable file is compiled.
+
+%> make gcm
+
+1.3   NAMELIST parameters
+
+All the parameters, including filenames of products, are given by
+the Fortran NAMELIST command. They are specified in a shell script
+for running the linear model, while set in a file 'SETPARA' for
+using the matrix manipulation. The SETPARA files are prepared in 
+each directory of solver/, custom/, expert/, etc/, and util/. You
+can refer to a file 'param_list' in each directory for the description
+of parameters in these files.
+
+2.    Steady responses
+ 
+2.1   Time integration method
+
+If you choose PROJECT = tintgr in $LNHOME/Lmake.inc, the linear 
+model can be run in time, similar to an ordinary AGCM, except that
+the model requires a basic state and initial (or steady) forcing
+but not the boundary and initial conditions. Refer to 2.2.2 for how
+to make initial perturbation and/or forcing files (both have the same
+format).
+
+$LNHOME/model/sh/linear-run.csh is a sample shell script for the
+time integration of the linear model. Roughly 10 model days would
+be needed to approach a stationary solution. However, you must 
+realize that this method only results in an approximation to the steady
+solution to a prescribed forcing because further time integration
+allows normal modes growing in the system. if you want to obtain
+an exact steady solution to a forcing, choose second method explained
+below. Nevertheless, the time integration has advantages over the 
+matrix inversion method such that you can estimate timescale of the
+response (see, for example, Jin and Hoskins 1995, JAS). 
+
+The output for the run is generated for each prognostic variable
+with the Gtool format. They are incorporated into one GrADS file by
+editing $LNHOME/util/SETPARA, and then
+
+%> cd $LNHOME/util
+%> make clean
+%> make
+&> gt2gr   
+
+A sample control file 'linear.ctl' is found in $LNHOME/sample/.
+
+2.2   Steady response using a matrix inversion
+ 
+  2.2.1 Preparation of the linear operator matrix
+ 
+In this section, a technical description is given for the steady response
+to a forcing in which the zonal symmetry is not assumed in the basic state
+(denoted as the standard linear baroclinic model, LBM). What you have to
+prepare before computation are files of the linear operator matrix, basic 
+state, and forcing vector.
+
+A basic state required for the linear model must be prepared with the 
+Gtool format. It contains zonal and meridional winds, temperature, surface 
+pressure, humidity and liquid water content (latter two are not referred 
+in the model). While several basic states have been prepared in advance 
+under $LNHOME/model/init/, all of which are the observed climatological 
+states, you can make any state for your own basic state. Since you may not
+be familiar with Gtool, the format is exemplified here to read/write it.
+
+-------sample reading file for Gtool basic state---
+   integer    nlon, nlat, nlev
+   parameter( nlon = 64, nlat = 32, nlev = 20 ) !! resolution
+
+   character  head( 64 )*16 !! header
+   real*4     u( nlon*nlat, nlev)
+   real*4     v( nlon*nlat, nlev)
+   real*4     t( nlon*nlat, nlev)
+   real*4     ps( nlon*nlat )
+   real*4     dum( nlon*nlat, nlev)
+
+   open ( 10, file='init_ncepwin_t21l20', form='unformatted' )
+
+   read( 10 ) head
+   read( 10 ) u
+   read( 10 ) head
+   read( 10 ) v
+   read( 10 ) head
+   read( 10 ) t
+   read( 10 ) head
+   read( 10 ) ps
+   read( 10 ) head
+   read( 10 ) dum
+   read( 10 ) head
+   read( 10 ) dum
+   close( 10 )
+
+   stop
+   end
+-------end of file-----------------------
+
+Be careful that the Gtool data must start from the point (1,NP)
+which is opposite to the GrADS data starting from (1,SP). If you made
+a Gtool-formatted basic state somehow, corresponding GrADS file should 
+also be made by editing $LNHOME/util/SETPARA and then by
+
+%> cd $LNHOME/util
+%> bsgrd
+
+Although we did not attach all the Gtool commands, a simple contour map
+for the Gtool basic state can be drawn like as
+
+%> cd $LNHOME/model/init
+%> ./gtcont init_ncepwin_t21l20 z=8 color=10 map=1
+
+Here the options 'z=8', 'color=10', and 'map=1' indicate the vertical level
+that you want to take a look, number of colors for shading, and the type
+of map projection (ordinally 1), and they can be altered.
+
+A size of the linear operator is defined by the product of number of variable,
+number of levels, and number of wave components, e.g. it is 7728 for T21L5
+model. The matrix is calculated using the so-called residual method which
+was proposed by Hoskins and Karoly (1981, JAS). The method is repeatedly
+use the linear model with a unit perturbation added to the basic state 
+to obtain a column vector. A shell script to make the linear operator 
+matrix has been prepared as $LNHOME/model/sh/mkamat.csh. Before executing 
+the shell, you must compile both the linear model and a post processor; 
+the former makes column vectors while the latter is used to combine column 
+vectors into one matrix file.
+
+For making the linear model, choose 'PROJECT = mkamat' in $LNHOME/Lmake.inc, 
+then
+
+%> cd $LNHOME/model/src
+%> make clean.special
+%> make gcm
+
+and for a post-processor,
+
+%> cd $LNHOME/util
+%> make clean
+%> make 
+
+In case of T21L5 LBM, about 1 GB of space is required to the 
+directory $DIR (see mkamat.csh) to store the matrix files. If you have
+enough space, execute the shell (edit it if necessary).
+
+%> cd $LNHOME/model/sh
+%> mkamat.csh
+
+After several hours you will obtain the matrix file.
+ 
+  2.2.2 Preparation of forcing
+ 
+You should make a GrADS formatted forcing file. See $LNHOME/sample/
+'frc****.ctl' files for the contents of the forcing file which must follow.
+An idealized or simplified forcing can easily be prepared from 
+$LNHOME/util/. After editing $LNHOME/util/SETPARA (see param_list for 
+details of parameters),
+
+%> cd $LNHOME/util
+%> make clean
+%> make
+%> mkfrcng
+
+The last command at the same time produces the forcing data expressed
+by spherical coefficients, which will be used to obtain a steady response.
+
+Of course, you can make any forcing data for your own purpose unless
+the format does not match the sample control file. In that case, the 
+GrADS format file can be converted to spherical data by editing
+$LNHOME/util/SETPARA and
+
+%> cd $LNHOME/util
+%> fvec
+ 
+  2.2.3 Computation of steady responses
+ 
+When you prepared a matrix for the linear operator, basic state, and
+forcing according to the description in section 2.2.1-2.2.2, you will
+be ready to solve them.
+
+After you specify filenames and parameters in $LNHOME/solver/SETPARA,
+following commands
+
+%> cd $LNHOME/solver/
+%> make clean
+%> make
+%> lin ; trn
+
+generate the steady linear response. The response contains the stream 
+function and the velocity potential (or the zonal and meridional winds
+if you choose '&nmuv o2u=t, o2v=t'), temperature, geopotential height,
+and the surface pressure, all of which are prognostic variable of the
+primitive equations except for the geopotential height. When you are 
+obtaining the response on pressure levels by setting '&nmuv opl=t', they
+are internally converted from the sigma-level data using the Spline
+interpolation. Level of each pressure surface has been defined in a file
+'dim.f', which can be altered except for the total number of levels.
+
+For reference, the computation with T21L5 takes about 1 hour on alpha.
+ 
+3.    Ensemble response to random forcings
+ 
+  under construction
+ 
+4.    Eigen and singular vector analyses
+ 
+  under construction
+ 
+5.    Advanced use of the linear model. Part I: Storm track model
+ 
+5.1   What's the storm track model ?
+ 
+Storm track model (STM) is developed in order to parameterize the 
+statistical property of the midlatitude transient eddies, or the 
+storm track, in terms of a linear function of large-scale quasi-
+stationary fields. The STM used here is on a basis of the Branstator's 
+(1995, JAS) method. That is, eddy covariance statistics are obtained 
+by an ensemble of large number of linear model integration given a 
+random initial perturbation. Since some of normal modes which are 
+allowed to grow in the linear model will blow up beyond the timescale 
+of baroclinic instability (less than ten days), each time integration 
+must be stopped by that time. The STM does not require a matrix 
+inversion, implying that the heigher horizontal resolution would be 
+possible unlike the computation of steady linear response.
+   
+5.2   Execution of the STM
+
+  5.2.1 Making the binary file
+      
+Choose 'PROJECT = tintgr' in $LNHOME/Lmake.inc, then
+
+%> cd $LNHOME/model/src
+%> make clean.special
+%> make gcm
+
+generates the executable file of the STM under $LNHOME/model/bin/$ARC.
+Also several post-processor files must be compiled from $LNHOME/etc/.
+
+%> cd $LNHOME/etc
+%> make clean
+%> make stm
+
+See $LNHOME/model/sh/s.track.csh, for a sample executing the model.
+As in 2.2.1, the environmental variable INITFILE in that shell
+indicates a basic state. In addition, three variable
+ 
+      ILNGTH        length of integration [days] 
+      NINTG         number of ensemble member
+      NINTV         sampling interval [days]
+ 
+can be altered as tuning parameters. Another tuning parameter of 
+the STM is a strength of the horizontal diffusion and linear drag, 
+both set in a shell script as
+
+ &nmhdif order=8, tefold=12, tunit='HOUR'               &end
+ &nmdamp nddrag1=2, nddrag2=4, nddrag3=-1               &end
+
+The initial perturbation specified by the environmental variable FRC
+should be made with GrADS such that the data follows a control file
+like
+
+-----sample for random forcing------
+* 1000 random initial perturbations
+*
+DSET ^random1000g.grd
+TITLE dummy
+UNDEF -999.
+XDEF 64 LINEAR 0. 5.625
+YDEF 32 LEVELS -85.761 -80.269 -74.745 -69.213 -63.679 -58.143 -52.607 
+-47.070 -41.532 -35.995 -30.458 -24.920 -19.382 -13.844 -8.3067 -2.7689 
+2.7689 8.3067 13.844 19.382 24.920 30.458 35.995 41.532 47.070 52.607 
+58.143 63.679 69.213 74.745 80.269 85.761
+ZDEF 11  LEVELS 0.9950 0.9800 0.9499 0.8999 0.8146 
+0.6789 0.5133 0.3478 0.2025 0.09234 0.02075
+TDEF 1000 LINEAR 15jan0000 1yr
+VARS 4
+v      11 99 vor.   forcing [s**-2]
+d      11 99 div.   forcing [s**-2]
+t      11 99 temp.  forcing [K s**-1]
+p      1  99 sfc.Ln(Ps) forcing
+ENDVARS
+------------------------------------
+ 
+NAMELIST parameters near the end of the sample shell file will be used
+for the post-processes.
+ 
+     &nmrec nfcs = ..., nfday, ...  date for 1st sampling
+ 
+     &nmfil cfo    output (GrADS) filename for all the members
+            cfo2   output (GrADS) filename for the ensemble mean
+            cbs    filename of a basic state (GrADS)
+            ofo    logical, if you keep storing the file 'cfo'
+
+Why the default set the 2nd date for the 1st sampling is to avoid
+including the direct response, but not the normal mode growth, to
+random perturbations. Also ordinary 'ofo=f' because the file 'cfo'
+becomes pretty huge.
+ 
+  5.2.2 Further application of the STM
+ 
+It takes much time to run the STM since, if you use the default 
+parameters of 6 days x 500 member, the total time of integration
+corresponds to more than 8 years! The model, however, can be run 
+much faster than the usual AGCM, so that the computation will only
+need several hours to be accomplished.
+
+The file 'cfo2' will be a final product of the STM. It contains 10 
+quantities associated with the transient eddy activity, and can 
+be mapped with a GrADS control file written in such a way of 
+$LNHOME/sample/eddy.stm.ctl. If you combine the steady response in 
+section 2.2 with the STM simulation, following application will be
+available.
+
+   a. run the STM with a climatological basic state to obtain 
+      the simulated storm strack climatology
+   b. compute steady response to a prescribed heating using 
+      the same basic state
+   c. add the response fields to the basic state
+   d. run the STM again but with the modified basic state
+   e. estimate the storm track change by taking difference d.-a.,
+      then compute the (secondary) steady response to these
+      modified storm activity (i.e. vorticity and heat flux 
+      convergence anomalies)
+
+This technique is the latest way to mimic the nonlinear interaction
+between the stationary flow and transient eddies in a linear framework.
+Peng and Whitaker (1999, JC) and Watanabe and Kimoto (2000, QJRMS) have 
+used this method to examine the atmosphere-ocean feedback in the North
+Pacific and the North Atlantic, respectively.
+
+Unfortunately, the STM cannot well simulate the observed storm activity
+over the North Pacific, i.e. the so-called 'mid-winter suppression'
+(Nakamura 1992, JAS). The fault should be improved in the future.
+
+6.    Advanced use of the linear model. Part II: Zonal-wave interaction
+ 
+6.1   Zonal response model and planetary wave model 
+
+The steady linear response in section 2 generally uses a zonally-varying 
+basic state, so that the linear matrix cannot be solved for each zonal 
+wave number because of the presence of wave/wave interactions. If, 
+however, you use a zonally-uniform basic state, the matrix reduces to a 
+set of block matrices which can be solved with less memory and 
+computational time. Such a model, called the planetary wave model (PWM), 
+have been used for a long time after Hoskins and Karoly (1981). Here a 
+new method to investigate a zonal flow/planetary stationary wave 
+interaction is introduced according to Kimoto et al. (2000, GRL). Some 
+parts of this method consists of the classic use of the PWM given a 
+forcing associated with the zonal flow anomaly (cf. Ting et al. 1996, 
+JC), but others are originally developed such that the PWM is coupled 
+to the zonal response model (ZRM).
+
+  6.1.1 Making the binary file
+
+Choose 'PROJECT = mkamatpw' in $LNHOME/Lmake.inc, and further select
+'OPTIONS = -DOPT_NOPHYSICS -DOPT_MKMAT' in $LNHOME/model/src/proj/
+mkamatpw/Mkinclude. Then,
+
+%> cd $LNHOME/model/src
+%> make clean.special
+%> make gcm
+
+generates the executable file commonly used for the ZRM and PWM. 
+
+  6.1.2 Making the linear matrix and ordinary use of the PWM
+
+A procedure to make the linear operator matrix is similar to the
+standard LBM (section 2) but using different set of files. The sample
+shell for making the matrix is $LNHOME/model/sh/mkamatpw.csh. Note 
+that you must specify zonal mean fields as a basic state in the 
+environmental variable INITFILE. An environment variable NWEND means
+the truncation zonal wave number, which must be the same as OPTION 
+in Lmake.inc that you selected (default 5). As in the previous 
+sections, the dissipation terms are the most important tuning 
+parameters. That is, the horizontal diffusion of order KORD with the 
+KTEF-day folding, the linear friction and Newtonian damping coefficients 
+like as
+
+ &nmdamp nddragv=1,1,1,1,2,5,15,15,15,15,15,15,15,15,15,15,15,15,2,2,
+         nddragd=1,1,1,1,2,5,15,15,15,15,15,15,15,15,15,15,15,15,2,2,
+         nddragt=1,1,1,1,2,5,15,15,15,15,15,15,15,15,15,15,15,15,2,2,
+         tunit='DAY'                                           &end
+
+and the vertical diffusion coefficients
+
+ &nmvdif vdifv=1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,
+         vdifd=1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,
+         vdift=1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,1.d3,                           &end
+
+
+As in 2.2.1, before executing a shell you must prepare a post processor 
+to combine column vectors into one matrix file.
+
+%> cd $LNHOME/util
+%> make clean
+%> make pw
+
+In case of T21L20m5 ZRM/PWM, about 500 MB of space is required to the 
+directory $DIR (see mkamatpw.csh) to store the matrix files. If you have
+enough space, execute the shell (edit it if necessary).
+
+%> cd $LNHOME/model/sh
+%> mkamatpw.csh
+
+After several hours you will obtain the matrix file.
+
+To test the computation going well, stationary wave response to
+an idealized forcing should be first calculated. The forcing can be
+made by editing SETPARA in $LNHOME/util/ (see param_list), and
+
+%> mkfrcng
+%> fvecpw
+
+The stationary wave response is computed, after editing SETPARA in 
+$LNHOME/solver/ (see param_list), as
+
+%> cd $LNHOME/solver
+%> make clean
+%> make pw
+%> linpw ; trnpw
+
+If you are choosing T21L20 version, you can use a sample forcing
+$LNHOME/sample/frc.pw_t21l20.grd (convert it to spherical coefficients
+using $LNHOME/util/fvecpw). Since the stationary wave response to that
+forcing (zonal wave number is truncated at 5) is also prepared as 
+$LNHOME/sample/response.pw_t21l20.grd, you can compare it to your
+computation. Because responses for each zonal wave number are
+computed in the ZRM/PWM, they are stored separately (TDEF becomes
+a dummy of the zonal wave number). Thus the total stationary wave 
+response, for example, in surface pressure can be mapped on GrADS like 
+as
+
+%> cd $LNHOME/sample
+%> grads
+ga-> open response.pw_t21l20.ctl
+ga-> d sum(p,t=2,t=6)
+
+p(t=1) is the zonal mean response.
+
+6.2   Zonal mean operator including stationary eddy feedback
+
+A complete interaction between zonal mean states and stationary waves
+can only be examined with solving a full matrix using a zonally
+asymmetric basic state. However, the full matrix even with modest resolution
+such as T21L11 can hardly be solved in a present computer resources.
+More efficient way to deal with the zonal/eddy interaction may be
+possible with the set of ZRM/PWM, as explained by Kimoto et al. (2000).
+
+For the ZRM, a forcing due to stationary wave anomalies is represented
+by the Eliassen-Palm (E-P) flux divergence. On one hand, forcing for 
+the PWM can at least be decomposed into two components even when we ignore
+a contribution from the transient eddy and diabatic heating anomalies.
+The two components of forcing, an interaction of zonal flow anomalies with
+the climatological waves and an interaction of climatological waves and 
+stationary wave anomalies, are referred to as the zonal/wave coupling
+and wave/wave coupling terms. It is obvious that the latter term can be
+included in the linear operator when the model is linearized about a 
+three-dimensional basic state as in section 2. Here we assume that the
+stationary wave response is mainly excited by the zonal/wave coupling
+for simplicity, then the wave parts can be expressed as a function
+only of the zonal mean state. It means that the E-P flux forcing can 
+be represented by the Jacobian of that term in terms of the zonal mean 
+state. This procedure incorporates the two way interaction between zonal
+mean and eddies into the zonal mean operator, so that the modal decomposition
+of that operator will lead to a dynamical mode which is selectively
+excited by the positive zonal flow-stationary wave feedback.
+
+For this purpose, it is better to have an inverse matrix for wave parts
+for faster computation of the Jacobian matrix. You edit $LNHOME/custom/
+SETPARA (see param_list) then
+
+%> cd $LNHOME/custom
+%> make clean
+%> make pw
+%> invpw
+
+The computation of the zonal mean operator including the Jacobian
+is so complicated that the procedure is split into several steps.
+The necessary executable files are found in a sample shell file
+$LNHOME/model/sh/mkamatpw-dfeed.csh. The ZRM/PWMs with slightly
+different design have to be compiled.
+
+Choose 'OPTIONS = -DOPT_NOPHYSICS -DOPT_MKMAT -DOPT_OWALL -DOPT_ORHS'
+in $LNHOME/model/src/proj/mkamatpw/Mkinclude. Then,
+
+%> cd $LNHOME/model/src
+%> make clean.special
+%> make gcm
+%> cd ../bin/$ARC
+%> mv agcm5.t21ml20cmkamatpw agcm5.t21ml20c.mkamat
+
+Again, re-choose 'OPTIONS = -DOPT_NOPHYSICS -DOPT_WVFRC -DOPT_ORHS'
+in $LNHOME/model/src/proj/mkamatpw/Mkinclude. Then,
+
+%> cd $LNHOME/model/src
+%> make clean.special
+%> make gcm
+%> cd ../bin/$ARC
+%> mv agcm5.t21ml20cmkamatpw agcm5.t21ml20c.wvfrc
+
+And other files for inter-processing are compiled as
+
+%> cd $LNHOME/etc
+%> make clean
+%> make dfeed
+
+Now you will be ready for calculating the zonal mean operator,
+
+%> cd $LNHOME/model/sh
+%> mkamatpw-dfeed.csh
+
+Procedures done in this shell are:
+
+   a. (RUN1) put unit zonal perturbation to the linear model
+   b. (RUN2) combine vectors for a specific meridional wavenumber
+   c. (RUN3) solve stationary waves for the zonal/wave coupling
+             term made in b.
+   d. (RUN4) sum up wave responses computed for each zonal 
+             wavenumber in c.
+   e. (RUN5) compute the E-P flux div. forcing from d.
+   f. (RUN6) as in b., but for the E-P forcing term
+   e. (RUN7) making Jacobian matrix from column vectors of f.
+
+Of course, the matrix for zonal mean including stationary eddy feedback, 
+named 'AMATPW_ncepwin_t21l20_m0df.dat' in the sample shell, has only a 
+size of zonal mean, which is much smaller than the full matrix. Thus it
+is much easy to manipulate further.
+
+6.3   Singular vector or eigenvector of the zonal mean operator
+
+When you want to seek a neutral, or the least damped, mode of that
+operator, you can apply eigenanalysis or singular value decomposition.
+The implication of the singular vector for the dynamical operator
+is discussed by Navarra (1993, JAS).
+
+As in before, you edit SETPARA now in $LNHOME/expert/. Then,
+
+%> cd $LNHOME/expert
+%> make clean
+%> make pw
+
+and if you try to compute eigenmodes,
+
+%> eofpw ; etrnpw
+
+or try to calculate singular vectors
+
+%> svdpw ; strnpw
+
+yields eigenvalues/eigenvectors or singular values/singular vectors.
+Sample control files are found in $LNHOME/sample/.
+
+6.4   Stationary waves associated with the neutral vector
+
+Stationary wave anomalies which are responsible to the neutral mode
+(i.e. leading singular or eigen vector) can be obtained with the
+following way. First you make a GrADS file containing the neutral mode.
+Since we do not support this procedure, you have to write a program
+to make it (keep neutral vector on the sigma level, then read it and
+replace the latitude as north-to-south together extending to the longitude
+by putting the same values, and also replace surface pressure Ps to 
+LnPs/Psbar where Psbar is the basic state ps).
+
+After making the neutral mode with GrADS format, use it to calculate
+the zonal/wave coupling term as a forcing to the PWM. See $LNHOME/model/
+sh/mkamatpw-frc.csh for a sample shell script. In that script, the 
+variable MATFIL denotes a forcing vector. Using this vector, you can
+obtain the stationary wave response in a similar manner to 6.1.2.

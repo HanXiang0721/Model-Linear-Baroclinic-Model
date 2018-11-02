@@ -1,0 +1,15 @@
+
+ &nmfin cfi='/home/tropics/hiro/ln_solver/data/strack/eddy.may2oct.grd',
+        cfo='/home/tropics/hiro/ln_solver/data/strack/eddy.may2oct.p.grd'
+ &end
+
+ &nmrdm crdmg='/home/hiro/ln_solver/data/strack/frc.random300.l11.grd',
+        nexp=300,
+        fact=6.7e-6,6.7e-7,6.7,0.0,0.0,
+ &end
+
+ &nmcls oclassic=t
+ &end
+
+ &nmbs cbs='/home/tropics/hiro/ln_solver/bs/grads/ncepmay2oct.t21l20sh.grd'
+ &end

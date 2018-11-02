@@ -1,0 +1,26 @@
+ACHKV    admin/ahist.F      SUBROUTINE ACHKV    !! valid range monitor
+AHSTIN   admin/ahist.F      SUBROUTINE AHSTIN   !! output standard history
+ASETCO   admin/asetc.F      SUBROUTINE ASETCO   !! coordinates of model
+ASETUP   admin/astup.F      SUBROUTINE ASETUP   !! initial set up of atmos
+ATMFIN   admin/aadmn.F      ENTRY      ATMFIN   !! AGCM finalize
+ATMINI   admin/aadmn.F      ENTRY      ATMINI   !! AGCM initialize
+ATMOS    admin/aadmn.F      SUBROUTINE ATMOS    !! AGCM step
+CALCDT   admin/astep.F      SUBROUTINE CALCDT   !! calculate time step (CFL)
+DOUSER   admin/auser.F      SUBROUTINE DOUSER   !! user defined function
+GETRUN   admin/astup.F      ENTRY      GETRUN   !! get name of experiment
+GETTIM   admin/atime.F      ENTRY      GETTIM   !! get time
+PCONST   admin/apcon.F      SUBROUTINE PCONST   !! stand. physical const.
+QUITCK   admin/aquit.F      SUBROUTINE QUITCK   !! check for compulsive exit
+RDGDST   admin/astrt.F      SUBROUTINE RDGDST   !! read initial data
+RDSTRT   admin/astrt.F      SUBROUTINE RDSTRT   !! read initial data
+SETLAT   admin/asetc.F      SUBROUTINE SETLAT   !! latitude coordinate
+SETLON   admin/asetc.F      SUBROUTINE SETLON   !! longitude coordinate
+SETPAR   admin/astup.F      SUBROUTINE SETPAR   !! set up atmos parameters
+SETRUN   admin/astup.F      ENTRY      SETRUN   !! set name of experiment
+SETSIG   admin/asets.F      SUBROUTINE SETSIG   !! set sigma level
+SETTIM   admin/atime.F      SUBROUTINE SETTIM   !! set time
+SSIGM2   admin/asets.F      SUBROUTINE SSIGM2   !! sigma-level SIGM -> SIG
+TIMADJ   admin/astup.F      ENTRY      TIMADJ   !! adjust time for experiment
+TIMSTP   admin/astep.F      SUBROUTINE TIMSTP   !! control time step
+WRGDST   admin/astrt.F      SUBROUTINE WRGDST   !! write restart data (GD)
+WRRSTR   admin/astrt.F      SUBROUTINE WRRSTR   !! write restart data

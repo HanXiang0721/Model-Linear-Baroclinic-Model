@@ -1,0 +1,63 @@
+#
+#   Sun system dependent include for Makefile for CCSR libraries
+# 
+
+SYSFFLAGS	= -O4 -u -convert big_endian -fpe3 -no-vec -assume byterecl
+SYSCFLAGS	= 
+SYSLDFLAGS	= 
+SYSCPPFLAGS 	= -DSYS_AVATAR -DSYS_UNIX -DCODE_ASCII -DCODE_IEEE
+SYSAUTODBL	= -r8
+SYSDEBUG	= -g -O0
+SYSCHECK	= -C
+LINKOPT		=
+SYSLIBINC       = 
+#SYSLIB          = -lc
+
+# MAKE		= make
+CC		= icc
+#FC		= g77
+#LD		= g77
+FC		= ifort
+LD		= ifort
+AR		= ar vru
+RM		= rm -f
+CP		= cp
+MV		= mv -f
+LN		= ln -s
+RANLIB		= ranlib
+CAT		= cat
+INSTALL		= cp
+MD		= mkdirhier
+JLATEX		= bigjlatex
+DVI2JPS		= dvi2ps
+PRINT		= ltype
+PRINTSTAMP	= .print
+INDEX		= etags -wx
+TAGS		= etags
+TOUCH		= touch
+ECHO		= echo
+CPP		= cpp
+FPP     	= 
+
+SYSXLIBDIR	= /usr/lib
+SYSXLIBNAME	= X11
+SYSXLIBS	= -L$(SYSXLIBDIR) -l$(SYSXLIBNAME)
+###SYSXLIBS	= -l$(SYSXLIBNAME)
+
+PACKFILE        = OSF.ftr
+PACKDIR		= $(SRCDIR)/OSF
+
+world:	all
+
+.SUFFIXES:
+.SUFFIXES: .o .ftr .F
+
+.F.o:
+	$(FC) -c $(CPPFLAGS) $(FFLAGS) $<
+
+.F.ftr:
+	echo "*/ADD NAME="$*.F >> $(FTRFILE)
+	cat $< >> $(FTRFILE)
+
+.F.html:
+	$(LNHOME)/model/sh/util/makehtml srcdir=$(SRCDIR) $< > $@

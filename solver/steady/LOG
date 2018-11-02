@@ -1,0 +1,291 @@
+linear solver started at Thu Jul 22 09:47:37 JST 2004
+
+ ### SOLVE LINEAR SYSTEM ###
+
+ ***********************************************
+
+ Read matrix L
+
+ Read matrix L for zonal WN =            0
+
+   Matrix Size (left)=        1890  x        1890
+
+ Read vector F
+
+ Solve for X = L-1 F
+
+   LAPACK routine call: (DGESV)
+
+   INFO code returned by DGESV =            0
+
+ Read matrix L for zonal WN =            1
+
+   Matrix Size (left)=        3780  x        3780
+
+ Read vector F
+
+ Solve for X = L-1 F
+
+   LAPACK routine call: (DGESV)
+
+   INFO code returned by DGESV =            0
+
+ Read matrix L for zonal WN =            2
+
+   Matrix Size (left)=        3690  x        3690
+
+ Read vector F
+
+ Solve for X = L-1 F
+
+   LAPACK routine call: (DGESV)
+
+   INFO code returned by DGESV =            0
+
+ Read matrix L for zonal WN =            3
+
+   Matrix Size (left)=        3600  x        3600
+
+ Read vector F
+
+ Solve for X = L-1 F
+
+   LAPACK routine call: (DGESV)
+
+   INFO code returned by DGESV =            0
+
+ Read matrix L for zonal WN =            4
+
+   Matrix Size (left)=        3510  x        3510
+
+ Read vector F
+
+ Solve for X = L-1 F
+
+   LAPACK routine call: (DGESV)
+
+   INFO code returned by DGESV =            0
+
+ Read matrix L for zonal WN =            5
+
+   Matrix Size (left)=        3420  x        3420
+
+ Read vector F
+
+ Solve for X = L-1 F
+
+   LAPACK routine call: (DGESV)
+
+   INFO code returned by DGESV =            0
+
+ Read matrix L for zonal WN =            6
+
+   Matrix Size (left)=        3330  x        3330
+
+ Read vector F
+
+ Solve for X = L-1 F
+
+   LAPACK routine call: (DGESV)
+
+   INFO code returned by DGESV =            0
+
+ Read matrix L for zonal WN =            7
+
+   Matrix Size (left)=        3240  x        3240
+
+ Read vector F
+
+ Solve for X = L-1 F
+
+   LAPACK routine call: (DGESV)
+
+   INFO code returned by DGESV =            0
+
+ Read matrix L for zonal WN =            8
+
+   Matrix Size (left)=        3150  x        3150
+
+ Read vector F
+
+ Solve for X = L-1 F
+
+   LAPACK routine call: (DGESV)
+
+   INFO code returned by DGESV =            0
+
+ Read matrix L for zonal WN =            9
+
+   Matrix Size (left)=        3060  x        3060
+
+ Read vector F
+
+ Solve for X = L-1 F
+
+   LAPACK routine call: (DGESV)
+
+   INFO code returned by DGESV =            0
+
+ Read matrix L for zonal WN =           10
+
+   Matrix Size (left)=        2970  x        2970
+
+ Read vector F
+
+ Solve for X = L-1 F
+
+   LAPACK routine call: (DGESV)
+
+   INFO code returned by DGESV =            0
+
+ Read matrix L for zonal WN =           11
+
+   Matrix Size (left)=        2880  x        2880
+
+ Read vector F
+
+ Solve for X = L-1 F
+
+   LAPACK routine call: (DGESV)
+
+   INFO code returned by DGESV =            0
+
+ Read matrix L for zonal WN =           12
+
+   Matrix Size (left)=        2790  x        2790
+
+ Read vector F
+
+ Solve for X = L-1 F
+
+   LAPACK routine call: (DGESV)
+
+   INFO code returned by DGESV =            0
+
+ Read matrix L for zonal WN =           13
+
+   Matrix Size (left)=        2700  x        2700
+
+ Read vector F
+
+ Solve for X = L-1 F
+
+   LAPACK routine call: (DGESV)
+
+   INFO code returned by DGESV =            0
+
+ Read matrix L for zonal WN =           14
+
+   Matrix Size (left)=        2610  x        2610
+
+ Read vector F
+
+ Solve for X = L-1 F
+
+   LAPACK routine call: (DGESV)
+
+   INFO code returned by DGESV =            0
+
+ Read matrix L for zonal WN =           15
+
+   Matrix Size (left)=        2520  x        2520
+
+ Read vector F
+
+ Solve for X = L-1 F
+
+   LAPACK routine call: (DGESV)
+
+   INFO code returned by DGESV =            0
+
+ ***********************************************
+
+ ### END OF EXECUTION ###
+
+transform PSICHI started at Thu Jul 22 09:57:12 JST 2004
+
+ ### transform wave --> grid ###
+
+  @@@ output:/home/q16655/ln_solver/data/couple/rsp/rsp.ninojan.t42l11.s.grd                           
+
+  *** precision check ..    1.10000000000000009     
+  *** precision check ..    1.01000000000000001     
+  *** precision check ..    1.00099999999999989     
+  *** precision check ..    1.00009999999999999     
+  *** precision check ..    1.00001000000000007     
+  *** precision check ..    1.00000099999999992     
+  *** precision check ..    1.00000010000000006     
+  *** precision check ..    1.00000000999999994     
+  *** precision check ..    1.00000000100000008     
+  *** precision check ..    1.00000000010000001     
+  *** precision check ..    1.00000000001000000     
+  *** precision check ..    1.00000000000100009     
+  *** precision check ..    1.00000000000009992     
+  *** precision check ..    1.00000000000000999     
+  *** precision check ..    1.00000000000000111     
+  *** precision check ..    1.00000000000000000     
+  @@@ DSPHE: SPHERICAL TRANSFORM INTFC. 93/12/07
+  @@@ DVTMP: VIRTUAL TEMP. 93/11/08
+ # zonal wave:           0  check count:        1890
+ # zonal wave:           1  check count:        3780
+ # zonal wave:           2  check count:        3690
+ # zonal wave:           3  check count:        3600
+ # zonal wave:           4  check count:        3510
+ # zonal wave:           5  check count:        3420
+ # zonal wave:           6  check count:        3330
+ # zonal wave:           7  check count:        3240
+ # zonal wave:           8  check count:        3150
+ # zonal wave:           9  check count:        3060
+ # zonal wave:          10  check count:        2970
+ # zonal wave:          11  check count:        2880
+ # zonal wave:          12  check count:        2790
+ # zonal wave:          13  check count:        2700
+ # zonal wave:          14  check count:        2610
+ # zonal wave:          15  check count:        2520
+
+ ### END OF EXECUTION ###
+
+transform UV started at Thu Jul 22 09:57:25 JST 2004
+
+ ### transform wave --> grid ###
+
+  @@@ output:/home/q16655/ln_solver/data/couple/rsp/rsp.ninojan.t42l11.grd                             
+
+  *** precision check ..    1.10000000000000009     
+  *** precision check ..    1.01000000000000001     
+  *** precision check ..    1.00099999999999989     
+  *** precision check ..    1.00009999999999999     
+  *** precision check ..    1.00001000000000007     
+  *** precision check ..    1.00000099999999992     
+  *** precision check ..    1.00000010000000006     
+  *** precision check ..    1.00000000999999994     
+  *** precision check ..    1.00000000100000008     
+  *** precision check ..    1.00000000010000001     
+  *** precision check ..    1.00000000001000000     
+  *** precision check ..    1.00000000000100009     
+  *** precision check ..    1.00000000000009992     
+  *** precision check ..    1.00000000000000999     
+  *** precision check ..    1.00000000000000111     
+  *** precision check ..    1.00000000000000000     
+  @@@ DSPHE: SPHERICAL TRANSFORM INTFC. 93/12/07
+  @@@ DVTMP: VIRTUAL TEMP. 93/11/08
+ # zonal wave:           0  check count:        1890
+ # zonal wave:           1  check count:        3780
+ # zonal wave:           2  check count:        3690
+ # zonal wave:           3  check count:        3600
+ # zonal wave:           4  check count:        3510
+ # zonal wave:           5  check count:        3420
+ # zonal wave:           6  check count:        3330
+ # zonal wave:           7  check count:        3240
+ # zonal wave:           8  check count:        3150
+ # zonal wave:           9  check count:        3060
+ # zonal wave:          10  check count:        2970
+ # zonal wave:          11  check count:        2880
+ # zonal wave:          12  check count:        2790
+ # zonal wave:          13  check count:        2700
+ # zonal wave:          14  check count:        2610
+ # zonal wave:          15  check count:        2520
+
+ ### END OF EXECUTION ###
+
+linear solver ended at Thu Jul 22 09:58:49 JST 2004

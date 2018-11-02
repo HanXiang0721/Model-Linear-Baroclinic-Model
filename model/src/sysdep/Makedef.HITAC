@@ -1,0 +1,49 @@
+#
+#   HITAC (Sun platform) system dependent include for Makefile
+# 
+
+SYSFFLAGS	= -O
+SYSCFLAGS	= -DX_WCHAR
+SYSLDFLAGS	=
+SYSCPPFLAGS 	= -DSYS_HITAC -DSYS_IBMS -DCODE_EBCDIK -DCODE_IBM
+SYSAUTODBL	= -r8
+SYSDEBUG	= -g
+SYSCHECK	= -u -C
+LINKOPT		=
+CPPOPT		= 
+
+# MAKE		= make
+SHELL		= /bin/sh
+CC		= cc
+FC		= f77
+LD		= f77
+AR		= ar vru
+RM		= rm -f
+CP		= cp
+MV		= mv -f
+LN		= ln -s
+RANLIB		= ranlib
+CAT		= cat
+INSTALL		= cp
+MD		= mkdir -p
+JLATEX		= bigjlatex
+DVI2JPS		= dvi2ps
+PRINT		= ltype
+PRINTSTAMP	= .print
+INDEX		= etags -wx
+TAGS		= etags
+TOUCH		= touch
+ECHO		= echo
+AWK		= awk
+CPP		= cpp -P
+FPP     	= sed -e 's/\#include *\"\(.*\)\.F\"/      INCLUDE (\1)/' \
+	              -e 's/\!\!/\"\!/' 
+TOUPPER		= tr 'a-z\-' 'A-Z@'
+STARTC		= $(FTRDIR)/STARTC
+
+.SUFFIXES : .ftr .F
+
+.F.ftr:
+	echo '*STARTC' $(*F) | $(TOUPPER) >> $(STARTC)
+	echo ./ADD NAME=$(*F) | $(TOUPPER) >> $(FTRFILE)
+	$(FPP) $< | $(CPP) $(CPPFLAGS)  >> $(FTRFILE)

@@ -1,0 +1,56 @@
+*
+* Note for the LBM package development
+*
+?   1998   [Hiro Watanabe]   Start developping linearization
+			     to the CCSR/NIES AGCM dyn. core
+Feb 1999   [Hiro Watanabe]   First steady computation
+Sep 1999   [Hiro Watanabe]   Storm track model
+Oct 1999   [Hiro Watanabe]   LBM ver. 1.0 completed
+
+* In ver. 1.0:
+
+	* steady response
+	* time integration
+	* eigenanalysis
+	* singular mode analysis
+	* storm track model
+
+Aug 2000   [Hiro Watanabe]   PWM for AO simulation
+Jun 2001   [Hiro Watanabe]   Start LBM ver. 2.0
+Aug 2001   [Hiro Watanabe]   LBM ver. 2.0 time integration done
+
+* In ver. 2.0:
+
+	* moisture equation inorporated
+	* convective adjustment parameterized
+	     -> forcing modified to SSTA but not diabatic heating
+	        (conventional method still available)
+	* model restructure
+	* full matrix / block matrices solver unidifed
+	* barotropic model
+	* LAPACK routines included
+	* Lmake.inc configurate everything
+	* direct access discarded
+	* nonlinear time integration
+
+Dec 2001   [Hiro Watanabe]   LBM ver. 2.0 completed
+
+* In ver. 2.1-2.2:
+	
+	* bug fix
+	* semi-implicit orographic forcing 
+	* mLBM-CZ (optional)
+	* linear LSC scheme
+	* accelerated steady solver AIM
+
+Aug 2005   [Hiro Watanabe]   LBM ver. 2.2 completed
+
+* ver. 3.0 afterwards will include:
+
+	* unified data format into GrADS
+	* unified include files in model/ and solver/
+	* rewriting with f90
+	* new storm track model
+	* parallelize
+	* Lanchos algorithm, adjoint
+	* incorporatin radiation, land surface and ocean models

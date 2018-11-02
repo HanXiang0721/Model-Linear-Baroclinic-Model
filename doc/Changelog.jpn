@@ -1,0 +1,55 @@
+*
+* Note for the linear model development
+*
+?   1998   [Hiro Watanabe]   CCSR/NIES AGCM力学線型化にとりかかる
+Feb 1999   [Hiro Watanabe]   定常応答計算部分完了
+Sep 1999   [Hiro Watanabe]   ストームトラック・モデル
+Oct 1999   [Hiro Watanabe]   LBM ver. 1.0
+
+* 含まれるコードは以下の通り
+
+	・定常応答
+	・時間積分
+	・固有モード計算
+	・特異モード計算
+	・ストームトラック・モデル
+
+Aug 2000   [Hiro Watanabe]   AOシミュレーション用PWM
+Jun 2001   [Hiro Watanabe]   LBM ver. 2.0にとりかかる
+Aug 2001   [Hiro Watanabe]   LBM ver. 2.0時間積分部分完成
+
+* ver. 2.0での変更部分
+
+	・moisture equationを入れる
+	・convective adjustmentをパラメタ化
+	     -> 強制はheatingではなくSST偏差へ変更
+	        (以前通りのやり方も可能)
+	・モデル構造の整理
+	・full matrix / block matrices solverを統一
+	・順圧モデル
+	・LAPACKをモデルに含める
+	・全設定をLmake.incで行なう
+	・direct accessを廃止
+	・非線型時間積分
+
+Dec 2001   [Hiro Watanabe]   LBM ver. 2.0完成
+
+* ver. 2.1-2.2での変更部分
+	
+	・bug fix
+	・山岳強制作成
+	・mLBM-CZ (optional)
+	・linear LSCスキーム
+	・高速行列解法 AIM
+
+Aug 2005   [Hiro Watanabe]   LBM ver. 2.2完成
+
+* ver. 3.0以降での変更予定
+
+	・データ形式をGrADSに統一
+	・modelとsolverのincludeを統合
+	・f90で書き換え
+	・新ストームトラック・モデル
+	・行列解法の並列化
+	・Lanchosアルゴリズム（随伴化）
+	・放射・陸面モデル・海洋混合層を組み込み

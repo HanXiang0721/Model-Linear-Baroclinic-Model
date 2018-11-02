@@ -1,0 +1,17 @@
+ &nmfin cfm='/home/q16655/ln_solver/matrix/mat/MAT.t21l11m6.ncepwin.dat',
+        cfr='/home/q16655/ln_solver/data/frc/frc.l11.mat',
+        cfs='/home/q16655/ln_solver/data/rsp/x.dat',
+        cfg='/home/q16655/ln_solver/data/rsp/rsp.l11m6.ncpw.s.grd'
+ &end
+
+ &nmbs  cbs='/home/q16655/ln_solver/bs/grads/ncepwin.t21l11.grd'
+ &end
+
+ &nmuv  o2uv=t, opl=f
+ &end
+
+ &nmall owall=t
+ &end
+
+ &nmcls oclassic=f
+ &end

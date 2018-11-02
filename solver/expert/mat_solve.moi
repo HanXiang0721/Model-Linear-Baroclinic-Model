@@ -1,0 +1,49 @@
+#!/bin/csh -f
+#
+#     batch shell for linear matrix solver
+#
+# NQS command for mail
+#@$-q   q
+#@$-N   1
+#
+setenv LNHOME /home/q16655/ln_solver           # ROOT of model
+setenv DIR    $LNHOME/solver/expert            # ROOT of executable
+setenv DIRT   $LNHOME/model/sh                 # ROOT of executable
+#setenv EXE    svd                              # Execulatble name
+#setenv TRAN   strn                             # Execulatble name
+setenv EXE    eof                              # Execulatble name
+setenv TRAN   etrn                             # Execulatble name
+setenv MKT    mktfrc.moist.zm.csh              # Execulatble name
+#
+#      setup
+#
+cd $DIR
+\rm LOG
+echo moist linear solver started at `date` > LOG
+#
+#make
+#
+#  run
+#
+mv -f SETPAR SETPAR.org
+cp -f SETPAR.m SETPAR
+#make $EXE $TRAN
+##$EXE  >> LOG
+#
+echo moist linear solver end at `date` >> LOG
+#
+# wave to grid
+#
+$TRAN >> LOG
+mv -f SETPAR.org SETPAR
+#
+cd  $LNHOME/model/src
+#make clean.special
+#make lbm >> $DIR/LOG
+#
+cd $DIRT
+#$MKT  >> $DIR/LOG
+#
+echo job end at `date` >> LOG
+
+

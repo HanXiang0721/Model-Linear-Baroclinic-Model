@@ -1,0 +1,68 @@
+***************************************************
+	NAMELIST parameter list for etc/
+***************************************************
+
+<command_name> # explanation of routine
+
+ &nmxxx yyy='zzz' !! description of the parameter  (input/output/dummy)
+ &end
+
+ note: all the filenames is temporary
+ note: parameters for outstr and chkval are ordinary specified in s.track.csh       
+-----------------------------------
+
+<random> make random initial perturbations
+
+ &nmrdm crdmg='/home/hiro/ln_solver/data/frc.random.l11.grd',   !! initial purtabation (out) 
+        nexp=300,                                               !! no. of samples
+        fact=6.7e-6,6.7e-7,6.7,0.0,0.0,				!! amplitudes
+ &end
+
+ &nmcls oclassic=t		  	    !! moist model or dry (classic) model	
+ &end
+
+<outstr> calculate 10 eddy statistics (e.g. momentum flux)
+
+ &nmrec nfcs=500,			    !! no. of integration	
+        nfday=2, 			    !! first day to evaluate
+        nlday=6,			    !! length of each integration
+        tint=1, 			    !! sampling interval
+        tunit='DAY'			    !! time unit
+ &end
+
+ &nmfili cfs='/home/hiro/ln_solver/data/s', !! file name for psi (in)
+         cfr='/home/hiro/ln_solver/data/r', !! file name for vor (in)
+         cfu='/home/hiro/ln_solver/data/u', !! file name for u   (in)
+         cfv='/home/hiro/ln_solver/data/v', !! file name for v   (in)
+         cft='/home/hiro/ln_solver/data/t', !! file name for t   (in)
+         cfz='/home/hiro/ln_solver/data/z', !! file name for z   (in)
+         cfp='/home/hiro/ln_solver/data/p', !! file name for ps  (in)
+ &end
+
+ &nmfilo cfo='/home/hiro/ln_solver/data/out1000.grd',   !! STM output (out)
+         cfo2='/home/hiro/ln_solver/data/eddy.stm.grd', !! eddy statistics (out)
+         cbs='/home/hiro/ln_solver/bs/grads/ncepwin.t21l11.grd', !! BS data file (in)
+         ofo=f						!! produce 'cfo' file or not
+ &end
+
+<chkval> check values in the STM outputs
+
+ &nmrec nfcs=500,			    !! no. of integration	
+        nfday=2, 			    !! first day to evaluate
+        nlday=6,			    !! length of each integration
+        tint=1, 			    !! sampling interval
+        tunit='DAY'			    !! time unit
+ &end
+
+ &nmfil cfo='/home/hiro/ln_solver/data/out1000.grd',    !! STM output (in)
+        cfoc='/home/hiro/ln_solver/data/out1000.c.grd', !! corrected output (out)
+ &end
+
+<outs2p> convert sigma level to pressure level for eddy statistics
+
+ &nmfin cfi='/home/hiro/ln_solver/data/eddy.stm.grd',   !! STM output in sigma (in)
+        cfo='/home/hiro/ln_solver/data/eddy.stm.p.grd'  !! STM output in pressure (out)
+ &end
+
+ &nmbs cbs='/home/hiro/ln_solver/bs/grads/ncepwin.t21l11.grd' !! basic state (in)
+ &end

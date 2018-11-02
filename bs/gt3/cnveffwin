@@ -1,0 +1,15 @@
+total 3970452
+drwx--x--x    2 a01011   a01               512 Feb 13 07:28 .
+drwxr-x---    4 a01011   a01               512 Jan 29 07:34 ..
+-rw-------    1 a01011   a01         203555856 Feb 11 08:10 chil.2.grd
+-rw-------    1 a01011   a01         203555856 Feb 13 02:36 chil.3.grd
+-rw-------    1 a01011   a01         203555856 Feb 14 12:31 chil.4.grd
+-rw-------    1 a01011   a01         134283264 Feb 11 08:10 covx.2.grd
+-rw-------    1 a01011   a01         134283264 Feb 13 02:36 covx.3.grd
+-rw-------    1 a01011   a01         134283264 Feb 14 12:31 covx.4.grd
+-rw-r--r--    1 a01011   a01         203655200 Feb  9 12:58 proj.vert.day.t21l11.1.grd
+-rw-r--r--    1 a01011   a01         203655200 Feb  9 15:04 proj.vert.day.t21l11.2.grd
+-rw-r--r--    1 a01011   a01         203655200 Feb  9 15:18 proj.vert.day.t21l11.3.grd
+-rw-r--r--    1 a01011   a01         203655200 Feb  9 15:34 proj.vert.day.t21l11.4.grd
+-rw-r--r--    1 a01011   a01         203655200 Feb  9 16:02 proj.vert.day.t21l11.5.grd
+-rw-r--r--    1 a01011   a01               684 Feb  2 06:53 proj.vert.day.t21l11.ctl

@@ -1,0 +1,56 @@
+#
+#   NEC-SX3 system dependent include for Makefile for CCSR libraries
+# 
+
+SYSFFLAGS	= -pvctl ifnest=6 imloop nodivloop noloopchg vr256 -eall
+SYSCFLAGS	= 
+SYSLDFLAGS	=
+SYSCPPFLAGS 	= -DSYS_SX3 -DSYS_UNIX -DCODE_ASCII -DCODE_IBM
+SYSAUTODBL	= -A dbl
+SYSDEBUG	= -g
+SYSCHECK	= -C
+LINKOPT		= -l
+CPPOPT		= 
+
+# MAKE		= make
+SHELL		= /bin/sh
+CC		= cc
+FC		= f77sx
+LD		= f77sx
+AR		= ar vru
+RM		= rm -f
+CP		= cp
+MV		= mv -f
+LN		= ln -s
+RANLIB		= touch
+CAT		= cat
+INSTALL		= cp
+MD		= mkdir -p
+JLATEX		= bigjlatex
+DVI2JPS		= dvi2ps
+PRINT		= ltype
+PRINTSTAMP	= .print
+INDEX		= etags -wx
+TAGS		= etags
+TOUCH		= touch
+ECHO		= echo
+AWK		= awk
+CPP	 	= /lib/cpp -P
+FPP      	= 
+
+SYSXLIBDIR	= 
+SYSXLIBNAME	= X11
+###SYSXLIBS	= -l-L$(SYSXLIBDIR) -l-l$(SYSXLIBNAME)
+SYSXLIBS	= -l-l$(SYSXLIBNAME)
+
+.SUFFIXES:
+.SUFFIXES: .o .ftr .F
+
+.F.o:
+	$(CPP) $(CPPFLAGS) $<  > $*.f
+	$(FC) -c $(FFLAGS) $*.f
+
+.F.ftr:
+	echo "*/ADD NAME="$*.F >> $(FTRFILE)
+	$(CPP) $(CPPFLAGS) $< | $(FPP) >> $(FTRFILE)
+

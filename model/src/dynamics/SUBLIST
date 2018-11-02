@@ -1,0 +1,43 @@
+CORDIF   dynamics/ddifc.F   SUBROUTINE CORDIF   !! p-level diff. correc.
+CORFRC   dynamics/ddifc.F   SUBROUTINE CORFRC   !! friction heat of horiz. diff.
+DADVNC   dynamics/dadvn.F   SUBROUTINE DADVNC   !! GA->GB time advancing + time filter
+DDIAG    dynamics/ddiag.F   SUBROUTINE DDIAG    !! diagnostic output
+DMTRIX   dynamics/dmtrx.F   SUBROUTINE DMTRIX   !! LU matrix for time integration
+DSETCO   dynamics/dsetc.F   SUBROUTINE DSETCO   !! set latitudinal parameters (Coriolis..)
+DSETDF   dynamics/dsetd.F   SUBROUTINE DSETDF   !! horizontal diffusion coefficient
+DSETED   dynamics/dsetc.F   ENTRY      DSETED   !! factors for spectral calculation
+DSETLP   dynamics/dsetc.F   SUBROUTINE DSETLP   !! Laplacian factor
+DSETNM   dynamics/dsphe.F   SUBROUTINE DSETNM   !! order of matrix
+DSETUV   dynamics/dsetc.F   ENTRY      DSETUV   !! conversion factor of U <-> u
+DSETVD   dynamics/dsetv.F   SUBROUTINE DSETVD   !! vertical difference/semi implicit factor
+DSETVH   dynamics/dsetv.F   SUBROUTINE DSETVH   !! factor of hydrostatic relation
+DYNMCS   dynamics/dadmn.F   SUBROUTINE DYNMCS   !! dynamics
+DYNSTP   dynamics/dstep.F   SUBROUTINE DYNSTP   !! time step of dynamics
+DYNTRM   dynamics/dterm.F   SUBROUTINE DYNTRM   !! dynamics terms
+FIXMAS   dynamics/dmfix.F   ENTRY      FIXMAS   !! mass fixer
+G2W      dynamics/dsphe.F   ENTRY      G2W      !! spherical trans.(grid->spect.)
+GHYDRO   dynamics/dhydr.F   ENTRY      GHYDRO   !! hydrostatic relation (grid)
+GRQADV   dynamics/dgdyn.F   SUBROUTINE GRQADV   !! adv. of humidity etc.
+GRTADV   dynamics/dgdyn.F   SUBROUTINE GRTADV   !! temperature advection
+GRUADV   dynamics/dgdyn.F   SUBROUTINE GRUADV   !! momentum advection
+HCONVW   dynamics/dvect.F   ENTRY      HCONVW   !! horizontal convergence
+HGRAD    dynamics/dvect.F   ENTRY      HGRAD    !! horizontal gradient
+HORNRM   dynamics/dmfix.F   SUBROUTINE HORNRM   !! horizontal (local) negative tracer removal
+MASFIX   dynamics/dmfix.F   SUBROUTINE MASFIX   !! mass fixer & negative tracer removal
+PSDOT    dynamics/dgdyn.F   SUBROUTINE PSDOT    !! surface pres. change & sigma velocity
+QADVNC   dynamics/dadvn.F   ENTRY      QADVNC   !! GA->GB time advancing + time filter
+QFILT    dynamics/dadvn.F   ENTRY      QFILT    !! time filter
+SPCTLD   dynamics/dstep.F   SUBROUTINE SPCTLD   !! diagnosis in spectral
+SPSTUP   dynamics/dsphe.F   ENTRY      SPSTUP   !! setup spherical harmonic functions
+TFILT    dynamics/dadvn.F   ENTRY      TFILT    !! time filter
+TINTGR   dynamics/dintg.F   SUBROUTINE TINTGR   !! time integration (spectral)
+TOTMAS   dynamics/dmfix.F   SUBROUTINE TOTMAS   !! summation of total mass
+TRACER   dynamics/dtrcr.F   SUBROUTINE TRACER   !! tracer transport
+TRINTG   dynamics/dintg.F   ENTRY      TRINTG   !! time integration (spectral)
+UV2VDG   dynamics/dvect.F   SUBROUTINE UV2VDG   !! (U,V) -> (vor.,D) grid
+UV2VDW   dynamics/dvect.F   SUBROUTINE UV2VDW   !! (U,V) -> (vor.,D) spectral
+VD2UVG   dynamics/dvect.F   ENTRY      VD2UVG   !! (vor.,D) -> (U,V) grid
+VDW2UV   dynamics/dvect.F   ENTRY      VDW2UV   !! (vor.,D)spectral -> (U,V)
+VIRTMD   dynamics/dvtmp.F   SUBROUTINE VIRTMD   !! virtual temperature
+W2G      dynamics/dsphe.F   SUBROUTINE W2G      !! spherical trans.(spect.->grid)
+WHYDRO   dynamics/dhydr.F   SUBROUTINE WHYDRO   !! hydrostatic relation (spectral)

@@ -1,0 +1,65 @@
+#  include file for Makefile for $(LBMDIR)
+#
+#   environmental valiable LBMDIR should be specified 
+#   % setenv LBMDIR ~hiro/ln_solver/model
+#
+
+include $(LNHOME)/Lmake.inc
+LBMDIR = $(LNHOME)/model
+
+############## System Specification #######################
+
+SYSTEM		= $(ARC)
+
+PROJECT_EXT	= 
+
+################ Directory Specification ###############
+
+######## ROOT of LBM 
+###LBMDIR	# Please set by Environment Variable
+
+######## LBM libraries
+LIBDIR		= $(LBMDIR)/lib/$(SYSTEM)
+###LIBDIR		= $(LBMDIR)/lib
+
+######## LBM Excutables
+BINDIR		= $(LBMDIR)/bin/$(SYSTEM)
+###BINDIR		= $(LBMDIR)/bin
+
+############ Other Definitions (DO NOT EDIT) ###########
+
+STDFFLAGS	= $(SYSFFLAGS) $(DEBUG) $(CHECK) 
+STDCFLAGS	= $(SYSCFLAGS) $(DEBUG)
+STDLDFLAGS	= $(SYSLDFLAGS) $(DEBUG)
+STDCPPFLAGS	= $(SYSCPPFLAGS) $(CPPOPT)$(OPTIONS)
+STDLIBS		= 
+
+SRCDIR 		= $(LBMDIR)/src
+INCDIR		= $(LBMDIR)/src/include
+SYSMAKEDIR	= $(LBMDIR)/src/sysdep
+PROJDIR		= $(LBMDIR)/src/proj
+
+include $(SYSMAKEDIR)/Makedef.$(SYSTEM)
+include $(PROJDIR)/$(PROJECT)/Mkinclude$(PROJECT_EXT)
+
+RESOLUTION 	= $(HRESOLUTION)$(MEMORYSIZE)$(VRESOLUTION)
+LBM		= $(BINDIR)/lbm2.$(RESOLUTION)$(MODELNAME)
+
+LIBNAMES	= lbm2$(RESOLUTION)
+LIB		= lib$(LIBNAMES).a
+LIBRARY 	= $(LIBDIR)/$(LIB)
+LIBS		= $(LINKOPT)-L$(LIBDIR) \
+		  $(LINKOPT)-l$(LIBNAMES)
+
+NONSTD		= $(ATMOS) $(USER) \
+		  $(SPHERT) $(CUMULUS) $(LSCCLD) \
+                  $(RADIATE) $(DRYADJ) $(IGWD) $(FFT)
+
+MKINCLUDE	= $(SRCDIR)/Mkinclude
+
+FTRDIR		= $(SRCDIR)/..
+FTRFILE         = $(FTRDIR)/src.ftr
+
+
+
+

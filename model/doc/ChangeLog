@@ -1,0 +1,113 @@
+ Wed Mar 12 14:27:59 1997  Numaguti Atusi  <numaguti@dew.nies.go.jp>
+
+	* physics/pglnd.o,pdiag.o,pgocn.o,pgsfc.o
+	                  雪氷まわりの収支バグ GICBAL による修正
+
+Mon Jan  6 17:19:07 1997  Numaguti Atusi  <numaguti@dew.nies.go.jp>
+
+	* physics/pdiav.F 全球平均モニター
+        * physics/padmnm.F,padmn.F,pstep.F  
+	                  pdiav のための変更。FMOZ, IDSFC を出す。
+
+Wed Dec  4 10:47:24 1996  Numaguti Atusi  <numaguti@dew.nies.go.jp>
+
+	* io/ihist.F      Ps をかけた出力 (PSMLT)
+	* io/ihsub.F      同
+	* io/is2op.F      同
+	* io/ihdef.F      廃止、ihist.F に取り込み
+        * util/usubs.F    MMLT, MADD
+	
+Tue Dec  3 14:08:40 1996  Numaguti Atusi  <numaguti@dew.nies.go.jp>
+
+	* io/igtio.F      データのほうが大きい場合の対処
+        * include/zqdim.F GDSFCW を多変数に
+	* physics/pcuma.F 水トレーサの対処、GPRCPをどうするか(in CUMFLX)
+	                  ダウンドラフト>0だと問題あり。
+	* physics/pmlsc.F 水トレーサの対処
+	* physics/pgbnd.F 雪面の粗度、アルベド
+	* physics/pglnd.F GDSFCW を多変数に
+	* physics/pgsfc.F GDSFCW を多変数に
+	* physics/pstrt.F リスタートファイル形式変更
+	* physics/psfct.F 引数追加、GDSFCW を多変数に
+	
+Thu Oct  3 21:36:19 1996  Numaguti Atusi  <numaguti@dew.nies.go.jp>
+
+	* physics/pcuma.F test flux 部分変更
+	* physics/pradt.F,pradi.F,pradm.F
+ 	                  エアロゾル強制力、SINS を正に
+
+Fri May 10 01:24:20 1996  Numaguti Atusi  <numaguti@sun90a.nies.go.jp>
+
+	* physics/pcuma.F 高速化, アルゴリズム変更
+	* physics/pmlsc.F 高速化
+
+Wed May  1 14:24:10 1996  Numaguti Atusi  <numaguti@sun90a.nies.go.jp>
+
+	* aadmn.F  etc.   main に  CALL SETEND; TIME = TSTART を追加。
+        * admin/astrt.F   読み込みアルゴリズム変更。データの時間を尊重  
+        * physics/pradt.F Itamar エアロゾル、高速化オプション、雲量の表現
+                          (入力データ：単位雲量あたりの雲水量
+        * physics/prcon.F 雲の平均化、単位雲量あたりの雲水量化
+        * physics/pstep.F pradt 改変にともなう改変
+        * shalo/          動作するように直す
+
+Tue Nov 14 21:01:56 1995  Numaguti Atusi  (a1n@dew)
+
+	* dynamics/dsetc.F DSETDF を dsetd.F に独立
+
+Sun Aug  6 00:12:43 1995  Numaguti Atusi  (a1n@dew)
+
+	* physics/pgslv.F drflxl=0 のときの回避
+
+Thu Aug  3 13:13:20 1995  Numaguti Atusi  (a1n@dew)
+
+	* dynamics/dvect.F LMAX=0(x-z)のときの div(k=0), v(k=0) → 0
+
+Wed Aug  2 00:17:21 1995  Numaguti Atusi  (a1n@dew)
+
+	* physics/psfcm.F URMAX を導入
+        * nonstd/pradn.F  COSZ, SINS の取扱バグ
+
+Sun Jul 30 23:15:58 1995  Numaguti Atusi  (a1n@dew)
+
+	* dynamics/dsetv.F TBARM=TBAR に変更
+
+Thu Jul 27 00:12:00 1995  Numaguti Atusi  (a1n@dew)
+
+	* dynamics/dmtrx.F FLAPLA の整合性: DSETLP を用いるように
+
+Fri Jun 23 00:18:11 1995  Numaguti Atusi  (a1n@dew)
+
+	* physics/pstep.F cumlus の前, GTQ のリセットしわすれ.
+
+Thu Jun 22 22:57:40 1995  Numaguti Atusi  (a1n@dew)
+
+	* physics/pglnd.F NMEVAP を読んでいなかった.
+
+Sun Jun 18 12:34:17 1995  Numaguti Atusi  (a1n@dew)
+
+	* physics/pglnd.F, pgsnw.F 
+                          RUNOFX が打ち切り誤差で 0 -> non 0 になるバグ
+	* physics/pradi.F 年平均・日変化あり日射バグ
+	* aadmn.F         HISTOU を呼ぶタイミング
+
+Thu Mar  2 17:03:28 1995  Numaguti Atusi  <numaguti@sun90a.nies.go.jp>
+
+	* physics/pradi.F 日平均日射バグ
+
+Fri Feb 10 16:34:33 1995  Numaguti Atusi  <numaguti@sun90a.nies.go.jp>
+
+	* physics/pstep.F  出力bug fix (GSNWT)
+	* dynamics/dvect.F PSI, CHI の単位バグ(ERのかけわすれ)
+
+Wed Feb  1 17:43:12 1995  Numaguti Atusi  <numaguti@sun90a.nies.go.jp>
+
+        * physics/pdiag.F 降水の単位バグ
+
+Thu Feb  2 17:43:12 1995  Numaguti Atusi  <numaguti@sun90a.nies.go.jp>
+
+	* io/ihist.F, io/ihsub.F オプション SQUARE の新設
+        * dynamics/dterm.F, dynamics/dvect.F Ψ,χ,UV 等の出力
+        * physics/pstep.F, physics/pgsfc.F 出力の単位バグ, 放射加熱率復活
+        * (dynamics/*.F OPT_NOCOMMON の付加)
+	* Makefile special/Makefile nonstd/Makefile 変更(BSD Make 対応)
