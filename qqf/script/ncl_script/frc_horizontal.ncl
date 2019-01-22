@@ -48,9 +48,9 @@ resc@gsLineDashPattern = 16
 resc@gsLineThicknessF = 3.5
 resc@Rotation         = -90
 
-XCNT=133
-YCNT=42
-XDIL=10
+XCNT=120
+YCNT=22
+XDIL=15
 YDIL=10
 
 resc@Scale            = XDIL/YDIL

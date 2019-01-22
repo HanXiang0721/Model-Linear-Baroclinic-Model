@@ -6,29 +6,29 @@ kmo=10
 navg=3
 
 khpr=1
-hamp=-0.000002
-xdil=15
-ydil=10
-xcnt=170
-ycnt=55
+hamp=1
+xdil=40
+ydil=12
+xcnt=210
+ycnt=0
 
-kvpr=3
-vamp=1.
+kvpr=2
+vamp=8.
 vdil=20.
-vcnt=0.2
+vcnt=0.45
 
 
 khpr2=1
-hamp2=-1.
-xdil2=6.
-ydil2=4.25
-xcnt2=95.
-ycnt2=31.75
+hamp2=0.00001
+xdil2=15
+ydil2=10
+xcnt2=120
+ycnt2=22
 
 kvpr2=2
 vamp2=3.
-vdil2=20.
-vcnt2=0.85
+vdil2=10.
+vcnt2=0.3
 
 ovor="t"
 odiv="f"
@@ -111,12 +111,12 @@ sed -i "181s/^.*.$/      VDIL2 = $vdil2/g" mymkfrcng222.f
 sed -i "182s/^.*.$/      VCNT2 = $vcnt2/g" mymkfrcng222.f
 sed -i "183s/^.*.$/      KVPR2 = $kvpr2/g" mymkfrcng222.f
 
-sed -i "265s/^.*.$/               HAMP2 = $hamp2/g" mymkfrcng222.f
-sed -i "266s/^.*.$/               XDIL2 = $xdil2/g" mymkfrcng222.f
-sed -i "267s/^.*.$/               YDIL2 = $ydil2/g" mymkfrcng222.f
-sed -i "268s/^.*.$/               XCNT2 = $xcnt2/g" mymkfrcng222.f
-sed -i "269s/^.*.$/               YCNT2 = $ycnt2/g" mymkfrcng222.f
-sed -i "270s/^.*.$/               KHPR2 = $khpr2/g" mymkfrcng222.f
+sed -i "281s/^.*.$/               HAMP2 = $hamp2/g" mymkfrcng222.f
+sed -i "282s/^.*.$/               XDIL2 = $xdil2/g" mymkfrcng222.f
+sed -i "283s/^.*.$/               YDIL2 = $ydil2/g" mymkfrcng222.f
+sed -i "284s/^.*.$/               XCNT2 = $xcnt2/g" mymkfrcng222.f
+sed -i "285s/^.*.$/               YCNT2 = $ycnt2/g" mymkfrcng222.f
+sed -i "286s/^.*.$/               KHPR2 = $khpr2/g" mymkfrcng222.f
 
 make clean >& /dev/null
 make all >& /dev/null

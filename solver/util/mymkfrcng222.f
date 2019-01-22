@@ -178,8 +178,8 @@
 *     vertical profile
 *
       VAMP2 = 3.
-      VDIL2 = 20.
-      VCNT2 = 0.85
+      VDIL2 = 10.
+      VCNT2 = 0.3
       KVPR2 = 2
       IF( KMAX .GT. 1 ) THEN
          DO 10 K = 1, KMAX
@@ -203,10 +203,26 @@
       ELSE
          AZ( K ) = VAMP
       ENDIF
-
-
-
-
+      AZ2(1) = 0.3535404
+      AZ2(2) = 0.356526
+      AZ2(3) = 0.3643257
+      AZ2(4) = 0.3846925
+      AZ2(5) = 0.4370963
+      AZ2(6) = 0.5610808
+      AZ2(7) = 0.8154266
+      AZ2(8) = 1.232312
+      AZ2(9) = 1.712831
+      AZ2(10) = 2.098864
+      AZ2(11) = 2.304671
+      AZ2(12) = 2.332472
+      AZ2(13) = 2.240164
+      AZ2(14) = 2.07528
+      AZ2(15) = 1.903895
+      AZ2(16) = 1.784213
+      AZ2(17) = 1.709818
+      AZ2(18) = 1.658892
+      AZ2(19) = 1.607487
+      AZ2(20) = 1.522195
 *
 *     horizontal profile
 *
@@ -262,11 +278,11 @@
       WRITE( NOUT, * ) 
 
 
-               HAMP2 = -1.
-               XDIL2 = 6.
-               YDIL2 = 4.25
-               XCNT2 = 95.
-               YCNT2 = 31.75
+               HAMP2 = 0.00001
+               XDIL2 = 15
+               YDIL2 = 10
+               XCNT2 = 120
+               YCNT2 = 22
                KHPR2 = 1
 *
 *     horizontal profile
@@ -337,7 +353,7 @@
             DO 110 J = 1, JMAX
                DO 110 I = 1, IMAX
                   IJ = (J-1)*IDIM + I
-                  DUMX( I, J) = GFRCT( IJ, K)
+                  DUMX( I, J) = GFRCT2( IJ, K)
  110        CONTINUE
             WRITE( IFG ) ((SNGL(DUMX(I,J)),I=1,IMAX),J=1,JMAX)
          ELSE
@@ -363,7 +379,7 @@
             DO 150 J = 1, JMAX
                DO 150 I = 1, IMAX
                   IJ = (J-1)*IDIM + I
-                  DUMX( I, J) = GFRCT2( IJ, K)
+                  DUMX( I, J) = GFRCT( IJ, K)
  150        CONTINUE
             WRITE( IFG ) ((SNGL(DUMX(I,J)),I=1,IMAX),J=1,JMAX)
          ELSE

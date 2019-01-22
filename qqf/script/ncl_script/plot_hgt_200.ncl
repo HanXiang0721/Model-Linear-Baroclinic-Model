@@ -33,9 +33,9 @@ res@gsnAddCyclic=True
 res@cnFillOn=True
 res@cnLinesOn=False
 res@cnLevelSelectionMode = "ExplicitLevels"
-res@cnLevels=(/-40,-30,-20,-10,0,10,20,30,40/)
+;res@cnLevels=(/-40,-30,-20,-10,0,10,20,30,40/)
 ;res@cnLevels=(/-16,-8,-4,-2,0,2,4,8,16/)
-;res@cnLevels=(/-4,-3,-2,-1,0,1,2,3,4/)
+res@cnLevels=(/-140,-105,-70,-35,0,35,70,105,140/)  ;(/-4,-3,-2,-1,0,1,2,3,4/)
 ;res@cnLevels=(/-20,-15,-10,-5,0,5,10,15,20/)
 ;res@cnLevels=(/-80,-60,-40,-20,0,20,40,60,80/)
 res@cnFillColors=(/2,4,6,8,0,0,13,15,17,19/)
@@ -75,14 +75,14 @@ resvc@gsnRightString=""
 
 resvc@vcMinDistanceF=0.018
 
-resvc@vcRefMagnitudeF  = 2
+resvc@vcRefMagnitudeF  = 5
 resvc@vcRefLengthF     = 0.015
 
 resvc@vcGlyphStyle="LineArrow"
 resvc@vcLineArrowThicknessF=2.6
 
 resvc@vcRefAnnoOn               = True
-resvc@vcRefAnnoString1          = "2"
+resvc@vcRefAnnoString1          = "5"
 resvc@vcRefAnnoSide             = "Top"
 resvc@vcRefAnnoString2On        = False
 resvc@vcRefAnnoPerimOn          = False

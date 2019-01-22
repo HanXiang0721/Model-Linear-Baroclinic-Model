@@ -34,21 +34,21 @@
         fact=1.0,1.0,1.0,1.0,1.0
  &end
 
- &nmvar ovor=t, odiv=f, otmp=f, ops=f, osph=t
+ &nmvar ovor=t, odiv=f, otmp=t, ops=f, osph=t
  &end
 
  &nmhpr khpr=1,
-        hamp=0.00001,
-        xdil=10,
-        ydil=10,
-        xcnt=133,
-        ycnt=42
+        hamp=1,
+        xdil=40,
+        ydil=12,
+        xcnt=210,
+        ycnt=0
  &end
 
  &nmvpr kvpr=2,
-        vamp=3.,
-        vdil=10.,
-        vcnt=0.3
+        vamp=8.,
+        vdil=20.,
+        vcnt=0.45
  &end
 
  &nmall owall=t

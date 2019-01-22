@@ -7,13 +7,13 @@ navg=3
 
 khpr=1
 hamp=0.00001
-xdil=10
+xdil=15
 ydil=10
-xcnt=133 #277 #300 #330   #135
-ycnt=42 #45  #70  #65   #40
+xcnt=120   #135 #277 #300 #330   #135
+ycnt=22     #15 #45  #70  #65   #40
 
 kvpr=2
-vamp=3.
+vamp=1.
 vdil=10.
 vcnt=0.3
 
