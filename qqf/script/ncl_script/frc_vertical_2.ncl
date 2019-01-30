@@ -28,7 +28,7 @@ res@trYReverse = True
 plot=gsn_csm_xy(wks,profile,lev,res)
 
 
-VAMP2=3.
+VAMP2=1.
 VDIL2=10.
 VCNT2=0.3
 

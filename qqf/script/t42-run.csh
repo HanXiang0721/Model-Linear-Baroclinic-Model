@@ -19,7 +19,7 @@ setenv RSTFILE  $DIR/Restart.amat                      # Restart-Data File
 setenv FRC      $FDIR/frc.t42l20.CNP.grd               # initial perturbation
 setenv SFRC     $FDIR/frc.t42l20.CNP.grd               # steady forcing
 setenv TRANS    $TDIR/gt2gr
-setenv TEND     25
+setenv TEND     30
 #
 #
 if (! -e $DIR) mkdir -p $DIR

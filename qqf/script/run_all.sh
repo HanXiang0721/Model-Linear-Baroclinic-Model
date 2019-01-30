@@ -1,16 +1,16 @@
 #!/bin/bash
 
-rundays=25
+rundays=30
 
 kmo=10
 navg=3
 
 khpr=1
 hamp=0.00001
-xdil=15
+xdil=25
 ydil=10
-xcnt=120   #135 #277 #300 #330   #135
-ycnt=22     #15 #45  #70  #65   #40
+xcnt=115   #135 #277 #300 #330   #135
+ycnt=20    #15 #45  #70  #65   #40
 
 kvpr=2
 vamp=1.

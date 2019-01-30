@@ -7,10 +7,10 @@ navg=3
 
 khpr=1
 hamp=0.00001
-xdil=15
+xdil=25
 ydil=10
-xcnt=120
-ycnt=22
+xcnt=115
+ycnt=20
 
 kvpr=2
 vamp=1.

@@ -177,7 +177,7 @@
 *
 *     vertical profile
 *
-      VAMP2 = 3.
+      VAMP2 = 1.
       VDIL2 = 10.
       VCNT2 = 0.3
       KVPR2 = 2
@@ -279,10 +279,10 @@
 
 
                HAMP2 = 0.00001
-               XDIL2 = 15
-               YDIL2 = 10
-               XCNT2 = 120
-               YCNT2 = 22
+               XDIL2 = 10
+               YDIL2 = 5
+               XCNT2 = 115
+               YCNT2 = 20
                KHPR2 = 1
 *
 *     horizontal profile

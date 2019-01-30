@@ -13,9 +13,9 @@ f_z    = datafile->z
 f_u    = datafile->u
 f_v    = datafile->v
 
-level = 200
+level = 850 ;200
 mylev = ind(f_lev.eq.level)
-mylat = ind(f_lat.ge.0.and.f_lat.le.90)
+mylat = ind(f_lat.ge.-30.and.f_lat.le.90)
 
 z = f_z(:,mylev,mylat,:)
 u = f_u(:,mylev,mylat,:)
@@ -75,7 +75,7 @@ resvc@gsnRightString=""
 
 resvc@vcMinDistanceF=0.018
 
-resvc@vcRefMagnitudeF  = 5
+resvc@vcRefMagnitudeF  = 1
 resvc@vcRefLengthF     = 0.015
 
 resvc@vcGlyphStyle="LineArrow"

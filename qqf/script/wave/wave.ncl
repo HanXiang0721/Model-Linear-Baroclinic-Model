@@ -50,7 +50,7 @@ vwnd_clim = linint2_Wrap(clim_lon, clim_lat, vwnd, True, f_lon, f_lat, 0)
 lat = f_lat
 lon = f_lon
 
-hgt_anom = dim_avg_n_Wrap(z(13:17,:,:),0)
+hgt_anom = dim_avg_n_Wrap(z(15:20,:,:),0)
 ;print(hgt_anom)
 
 res = True
@@ -63,7 +63,7 @@ res@gsnAddCyclic=True
 res@cnFillOn=True
 res@cnLinesOn=False
 res@cnLevelSelectionMode = "ExplicitLevels"
-res@cnLevels=(/-140,-105,-70,-35,0,35,70,105,140/)
+res@cnLevels=(/-105,-70,-35,-5,0,5,35,70,105/)
 ;res@cnLevels=(/-16,-8,-4,-2,0,2,4,8,16/)
 ;res@cnLevels=(/-2,-1.5,-1,-0.5,0,0.5,1,1.5,2/)
 res@cnFillColors=(/2,4,6,8,0,0,13,15,17,19/)
@@ -103,7 +103,7 @@ resvc@gsnRightString=""
 
 resvc@vcMinDistanceF=0.018
 
-resvc@vcRefMagnitudeF  = 12
+resvc@vcRefMagnitudeF  = 5
 resvc@vcRefLengthF     = 0.015
 
 resvc@vcGlyphStyle="LineArrow"
@@ -142,7 +142,7 @@ f@_FillValue = hgt_anom@_FillValue
 
 ; missing for 10S - 10N
 do ilat = 0, dimsizes(lat)-1
-if (abs(lat(ilat) ).lt. 20. ) then
+if (abs(lat(ilat) ).lt. 10. ) then
 f(ilat)= f@_FillValue
 end if
 end do

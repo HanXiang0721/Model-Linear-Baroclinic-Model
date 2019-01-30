@@ -20,13 +20,13 @@ vcnt=0.45
 
 khpr2=1
 hamp2=0.00001
-xdil2=15
-ydil2=10
-xcnt2=120
-ycnt2=22
+xdil2=10
+ydil2=5
+xcnt2=115
+ycnt2=20
 
 kvpr2=2
-vamp2=3.
+vamp2=1.
 vdil2=10.
 vcnt2=0.3
 
