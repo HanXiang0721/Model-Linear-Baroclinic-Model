@@ -62,11 +62,12 @@ res@gsnAddCyclic=True
 
 res@cnFillOn=True
 res@cnLinesOn=False
-res@cnLevelSelectionMode = "ExplicitLevels"
-res@cnLevels=(/-105,-70,-35,-5,0,5,35,70,105/)
+;res@cnLevelSelectionMode = "ExplicitLevels"
+;res@cnLevels=(/-105,-70,-35,-5,0,5,35,70,105/)
 ;res@cnLevels=(/-16,-8,-4,-2,0,2,4,8,16/)
 ;res@cnLevels=(/-2,-1.5,-1,-0.5,0,0.5,1,1.5,2/)
-res@cnFillColors=(/2,4,6,8,0,0,13,15,17,19/)
+;res@cnLevels=(/-35,-25,-15,-5,0,5,15,25,35/)
+;res@cnFillColors=(/2,4,6,8,0,0,13,15,17,19/)
 
 
 res@lbOrientation="Vertical"
@@ -80,7 +81,7 @@ res@gsnRightString=""
 res@tiMainString=""
 
 res@mpCenterLonF=180
-res@mpMinLatF=10
+res@mpMinLatF=-30
 
 
 res@tmXBLabelFontHeightF=0.005
@@ -103,14 +104,14 @@ resvc@gsnRightString=""
 
 resvc@vcMinDistanceF=0.018
 
-resvc@vcRefMagnitudeF  = 5
+resvc@vcRefMagnitudeF  = 0.2
 resvc@vcRefLengthF     = 0.015
 
 resvc@vcGlyphStyle="LineArrow"
 resvc@vcLineArrowThicknessF=2.6
 
 resvc@vcRefAnnoOn               = True
-resvc@vcRefAnnoString1          = "12"
+resvc@vcRefAnnoString1          = "0.2"
 resvc@vcRefAnnoSide             = "Top"
 resvc@vcRefAnnoString2On        = False
 resvc@vcRefAnnoPerimOn          = False
@@ -208,26 +209,24 @@ psidev&lat = lat
 psidev!1 = "lon"
 psidev&lon = lon
 
-Fx = Fx * 100
-Fy = Fy * 100
 
 Fx@units = "m^2/s^2"
 Fx@units = "m^2/s^2"
 
-copy_VarMeta(hgt_anom, Fx)
-copy_VarMeta(hgt_anom, Fy)
-Fx@_FillValue = -32767
-Fy@_FillValue = -32767
+;copy_VarMeta(hgt_anom, Fx)
+;copy_VarMeta(hgt_anom, Fy)
+;Fx@_FillValue = -32767
+;Fy@_FillValue = -32767
 
 
 
 
-ref = 0.3
+ref = 0.01
 spd = wind_speed(Fx, Fy)
 Fx = mask(Fx, spd.lt.ref, False)
 Fy = mask(Fy, spd.lt.ref, False)
 
-Fx = mask(Fx, Fx.lt.0, False)
+;Fx = mask(Fx, Fx.lt.0, False)
 
 
 ;print(dim_avg_n_Wrap(t(9:15,:,:),0))

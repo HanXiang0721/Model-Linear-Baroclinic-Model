@@ -279,8 +279,8 @@
 
 
                HAMP2 = 0.00001
-               XDIL2 = 10
-               YDIL2 = 5
+               XDIL2 = 15
+               YDIL2 = 8
                XCNT2 = 115
                YCNT2 = 20
                KHPR2 = 1

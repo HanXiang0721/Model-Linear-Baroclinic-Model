@@ -13,15 +13,15 @@ xcnt=210
 ycnt=0
 
 kvpr=2
-vamp=8.
+vamp=4.
 vdil=20.
 vcnt=0.45
 
 
 khpr2=1
 hamp2=0.00001
-xdil2=10
-ydil2=5
+xdil2=15
+ydil2=8
 xcnt2=115
 ycnt2=20
 
@@ -34,7 +34,7 @@ ovor="t"
 odiv="f"
 otmp="t"
 ops="f"
-osph="t"
+osph="f"
 
 cd ../../solver/util/
 

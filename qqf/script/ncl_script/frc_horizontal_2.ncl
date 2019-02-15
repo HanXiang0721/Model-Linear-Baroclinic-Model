@@ -62,8 +62,8 @@ circle_ll(wks,map,XCNT,YCNT,YDIL/4.,resc)
 
 XCNT2=115
 YCNT2=20
-XDIL2=10
-YDIL2=5
+XDIL2=15
+YDIL2=8
 delete(resc@Scale)
 resc@Scale            = XDIL2/YDIL2
 resc@gsLineDashPattern = 0

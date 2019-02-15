@@ -1,27 +1,27 @@
 #!/bin/bash
 
-rundays=25
+rundays=30
 
 kmo=10
 navg=3
 
 khpr=1
-hamp=0.000003
-xdil=5
-ydil=5
-xcnt=130
-ycnt=38
+hamp=-1
+xdil=10
+ydil=10
+xcnt=76   #135 #277 #300 #330   #135
+ycnt=35    #15 #45  #70  #65   #40
 
-kvpr=3
-vamp=1.
+kvpr=2
+vamp=3.
 vdil=20.
-vcnt=0.55
+vcnt=0.8
 
-ovor="t"
+ovor="f"
 odiv="f"
-otmp="f"
+otmp="t"
 ops="f"
-osph="t"
+osph="f"
 
 # clean all data
 ./clean.sh

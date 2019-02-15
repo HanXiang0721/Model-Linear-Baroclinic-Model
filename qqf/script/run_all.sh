@@ -7,8 +7,8 @@ navg=3
 
 khpr=1
 hamp=0.00001
-xdil=25
-ydil=10
+xdil=15
+ydil=8
 xcnt=115   #135 #277 #300 #330   #135
 ycnt=20    #15 #45  #70  #65   #40
 
@@ -21,7 +21,7 @@ ovor="t"
 odiv="f"
 otmp="f"
 ops="f"
-osph="t"
+osph="f"
 
 # clean all data
 ./clean.sh

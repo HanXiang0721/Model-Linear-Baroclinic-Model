@@ -13,7 +13,7 @@ f_z    = datafile->z
 f_u    = datafile->u
 f_v    = datafile->v
 
-level = 200
+level = 850
 mylev = ind(f_lev.eq.level)
 mylat = ind(f_lat.ge.-30.and.f_lat.le.90)
 
@@ -75,14 +75,14 @@ resvc@gsnRightString=""
 
 resvc@vcMinDistanceF=0.018
 
-resvc@vcRefMagnitudeF  = 5
+resvc@vcRefMagnitudeF  = 2
 resvc@vcRefLengthF     = 0.015
 
 resvc@vcGlyphStyle="LineArrow"
 resvc@vcLineArrowThicknessF=2.6
 
 resvc@vcRefAnnoOn               = True
-resvc@vcRefAnnoString1          = "5"
+resvc@vcRefAnnoString1          = "2"
 resvc@vcRefAnnoSide             = "Top"
 resvc@vcRefAnnoString2On        = False
 resvc@vcRefAnnoPerimOn          = False

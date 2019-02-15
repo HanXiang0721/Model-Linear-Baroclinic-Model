@@ -13,5 +13,6 @@ cd $DIR
 [[ ! -d "./pics/HGT" ]] && mkdir -p ./pics/HGT
 
 ncl ncl_script/plot_hgt_200.ncl
+ncl ncl_script/plot_hgt_850.ncl
 ncl ncl_script/plot_t_200.ncl
 

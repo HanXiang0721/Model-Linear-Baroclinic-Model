@@ -50,8 +50,8 @@ resc@Rotation         = -90
 
 XCNT=115
 YCNT=20
-XDIL=25
-YDIL=10
+XDIL=15
+YDIL=8
 
 resc@Scale            = XDIL/YDIL
 
