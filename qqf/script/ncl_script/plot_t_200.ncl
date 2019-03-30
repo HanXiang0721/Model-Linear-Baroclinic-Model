@@ -119,7 +119,7 @@ resT@cnLineThicknesses=8
 ;print(dim_avg_n_Wrap(t(9:15,:,:),0))
 
 
-wks = gsn_open_wks("pdf", "./pics/T-"+level+"-10-16-days")
+wks = gsn_open_wks("png", "./pics/T-"+level+"-10-16-days")
 
 gsn_define_colormap(wks,"BlueDarkRed18")
 

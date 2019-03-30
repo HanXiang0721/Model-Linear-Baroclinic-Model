@@ -13,7 +13,7 @@ xcnt=210
 ycnt=0
 
 kvpr=2
-vamp=4.
+vamp=8.
 vdil=20.
 vcnt=0.45
 

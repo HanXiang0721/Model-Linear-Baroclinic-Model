@@ -34,7 +34,7 @@ resp@gsLineThicknessF = 2    ; polylines thickness
 f=asciiread("ncl_script/tibet_shape",(/2066,2/),"float")
 
 
-wks = gsn_open_wks("pdf", "frc_horizontal")
+wks = gsn_open_wks("png", "frc_horizontal")
 
 
 map = gsn_csm_map(wks, res)
@@ -48,10 +48,10 @@ resc@gsLineDashPattern = 16
 resc@gsLineThicknessF = 3.5
 resc@Rotation         = -90
 
-XCNT=115
-YCNT=20
-XDIL=15
-YDIL=8
+XCNT=200
+YCNT=32
+XDIL=10
+YDIL=10
 
 resc@Scale            = XDIL/YDIL
 

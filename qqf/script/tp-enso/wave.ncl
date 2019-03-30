@@ -232,11 +232,11 @@ Fy = mask(Fy, spd.lt.ref, False)
 ;print(dim_avg_n_Wrap(t(9:15,:,:),0))
 
 
-wks = gsn_open_wks("pdf", "./wave-"+level+"-10-16-days")
+wks = gsn_open_wks("png", "./wave-"+level+"-16-21-days")
 
 gsn_define_colormap(wks,"BlueDarkRed18")
 
-res@gsnRightString="14-18 days"
+res@gsnRightString="16-21 days"
 
 map = gsn_csm_contour_map(wks, hgt_anom, res)
 

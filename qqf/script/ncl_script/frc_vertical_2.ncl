@@ -7,13 +7,13 @@ load "$NCARG_ROOT/lib/ncarg/nclscripts/csm/contributed.ncl"
 
 lev = (/0.995, 0.97999, 0.94995, 0.89988, 0.82977, 0.74468, 0.64954, 0.54946,0.45447, 0.36948, 0.2945, 0.22953, 0.17457, 0.1244, 0.084683, 0.0598005,0.0449337, 0.0349146, 0.02488, 0.00829901/)
 
-VAMP=4.
+VAMP=8.
 VDIL=20.
 VCNT=0.45
 
 profile = -VAMP * exp( -VDIL * (lev - VCNT)^2 )
 
-wks = gsn_open_wks("pdf","frc_vertical")
+wks = gsn_open_wks("png","frc_vertical")
 
 res                        = True                        ; plot mods desired
 res@tiYAxisString          = ""   ; add units to title
@@ -33,5 +33,5 @@ VDIL2=10.
 VCNT2=0.3
 
 profile = -VAMP2 * exp( -VDIL2 * (lev - VCNT2)^2 )
-wks = gsn_open_wks("pdf","frc_vertical2")
+wks = gsn_open_wks("png","frc_vertical2")
 plot=gsn_csm_xy(wks,profile,lev,res)

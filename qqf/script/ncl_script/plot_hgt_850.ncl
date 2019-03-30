@@ -91,17 +91,17 @@ resvc@vcRefAnnoParallelPosF     = 0.9999
 resvc@vcRefAnnoBackgroundColor  = "green"
 resvc@vcVectorDrawOrder         = "PostDraw"
 
-
-
-
+;spd = wind_speed(u,v)
+;u = mask(u, spd.le.0.1, False)
+;v = mask(v, spd.le.0.1, False)
 
 do ii = 0, ntime-2
 
 
 if(ii.le.8) then
-	wks = gsn_open_wks("pdf", "./pics/HGT/HGT-"+level+"-0"+(ii+1))
+	wks = gsn_open_wks("png", "./pics/HGT/HGT-"+level+"-0"+(ii+1))
 else
-	wks = gsn_open_wks("pdf", "./pics/HGT/HGT-"+level+"-"+(ii+1))
+	wks = gsn_open_wks("png", "./pics/HGT/HGT-"+level+"-"+(ii+1))
 end if
 
 gsn_define_colormap(wks,"BlueDarkRed18")

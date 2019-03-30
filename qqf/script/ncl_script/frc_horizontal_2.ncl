@@ -34,7 +34,7 @@ resp@gsLineThicknessF = 2    ; polylines thickness
 f=asciiread("ncl_script/tibet_shape",(/2066,2/),"float")
 
 
-wks = gsn_open_wks("pdf", "frc_horizontal2")
+wks = gsn_open_wks("png", "frc_horizontal2")
 
 
 map = gsn_csm_map(wks, res)

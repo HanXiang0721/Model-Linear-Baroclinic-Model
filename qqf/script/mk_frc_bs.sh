@@ -2,15 +2,15 @@
 
 DIR=`pwd`
 
-kmo=10
+kmo=11
 navg=3
 
 khpr=1
 hamp=0.00001
-xdil=15
-ydil=8
-xcnt=115
-ycnt=20
+xdil=10
+ydil=10
+xcnt=200
+ycnt=32
 
 kvpr=2
 vamp=1.

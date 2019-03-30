@@ -13,7 +13,7 @@ VCNT=0.3
 
 profile = -VAMP * exp( -VDIL * (lev - VCNT)^2 )
 
-wks = gsn_open_wks("pdf","frc_vertical")
+wks = gsn_open_wks("png","frc_vertical")
 
 res                        = True                        ; plot mods desired
 res@tiYAxisString          = ""   ; add units to title
