@@ -8,14 +8,14 @@ navg=3
 khpr=1
 hamp=0.00001
 xdil=10
-ydil=10
-xcnt=200
-ycnt=32
+ydil=7
+xcnt=105
+ycnt=55
 
 kvpr=2
-vamp=1.
-vdil=10.
-vcnt=0.3
+vamp=8.
+vdil=20.
+vcnt=0.45
 
 ovor=t
 odiv=f

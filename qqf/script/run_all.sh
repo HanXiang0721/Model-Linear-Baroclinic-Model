@@ -8,14 +8,14 @@ navg=3
 khpr=1
 hamp=0.00001
 xdil=10
-ydil=10
-xcnt=200 #140   #135 #277 #300 #330   #135
-ycnt=30 #40    #15 #45  #70  #65   #40
+ydil=7
+xcnt=105 #155 #165 #210 #133 #200 #140   #135 #277 #300 #330   #135
+ycnt=55 #53  #42  #30 #40    #15 #45  #70  #65   #40
 
 kvpr=2
-vamp=1.
-vdil=10.
-vcnt=0.3
+vamp=8.
+vdil=20.
+vcnt=0.45
 
 ovor="t"
 odiv="f"
@@ -58,7 +58,21 @@ sed -i "22s/^.*.$/setenv TEND     $rundays/g" t42-run.csh
 ./t42-run.csh
 
 # plot frc file
-./plot_frc.sh
+#./plot_frc.sh
 
 # plot hgt 200 hPa
-./plot_hgt.sh
+#./plot_hgt.sh
+
+rm -rf all_nc
+mkdir all_nc
+cd ../bs/
+./convert.sh
+mv bs.nc ../script/all_nc
+cd ../frc
+./convert.sh
+mv frc.nc ../script/all_nc
+cd ../out
+./convert.sh
+mv linear.t42l20.qqf.nc ../script/all_nc
+
+cd ../script
