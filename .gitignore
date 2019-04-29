@@ -11,6 +11,7 @@ linear.t42l20.qqf.grd
 
 lbm2.t21ml20ctintgr
 lbm2.t42ml20ctintgr
+lbm2.t42ml20cdcore
 chi  
 p  
 psi  
@@ -34,5 +35,13 @@ ncepsbs
 ncep1vbs 
 ecmsbs
 mymkfrcng
+mymkfrcng222
 compile.log
+
+frc.t42l20.CNP.grd
+qqf.t42l20
+qqf.t42l20.grd
+frc-r.nonlin.grd
+ncep.clim.y79-14.ps.t42.grd
+ncep.clim.y79-14.t42.grd
 

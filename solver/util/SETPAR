@@ -21,7 +21,7 @@
  &nmncp cncep='/home/qqf/Documents/Linear-Baroclinic-Model/qqf/mybs/ncep.clim.y79-14.t42.grd',
         cncep2='/home/qqf/Documents/Linear-Baroclinic-Model/qqf/mybs/ncep.clim.y79-14.ps.t42.grd',
         calt='/home/qqf/Documents/Linear-Baroclinic-Model/bs/gt3/grz.t42',
-        kmo=11, navg=3, ozm=f, osw=f, ousez=t
+        kmo=9, navg=3, ozm=f, osw=f, ousez=t
  &end
 
  &nmecm cecm='/home/qqf/Documents/Linear-Baroclinic-Model/bs/ecmwf/ERA40.clim.t42.grd',
@@ -34,21 +34,21 @@
         fact=1.0,1.0,1.0,1.0,1.0
  &end
 
- &nmvar ovor=t, odiv=f, otmp=f, ops=f, osph=f
+ &nmvar ovor=f, odiv=f, otmp=t, ops=f, osph=f
  &end
 
  &nmhpr khpr=1,
-        hamp=0.00001,
+        hamp=-1,
         xdil=10,
-        ydil=7,
-        xcnt=105,
-        ycnt=55
+        ydil=10,
+        xcnt=300,
+        ycnt=30
  &end
 
  &nmvpr kvpr=2,
-        vamp=8.,
-        vdil=20.,
-        vcnt=0.45
+        vamp=4.,
+        vdil=15.,
+        vcnt=0.4
  &end
 
  &nmall owall=t

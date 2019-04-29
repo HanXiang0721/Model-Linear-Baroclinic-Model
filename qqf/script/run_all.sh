@@ -1,25 +1,27 @@
 #!/bin/bash
 
+LNHOME=~/Documents/Linear-Baroclinic-Model
+
 rundays=30
 
-kmo=11
+kmo=9
 navg=3
 
 khpr=1
-hamp=0.00001
+hamp=-1  #0.00001
 xdil=10
-ydil=7
-xcnt=105 #155 #165 #210 #133 #200 #140   #135 #277 #300 #330   #135
-ycnt=55 #53  #42  #30 #40    #15 #45  #70  #65   #40
+ydil=10
+xcnt=300 #105 #155 #165 #210 #133 #200 #140   #135 #277 #300 #330   #135
+ycnt=30 #55 #53  #42  #30 #40    #15 #45  #70  #65   #40
 
 kvpr=2
-vamp=8.
-vdil=20.
-vcnt=0.45
+vamp=4.
+vdil=15.
+vcnt=0.4
 
-ovor="t"
+ovor="f"
 odiv="f"
-otmp="f"
+otmp="t"
 ops="f"
 osph="f"
 
