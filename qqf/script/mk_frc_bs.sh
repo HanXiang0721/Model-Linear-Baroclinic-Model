@@ -6,22 +6,22 @@ kmo=9
 navg=3
 
 khpr=1
-hamp=-1
-xdil=10
-ydil=10
-xcnt=300
-ycnt=30
+hamp=1
+xdil=40
+ydil=12
+xcnt=210
+ycnt=0
 
 kvpr=2
-vamp=4.
-vdil=15.
-vcnt=0.4
+vamp=8.
+vdil=20.
+vcnt=0.45
 
 ovor=f
 odiv=f
 otmp=t
 ops=f
-osph=f
+osph=t
 
 cd ../../solver/util/
 

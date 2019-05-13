@@ -8,22 +8,22 @@ kmo=9
 navg=3
 
 khpr=1
-hamp=-1  #0.00001
-xdil=10
-ydil=10
-xcnt=300 #105 #155 #165 #210 #133 #200 #140   #135 #277 #300 #330   #135
-ycnt=30 #55 #53  #42  #30 #40    #15 #45  #70  #65   #40
+hamp=1  #0.00001
+xdil=40
+ydil=12
+xcnt=210 #105 #155 #165 #210 #133 #200 #140   #135 #277 #300 #330   #135
+ycnt=0 #55 #53  #42  #30 #40    #15 #45  #70  #65   #40
 
 kvpr=2
-vamp=4.
-vdil=15.
-vcnt=0.4
+vamp=8.
+vdil=20.
+vcnt=0.45
 
 ovor="f"
 odiv="f"
 otmp="t"
 ops="f"
-osph="f"
+osph="t"
 
 # clean all data
 ./clean.sh
