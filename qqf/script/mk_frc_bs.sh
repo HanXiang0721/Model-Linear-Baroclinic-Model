@@ -7,15 +7,15 @@ navg=3
 
 khpr=1
 hamp=1
-xdil=40
-ydil=12
-xcnt=210
-ycnt=0
+xdil=7
+ydil=4
+xcnt=95
+ycnt=28
 
 kvpr=2
-vamp=8.
+vamp=2.
 vdil=20.
-vcnt=0.45
+vcnt=0.85
 
 ovor=f
 odiv=f
