@@ -4,20 +4,20 @@ LNHOME=~/Documents/Linear-Baroclinic-Model
 
 rundays=30
 
-kmo=9
+kmo=8
 navg=3
 
 khpr=1
-hamp=1  #0.00001
-xdil=7
-ydil=4
-xcnt=95 #105 #155 #165 #210 #133 #200 #140   #135 #277 #300 #330   #135
-ycnt=28 #36 #28 #55 #53  #42  #30 #40    #15 #45  #70  #65   #40
+hamp=-1  #0.00001
+xdil=11.5
+ydil=6.5
+xcnt=296.5 #105 #155 #165 #210 #133 #200 #140   #135 #277 #300 #330   #135
+ycnt=28.5 #36 #28 #55 #53  #42  #30 #40    #15 #45  #70  #65   #40
 
 kvpr=2
-vamp=2.
+vamp=4.
 vdil=20.
-vcnt=0.85
+vcnt=0.45
 
 ovor="f"
 odiv="f"

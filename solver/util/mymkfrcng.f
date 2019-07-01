@@ -174,9 +174,9 @@
 *
 *     vertical profile
 *
-      VAMP2 = 1.
-      VDIL2 = 20.
-      VCNT2 = 0.6
+      VAMP2 = 4.
+      VDIL2 = 30.
+      VCNT2 = 0.5
       IF( KMAX .GT. 1 ) THEN
          DO 10 K = 1, KMAX
             IF( KVPR .EQ. 1 ) AZ( K ) = VAMP * DSIN( PI * SIG( K ) )
@@ -229,10 +229,10 @@
                !      REAL*8       XCNT2         !! x-center for Elliptic-shape
                !      REAL*8       YCNT2         !! y-center for Elliptic-shape
                HAMP2 = 1
-               XDIL2 = 15.
-               YDIL2 = 6.
-               XCNT2 = 30.
-               YCNT2 = 75.
+               XDIL2 = 10.
+               YDIL2 = 9.
+               XCNT2 = 320.
+               YCNT2 = 41.
                V1QQF = ( ALON( I, J ) - XCNT2 )**2 / XDIL2**2
                IF( ALON(I,J).LT.180. .AND. XCNT2+XDIL2.GE.360. )
      $             V1QQF = ( 360. + ALON( I, J ) - XCNT2 )**2 / XDIL2**2

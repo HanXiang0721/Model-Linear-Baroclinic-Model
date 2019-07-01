@@ -48,10 +48,10 @@ resc@gsLineDashPattern = 16
 resc@gsLineThicknessF = 3.5
 resc@Rotation         = -90
 
-XCNT=210
-YCNT=0
-XDIL=40
-YDIL=12
+XCNT=296.5
+YCNT=28.5
+XDIL=15.0
+YDIL=7.0
 
 resc@Scale            = XDIL/YDIL
 
@@ -60,10 +60,10 @@ circle_ll(wks,map,XCNT,YCNT,YDIL/1.5,resc)
 circle_ll(wks,map,XCNT,YCNT,YDIL/4.,resc)
 
 
-XCNT2=115
-YCNT2=20
-XDIL2=15
-YDIL2=8
+XCNT2=320.
+YCNT2=41.
+XDIL2=10.
+YDIL2=9.
 delete(resc@Scale)
 resc@Scale            = XDIL2/YDIL2
 resc@gsLineDashPattern = 0

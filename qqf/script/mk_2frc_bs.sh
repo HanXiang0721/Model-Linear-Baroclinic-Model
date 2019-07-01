@@ -2,37 +2,37 @@
 
 DIR=`pwd`
 
-kmo=7
+kmo=8
 navg=3
 
 khpr=1
 hamp=-1
-xdil=16
-ydil=6
-xcnt=335
-ycnt=60
+xdil=11.5
+ydil=6.5
+xcnt=296.5
+ycnt=28.5
 
 kvpr=2
-vamp=1.
-vdil=20.
-vcnt=0.6
+vamp=4.
+vdil=30.
+vcnt=0.5
 
 
 hamp2=1
-xdil2=15.
-ydil2=6.
-xcnt2=30.
-ycnt2=75.
+xdil2=10.
+ydil2=9.
+xcnt2=320.
+ycnt2=41.
 
-vamp2=1.
-vdil2=20.
-vcnt2=0.6
+vamp2=4.
+vdil2=30.
+vcnt2=0.5
 
 ovor="f"
 odiv="f"
 otmp="t"
 ops="f"
-osph="t"
+osph="f"
 
 cd ../../solver/util/
 

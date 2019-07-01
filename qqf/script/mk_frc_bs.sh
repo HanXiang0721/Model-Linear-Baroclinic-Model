@@ -2,20 +2,20 @@
 
 DIR=`pwd`
 
-kmo=9
+kmo=8
 navg=3
 
 khpr=1
-hamp=1
-xdil=7
-ydil=4
-xcnt=95
-ycnt=28
+hamp=-1
+xdil=11.5
+ydil=6.5
+xcnt=296.5
+ycnt=28.5
 
 kvpr=2
-vamp=2.
+vamp=4.
 vdil=20.
-vcnt=0.85
+vcnt=0.45
 
 ovor=f
 odiv=f

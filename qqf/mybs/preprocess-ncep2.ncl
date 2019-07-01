@@ -3,7 +3,7 @@ load "$NCARG_ROOT/lib/ncarg/nclscripts/contrib/calendar_decode2.ncl"
 system("rm -rf ncep.nc")
 
 START_YEAR = 1995
-END_YEAR = 2014
+END_YEAR = 2017
 
 f1 = addfile("./ncep2/air.mon.mean.nc","r")
 f2 = addfile("./ncep2/hgt.mon.mean.nc","r")  
