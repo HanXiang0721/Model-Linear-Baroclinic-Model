@@ -9,8 +9,8 @@ khpr=1
 hamp=-1
 xdil=11.5
 ydil=6.5
-xcnt=296.5
-ycnt=28.5
+xcnt=205.0
+ycnt=43
 
 kvpr=2
 vamp=4.
